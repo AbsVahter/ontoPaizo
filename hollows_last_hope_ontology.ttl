@@ -1,0 +1,687 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/> .
+@prefix paizo: <http://paizo.com/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# ОНТОЛОГИЯ ДЛЯ ПРИКЛЮЧЕНИЯ "HOLLOW'S LAST HOPE" (D0)
+# Основана на CIDOC-CRM для описания нарративной истории продуктов Paizo
+# =============================================================================
+
+# =============================================================================
+# ОПРЕДЕЛЕНИЕ КЛАССОВ НА ОСНОВЕ CIDOC-CRM
+# =============================================================================
+
+# Классы для персонажей и актеров
+paizo:PlayerCharacter rdf:type owl:Class ;
+    rdfs:subClassOf crm:E21_Person ;
+    rdfs:label "Игровой персонаж"@ru,
+                 "Player Character"@en ;
+    rdfs:comment "Персонаж, управляемый игроком"@ru,
+                 "Character controlled by a player"@en .
+
+paizo:NonPlayerCharacter rdf:type owl:Class ;
+    rdfs:subClassOf crm:E21_Person ;
+    rdfs:label "Неигровой персонаж"@ru,
+                 "Non-Player Character"@en ;
+    rdfs:comment "Персонаж, управляемый мастером игры"@ru,
+                 "Character controlled by the game master"@en .
+
+paizo:AuthorityFigure rdf:type owl:Class ;
+    rdfs:subClassOf paizo:NonPlayerCharacter ;
+    rdfs:label "Представитель власти"@ru,
+                 "Authority Figure"@en ;
+    rdfs:comment "Персонаж, занимающий официальную должность"@ru,
+                 "Character holding an official position"@en .
+
+paizo:Merchant rdf:type owl:Class ;
+    rdfs:subClassOf paizo:NonPlayerCharacter ;
+    rdfs:label "Торговец"@ru,
+                 "Merchant"@en ;
+    rdfs:comment "Персонаж, занимающийся торговлей"@ru,
+                 "Character engaged in trade"@en .
+
+
+# Классы для событий
+paizo:Adventure rdf:type owl:Class ;
+    rdfs:subClassOf crm:E7_Activity ;
+    rdfs:label "Приключение"@ru,
+                 "Adventure"@en ;
+    rdfs:comment "Основное событие приключения"@ru,
+                 "Main adventure event"@en .
+
+paizo:Encounter rdf:type owl:Class ;
+    rdfs:subClassOf crm:E7_Activity ;
+    rdfs:label "Столкновение"@ru,
+                 "Encounter"@en ;
+    rdfs:comment "Отдельное событие в приключении"@ru,
+                 "Individual event within an adventure"@en .
+
+paizo:Quest rdf:type owl:Class ;
+    rdfs:subClassOf crm:E7_Activity ;
+    rdfs:label "Квест"@ru,
+                 "Quest"@en ;
+    rdfs:comment "Задача или миссия в приключении"@ru,
+                 "Task or mission within an adventure"@en .
+
+
+
+paizo:Well rdf:type owl:Class ;
+    rdfs:subClassOf crm:E25_Man-Made_Feature ;
+    rdfs:label "Колодец"@ru,
+                 "Well"@en ;
+    rdfs:comment "Искусственное сооружение для добычи воды"@ru,
+                 "Man-made structure for water extraction"@en .
+
+# Классы для мест
+paizo:Location rdf:type owl:Class ;
+    rdfs:subClassOf crm:E53_Place ;
+    rdfs:label "Локация"@ru,
+                 "Location"@en ;
+    rdfs:comment "Место действия в приключении"@ru,
+                 "Place where adventure takes place"@en .
+
+paizo:Settlement rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Населенный пункт"@ru,
+                 "Settlement"@en ;
+    rdfs:comment "Город, деревня или другое поселение"@ru,
+                 "City, village or other populated place"@en .
+
+paizo:Wilderness rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Дикая местность"@ru,
+                 "Wilderness"@en ;
+    rdfs:comment "Неосвоенная территория"@ru,
+                 "Unsettled territory"@en .
+
+paizo:Dungeon rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Подземелье"@ru,
+                 "Dungeon"@en ;
+    rdfs:comment "Связанный набор локаций с опасностями"@ru,
+                 "Linked set of locations with dangers"@en .
+
+paizo:Shop rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Магазин"@ru,
+                 "Shop"@en ;
+    rdfs:comment "Торговое заведение"@ru,
+                 "Commercial establishment"@en .
+
+# Классы для объектов
+paizo:MagicItem rdf:type owl:Class ;
+    rdfs:subClassOf crm:E22_Man-Made_Object ;
+    rdfs:label "Магический предмет"@ru,
+                 "Magic Item"@en ;
+    rdfs:comment "Предмет с магическими свойствами"@ru,
+                 "Object with magical properties"@en .
+
+
+paizo:Weapon rdf:type owl:Class ;
+    rdfs:subClassOf crm:E22_Man-Made_Object ;
+    rdfs:label "Оружие"@ru,
+                 "Weapon"@en ;
+    rdfs:comment "Оружие или инструмент боя"@ru,
+                 "Weapon or combat tool"@en .
+
+paizo:Treasure rdf:type owl:Class ;
+    rdfs:subClassOf crm:E22_Man-Made_Object ;
+    rdfs:label "Сокровище"@ru,
+                 "Treasure"@en ;
+    rdfs:comment "Ценный предмет или сокровище"@ru,
+                 "Valuable object or treasure"@en .
+
+paizo:Book rdf:type owl:Class ;
+    rdfs:subClassOf crm:E22_Man-Made_Object ;
+    rdfs:label "Книга"@ru,
+                 "Book"@en ;
+    rdfs:comment "Письменный источник знаний"@ru,
+                 "Written source of knowledge"@en .
+
+# Классы для болезней и состояний
+paizo:Disease rdf:type owl:Class ;
+    rdfs:subClassOf crm:E28_Conceptual_Object ;
+    rdfs:label "Болезнь"@ru,
+                 "Disease"@en ;
+    rdfs:comment "Болезнь или состояние, влияющее на персонажей"@ru,
+                 "Disease or condition affecting characters"@en .
+
+paizo:Cure rdf:type owl:Class ;
+    rdfs:subClassOf crm:E28_Conceptual_Object ;
+    rdfs:label "Лекарство"@ru,
+                 "Cure"@en ;
+    rdfs:comment "Средство для лечения болезни"@ru,
+                 "Means to treat a disease"@en .
+
+
+paizo:Motivation rdf:type owl:Class ;
+    rdfs:subClassOf crm:E28_Conceptual_Object ;
+    rdfs:label "Мотивация"@ru,
+                 "Motivation"@en ;
+    rdfs:comment "Причина или цель, побуждающая к действию"@ru,
+                 "Reason or goal that motivates action"@en .
+
+paizo:CharacterMotivation rdf:type owl:Class ;
+    rdfs:subClassOf crm:E28_Conceptual_Object ;
+    rdfs:label "Мотивация персонажа"@ru,
+                 "Character Motivation"@en ;
+    rdfs:comment "Конкретная мотивация конкретного персонажа для выполнения действия. По умолчанию мотивация игроков неопределенная."@ru,
+                 "Specific motivation of a specific character for performing an action. By default, player motivations are undefined."@en .
+
+# Классы для организаций и групп
+paizo:Organization rdf:type owl:Class ;
+    rdfs:subClassOf crm:E74_Group ;
+    rdfs:label "Организация"@ru,
+                 "Organization"@en ;
+    rdfs:comment "Группа людей, объединенная общими целями"@ru,
+                 "Group of people united by common goals"@en .
+
+paizo:BusinessOrganization rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Organization ;
+    rdfs:label "Бизнес-организация"@ru,
+                 "Business Organization"@en ;
+    rdfs:comment "Коммерческая организация, занимающаяся торговлей или производством"@ru,
+                 "Commercial organization engaged in trade or production"@en .
+
+paizo:AdventuringParty rdf:type owl:Class ;
+    rdfs:subClassOf crm:E74_Group ;
+    rdfs:label "Группа искателей приключений"@ru,
+                 "Adventuring Party"@en ;
+    rdfs:comment "Группа персонажей, объединенных для совместных приключений"@ru,
+                 "Group of characters united for joint adventures"@en .
+
+# =============================================================================
+# ОПРЕДЕЛЕНИЕ СВОЙСТВ
+# =============================================================================
+
+# Свойства для связей между персонажами и событиями
+
+
+paizo:opposes rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range crm:E21_Person ;
+    rdfs:label "противодействует"@ru,
+                 "opposes"@en ;
+    rdfs:comment "Связывает персонажей, которые противодействуют друг другу"@ru,
+                 "Links characters who oppose each other"@en .
+
+paizo:serves rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range paizo:Organization ;
+    rdfs:label "служит в"@ru,
+                 "serves in"@en ;
+    rdfs:comment "Связывает персонажа с организацией, в которой он служит"@ru,
+                 "Links a character to an organization they serve"@en .
+
+paizo:memberOf rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range crm:E74_Group ;
+    rdfs:label "является членом"@ru,
+                 "member of"@en ;
+    rdfs:comment "Связывает персонажа с группой, членом которой он является"@ru,
+                 "Links a character to a group they are a member of"@en .
+
+# Свойства для связей между объектами и персонажами
+
+paizo:seeks rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range crm:E22_Man-Made_Object ;
+    rdfs:label "ищет"@ru,
+                 "seeks"@en ;
+    rdfs:comment "Связывает персонажа с объектом, который он ищет"@ru,
+                 "Links a character to an object they seek"@en .
+
+paizo:hasGameStats rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "имеет игровые характеристики"@ru,
+                 "has game statistics"@en ;
+    rdfs:comment "Связывает персонажа с его игровыми характеристиками (класс, уровень, мировоззрение)"@ru,
+                 "Links a character to their game statistics (class, level, alignment)"@en .
+
+paizo:motivatedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:CharacterMotivation ;
+    rdfs:range crm:E21_Person ;
+    rdfs:label "мотивирован"@ru,
+                 "motivated by"@en ;
+    rdfs:comment "Мотивация принадлежит персонажу"@ru,
+                 "Motivation belongs to a character"@en .
+
+paizo:hasMotivation rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:CharacterMotivation ;
+    rdfs:range paizo:Motivation ;
+    rdfs:label "имеет мотивацию"@ru,
+                 "has motivation"@en ;
+    rdfs:comment "Конкретная мотивация персонажа основана на общей мотивации"@ru,
+                 "Character's specific motivation is based on general motivation"@en .
+
+paizo:derivesFrom rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:CharacterMotivation ;
+    rdfs:range paizo:CharacterMotivation ;
+    rdfs:label "происходит из"@ru,
+                 "derives from"@en ;
+    rdfs:comment "Связывает конкретную мотивацию с более общей мотивацией, из которой она произрастает"@ru,
+                 "Links a specific motivation to a more general motivation it derives from"@en .
+
+# Логическая аксиома: персонаж с мотивацией в активности автоматически является участником
+crm:P14_carried_out_by owl:propertyChainAxiom (crm:P17_was_motivated_by paizo:motivatedBy) .
+
+
+# Свойства для болезней и лечения
+
+paizo:cures rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Cure ;
+    rdfs:range paizo:Disease ;
+    rdfs:label "лечит"@ru,
+                 "cures"@en ;
+    rdfs:comment "Связывает лекарство с болезнью, которую оно лечит"@ru,
+                 "Links a cure to the disease it treats"@en .
+
+
+# Свойства для локаций
+crm:P89_falls_within rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E53_Place ;
+    rdfs:range crm:E53_Place ;
+    rdfs:label "расположен в"@ru,
+                 "located in"@en ;
+    rdfs:comment "Связывает место с более крупной территорией"@ru,
+                 "Links a place to a larger territory"@en .
+
+# =============================================================================
+# ЭКЗЕМПЛЯРЫ ДАННЫХ ДЛЯ "HOLLOW'S LAST HOPE"
+# =============================================================================
+
+# Основные локации
+paizo:falcons_hollow rdf:type paizo:Settlement ;
+    rdfs:label "Соколиная Лощина"@ru,
+                 "Falcon's Hollow"@en ;
+    rdfs:comment "Небольшой торговый городок, полностью принадлежащий Лесному Консорциуму"@ru,
+                 "Small trading town completely owned by the Lumber Consortium"@en .
+
+paizo:darkmoon_vale rdf:type paizo:Wilderness ;
+    rdfs:label "Долина Темной Луны"@ru,
+                 "Darkmoon Vale"@en ;
+    rdfs:comment "Опасный лес, окружающий Соколиную Лощину, богатый темным деревом"@ru,
+                 "Dangerous forest surrounding Falcon's Hollow, rich in darkwood"@en .
+
+paizo:droskars_crag rdf:type paizo:Location ;
+    rdfs:label "Утес Дроскара"@ru,
+                 "Droskar's Crag"@en ;
+    rdfs:comment "Горный хребет, в тени которого расположена Соколиная Лощина"@ru,
+                 "Mountain range in whose shadow Falcon's Hollow is located"@en .
+
+paizo:thorn_river rdf:type paizo:Location ;
+    rdfs:label "Река Терний"@ru,
+                 "Thorn River"@en ;
+    rdfs:comment "Река, протекающая через Долину Темной Луны"@ru,
+                 "River flowing through Darkmoon Vale"@en ;
+    crm:P89_falls_within paizo:darkmoon_vale .
+
+paizo:brookmans_well rdf:type paizo:Location ;
+    rdfs:label "Колодец Брукмана"@ru,
+                 "Brookman's Well"@en ;
+    rdfs:comment "Небольшой источник на окраине города"@ru,
+                 "Small spring on the edge of town"@en ;
+    crm:P89_falls_within paizo:falcons_hollow .
+
+# Магазины и здания
+paizo:roots_and_remedies rdf:type paizo:Shop ;
+    rdfs:label "Корни и Лекарства"@ru,
+                 "Roots and Remedies"@en ;
+    rdfs:comment "Магазин травника Лорел, специализирующийся на травах и лекарствах"@ru,
+                 "Herbalist Laurel's shop specializing in herbs and medicines"@en ;
+    crm:P89_falls_within paizo:falcons_hollow ;
+    crm:P52_has_current_owner paizo:laurel .
+
+paizo:church_of_iomedae rdf:type paizo:Location ;
+    rdfs:label "Церковь Иомедае"@ru,
+                 "Church of Iomedae"@en ;
+    rdfs:comment "Храм богини доблести, справедливости и чести"@ru,
+                 "Temple of the goddess of valor, justice and honor"@en ;
+    crm:P89_falls_within paizo:falcons_hollow .
+
+# Важные места в Долине Темной Луны
+paizo:ulizmilas_hut rdf:type paizo:Location ;
+    rdfs:label "Хижина Улизмилы"@ru,
+                 "Ulizmila's Hut"@en ;
+    rdfs:comment "Дом Ведьмы Долины Темной Луны"@ru,
+                 "Home of the Witch of Darkmoon Vale"@en ;
+    crm:P89_falls_within paizo:darkmoon_vale ;
+    crm:P52_has_current_owner paizo:ulizmila .
+
+paizo:eldest_tree rdf:type paizo:Location ;
+    rdfs:label "Старейшее Дерево"@ru,
+                 "Eldest Tree"@en ;
+    rdfs:comment "Самое старое дерево в долине"@ru,
+                 "The oldest tree in the valley"@en ;
+    crm:P89_falls_within paizo:darkmoon_vale .
+
+paizo:dwarven_monastery rdf:type paizo:Dungeon ;
+    rdfs:label "Дворфский Монастырь"@ru,
+                 "Dwarven Monastery"@en ;
+    rdfs:comment "Руины древнего дворфского монастыря"@ru,
+                 "Ruins of an ancient dwarven monastery"@en ;
+    crm:P89_falls_within paizo:darkmoon_vale .
+
+# Болезнь и лекарство
+paizo:blackscour_taint rdf:type paizo:Disease ;
+    rdfs:label "Черная Чума"@ru,
+                 "Blackscour Taint"@en ;
+    rdfs:comment "Грибковое заболевание, поражающее жителей Соколиной Лощины. Инкубационный период: 1d3 дня, сложность спасения DC 14, урон 1d2 к Телосложению"@ru,
+                 "Fungal disease affecting the residents of Falcon's Hollow. Incubation period: 1d3 days, DC 14 Fortitude save, 1d2 Constitution damage"@en .
+
+paizo:blackscour_cure rdf:type paizo:Cure ;
+    rdfs:label "Лекарство от Черной Чумы"@ru,
+                 "Blackscour Cure"@en ;
+    rdfs:comment "Сложное лекарство, требующее редких ингредиентов из Долины Темной Луны"@ru,
+                 "Complex medicine requiring rare ingredients from Darkmoon Vale"@en ;
+    paizo:cures paizo:blackscour_taint .
+
+# Ингредиенты для лекарства
+paizo:elderwood_moss rdf:type crm:E20_Biological_Object ;
+    rdfs:label "Мох Старого Дерева"@ru,
+                 "Elderwood Moss"@en ;
+    rdfs:comment "Редкий мох, растущий только на самом старом дереве в долине"@ru,
+                 "Rare moss that grows only on the oldest tree in the valley"@en ;
+    crm:P53_has_former_or_current_location paizo:eldest_tree .
+
+paizo:blackscour_fungus rdf:type crm:E20_Biological_Object ;
+    rdfs:label "Гриб Черной Чумы"@ru,
+                 "Blackscour Fungus"@en ;
+    rdfs:comment "Редкий гриб, который растет в воде и вызывает заболевание при употреблении"@ru,
+                 "Rare fungus that grows in water and causes disease when consumed"@en .
+
+paizo:rats_tail rdf:type crm:E22_Man-Made_Object ;
+    rdfs:label "Хвост Крысы"@ru,
+                 "Rat's Tail"@en ;
+    rdfs:comment "Особый маринованный корень, найденный в хижине Улизмилы"@ru,
+                 "Specially pickled root found in Ulizmila's hut"@en ;
+    crm:P53_has_former_or_current_location paizo:ulizmilas_hut .
+
+paizo:ironbloom_mushrooms rdf:type crm:E20_Biological_Object ;
+    rdfs:label "Грибы Железного Цветения"@ru,
+                 "Ironbloom Mushrooms"@en ;
+    rdfs:comment "Маленькие грибы, растущие в темных местах с металлом, любимое лакомство дварфов"@ru,
+                 "Small mushrooms that grow in dark places with metal, a dwarven delicacy"@en ;
+    crm:P53_has_former_or_current_location paizo:dwarven_monastery .
+
+# Рецепт лекарства
+paizo:saving_falcons_hollow rdf:type paizo:Motivation ;
+    rdfs:label "Спасение Соколиной Лощины"@ru,
+                 "Saving Falcon's Hollow"@en ;
+    rdfs:comment "Желание спасти жителей от эпидемии Черной Чумы"@ru,
+                 "Desire to save residents from Blackscour Taint epidemic"@en .
+
+paizo:finding_cure_ingredients rdf:type paizo:Motivation ;
+    rdfs:label "Поиск ингредиентов для лекарства"@ru,
+                 "Finding ingredients for the cure"@en ;
+    rdfs:comment "Желание найти необходимые ингредиенты для создания лекарства от Черной Чумы"@ru,
+                 "Desire to find necessary ingredients to create a cure for Blackscour Taint"@en ;
+    crm:P69_has_association_with paizo:blackscour_cure_recipe .
+
+paizo:laurel_saving_falcons_hollow rdf:type paizo:CharacterMotivation ;
+    rdfs:label "Мотивация Лорел спасти Соколиную Лощину"@ru,
+                 "Laurel's Motivation to Save Falcon's Hollow"@en ;
+    rdfs:comment "Личная мотивация Лорел спасти свой город от эпидемии"@ru,
+                 "Laurel's personal motivation to save her town from epidemic"@en ;
+    paizo:motivatedBy paizo:laurel ;
+    paizo:hasMotivation paizo:saving_falcons_hollow .
+
+paizo:laurel_finding_cure_ingredients rdf:type paizo:CharacterMotivation ;
+    rdfs:label "Мотивация Лорел найти ингредиенты"@ru,
+                 "Laurel's Motivation to Find Ingredients"@en ;
+    rdfs:comment "Личная мотивация Лорел найти ингредиенты для лекарства"@ru,
+                 "Laurel's personal motivation to find ingredients for the cure"@en ;
+    paizo:motivatedBy paizo:laurel ;
+    paizo:hasMotivation paizo:finding_cure_ingredients ;
+    paizo:derivesFrom paizo:laurel_saving_falcons_hollow .
+
+paizo:blackscour_cure_recipe rdf:type crm:E31_Document ;
+    rdfs:label "Рецепт Лекарства от Черной Чумы"@ru,
+                 "Blackscour Cure Recipe"@en ;
+    rdfs:comment "Сложный рецепт из книги бабушки Лорел"@ru,
+                 "Complex recipe from Laurel's grandmother's book"@en ;
+    crm:P106_is_composed_of paizo:elderwood_moss,
+                            paizo:rats_tail,
+                            paizo:ironbloom_mushrooms ;
+    crm:P52_has_current_owner paizo:laurel .
+
+# Книга рецептов
+paizo:grandmothers_tome rdf:type paizo:Book ;
+    rdfs:label "Том Бабушки"@ru,
+                 "Grandmother's Tome"@en ;
+    rdfs:comment "Книга рецептов, лекарств и заклинаний, переданная через поколения. Бабушка Лорел получила знания от Улизмилы, отдав свое зрение"@ru,
+                 "Book of recipes, medicines and spells passed down through generations. Laurel's grandmother learned from Ulizmila in exchange for her sight"@en ;
+    crm:P46_is_composed_of paizo:blackscour_cure_recipe ;
+    crm:P52_has_current_owner paizo:laurel .
+
+# Организации
+paizo:lumber_consortium rdf:type paizo:BusinessOrganization ;
+    rdfs:label "Лесной Консорциум"@ru,
+                 "Lumber Consortium"@en ;
+    rdfs:comment "Организация, полностью контролирующая Соколиную Лощину"@ru,
+                 "Organization that completely controls Falcon's Hollow"@en .
+
+# Основные НПС
+paizo:thuldrin_kreed rdf:type paizo:AuthorityFigure ;
+    rdfs:label "Тулдрин Крид"@ru,
+                 "Thuldrin Kreed"@en ;
+    rdfs:comment "Жадный лесоруб, Глава Лесного Консорциума (Gavel)"@ru,
+                 "Greedy lumberjack, Head of the Lumber Consortium (Gavel)"@en ;
+    paizo:hasGameStats "LE male human expert 3/rogue 4"@en ;
+    paizo:memberOf paizo:lumber_consortium .
+
+paizo:vamros_harg rdf:type paizo:AuthorityFigure ;
+    rdfs:label "Вамрос Харг"@ru,
+                 "Vamros Harg"@en ;
+    rdfs:comment "Магистрат-избранник Соколиной Лощины"@ru,
+                 "Magistrate-Elect of Falcon's Hollow"@en ;
+    paizo:hasGameStats "NE male halfling aristocrat 2/sorcerer 5"@en .
+
+paizo:deldrin_baleson rdf:type paizo:AuthorityFigure ;
+    rdfs:label "Делдрин Бейлсон"@ru,
+                 "Deldrin Baleson"@en ;
+    rdfs:comment "Шериф Долины Темной Луны"@ru,
+                 "Sheriff of Darkmoon Vale"@en ;
+    paizo:hasGameStats "LN male half-elf expert 3/fighter 3"@en .
+
+paizo:payden_teedum rdf:type paizo:AuthorityFigure ;
+    rdfs:label "Пейден 'Пей Дей' Тидум"@ru,
+                 "Payden 'Pay Day' Teedum"@en ;
+    rdfs:comment "Главный босс Лесного Консорциума"@ru,
+                 "Chief Boss of the Lumber Consortium"@en ;
+    paizo:hasGameStats "LE male human monk 2/fighter 3"@en ;
+    paizo:memberOf paizo:lumber_consortium .
+
+paizo:laurel rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Лорел"@ru,
+                 "Laurel"@en ;
+    rdfs:comment "Местный травник, владелец магазина 'Корни и Лекарства'"@ru,
+                 "Local herbalist, owner of 'Roots and Remedies' shop"@en ;
+    paizo:hasGameStats "NG female human expert 3"@en .
+
+paizo:lady_cirthana rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Леди Сиртана"@ru,
+                 "Lady Cirthana"@en ;
+    rdfs:comment "Священник церкви Иомедае, единственный, кто пытается помочь больным"@ru,
+                 "Priest of the Church of Iomedae, the only one trying to help the sick"@en ;
+    paizo:hasGameStats "LG female cleric 2 of Iomedae"@en .
+
+paizo:ulizmila rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Улизмила"@ru,
+                 "Ulizmila"@en ;
+    rdfs:comment "Ведьма Долины Темной Луны, потерявшая зрение в обмен на знания"@ru,
+                 "Witch of Darkmoon Vale who lost her sight in exchange for knowledge"@en ;
+    paizo:hasGameStats "Unknown stats"@en .
+
+paizo:milon_rhoddam rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Милон Роддам"@ru,
+                 "Milon Rhoddam"@en ;
+    rdfs:comment "Работник Лесного Консорциума, знающий расположение важных мест в долине"@ru,
+                 "Lumber Consortium worker who knows the location of important places in the valley"@en ;
+    paizo:hasGameStats "N male human expert 2/ranger 2"@en ;
+    paizo:memberOf paizo:lumber_consortium .
+
+# Основные события
+paizo:hollows_last_hope_adventure rdf:type paizo:Adventure ;
+    rdfs:label "Последняя Надежда Лощины"@ru,
+                 "Hollow's Last Hope"@en ;
+    rdfs:comment "Основное приключение по спасению Соколиной Лощины от Черной Чумы. GameMastery Module D0"@ru,
+                 "Main adventure to save Falcon's Hollow from Blackscour Taint. GameMastery Module D0"@en ;
+    crm:P7_took_place_at paizo:falcons_hollow ;
+    crm:P9_consists_of paizo:finding_cure_quest ;
+    crm:P15_was_influenced_by paizo:blackscour_epidemic .
+
+paizo:blackscour_epidemic rdf:type crm:E5_Event ;
+    rdfs:label "Эпидемия Черной Чумы"@ru,
+                 "Blackscour Epidemic"@en ;
+    rdfs:comment "Массовое заболевание жителей Соколиной Лощины"@ru,
+                 "Mass disease outbreak among the residents of Falcon's Hollow"@en ;
+    crm:P7_took_place_at paizo:falcons_hollow ;
+    crm:P15_was_influenced_by paizo:brookmans_well_contamination .
+
+paizo:brookmans_well_contamination rdf:type crm:E5_Event ;
+    rdfs:label "Загрязнение колодца Брукмана"@ru,
+                 "Brookman's well Contamination"@en ;
+    rdfs:comment "Загрязнение воды в колодце грибом blackscour"@ru,
+                 "Contamination of well water with blackscour fungus"@en ;
+    crm:P7_took_place_at paizo:brookmans_well ;
+    crm:P15_was_influenced_by paizo:blackscour_fungus .
+
+paizo:finding_cure_quest rdf:type paizo:Quest ;
+    rdfs:label "Поиск Лекарства"@ru,
+                 "Finding the Cure"@en ;
+    rdfs:comment "Квест по поиску ингредиентов для лекарства от Черной Чумы"@ru,
+                 "Quest to find ingredients for the Blackscour cure"@en ;
+    crm:P9_consists_of paizo:meeting_laurel,
+                       paizo:exploring_darkmoon_vale ;
+    crm:P17_was_motivated_by paizo:laurel_saving_falcons_hollow ;
+    crm:P7_took_place_at paizo:darkmoon_vale , paizo:falcons_hollow .
+
+paizo:meeting_laurel rdf:type paizo:Encounter ;
+    rdfs:label "Встреча с Лорел"@ru,
+                 "Meeting Laurel"@en ;
+    rdfs:comment "Первая встреча с травником в магазине 'Корни и Лекарства', где она просит героев найти ингредиенты для лекарства"@ru,
+                 "First meeting with the herbalist at 'Roots and Remedies' shop, where she asks the heroes to find ingredients for the cure"@en ;
+    crm:P17_was_motivated_by paizo:laurel_finding_cure_ingredients ;
+    crm:P7_took_place_at paizo:roots_and_remedies .
+
+paizo:exploring_darkmoon_vale rdf:type paizo:Quest ;
+    rdfs:label "Исследование Долины Темной Луны"@ru,
+                 "Exploring Darkmoon Vale"@en ;
+    rdfs:comment "Поиск ингредиентов в опасном лесу: мох Старого Дерева на Старейшем Дереве, хвост крысы в хижине Улизмилы, грибы Железного Цветения в руинах монастыря дварфов"@ru,
+                 "Searching for ingredients in the dangerous forest: elderwood moss on the Eldest Tree, rat's tail in Ulizmila's hut, ironbloom mushrooms in the dwarven monastery ruins"@en ;
+    crm:P15_was_influenced_by paizo:meeting_laurel ;
+    crm:P7_took_place_at paizo:darkmoon_vale ;
+    crm:P9_consists_of paizo:random_vale_encounters,
+                       paizo:lumber_camp_exploration,
+                       paizo:eldest_tree_exploration,
+                       paizo:ulizmilas_hut_exploration,
+                       paizo:monastery_exploration .
+
+paizo:random_vale_encounters rdf:type paizo:Encounter ;
+    rdfs:label "Случайные события в долине"@ru,
+                 "Random Vale Encounters"@en ;
+    rdfs:comment "Различные случайные встречи во время путешествия по Долине Темной Луны"@ru,
+                 "Various random encounters during travel through Darkmoon Vale"@en ;
+    crm:P7_took_place_at paizo:darkmoon_vale ;
+    crm:P9_consists_of paizo:foul_tracks_encounter,
+                       paizo:dead_fey_encounter,
+                       paizo:woodsmen_encounter,
+                       paizo:glowmold_encounter,
+                       paizo:wyvern_sighting_encounter,
+                       paizo:kobold_shaman_encounter,
+                       paizo:giant_mosquito_encounter,
+                       paizo:hunters_snare_encounter,
+                       paizo:giant_moorsnake_encounter,
+                       paizo:graypelts_wolves_encounter .
+
+paizo:lumber_camp_exploration rdf:type paizo:Encounter ;
+    rdfs:label "Исследование лагеря лесорубов"@ru,
+                 "Lumber Camp Exploration"@en ;
+    rdfs:comment "Посещение лагеря Лесного Консорциума для получения информации о локациях"@ru,
+                 "Visiting the Lumber Consortium camp to get information about locations"@en ;
+    crm:P7_took_place_at paizo:lumber_consortium .
+
+paizo:eldest_tree_exploration rdf:type paizo:Encounter ;
+    rdfs:label "Исследование Старейшего Древа"@ru,
+                 "Eldest Tree Exploration"@en ;
+    rdfs:comment "Поиск мха Старого Дерева на самом древнем дереве долины"@ru,
+                 "Searching for elderwood moss on the valley's most ancient tree"@en ;
+    crm:P7_took_place_at paizo:eldest_tree .
+
+paizo:ulizmilas_hut_exploration rdf:type paizo:Encounter ;
+    rdfs:label "Исследование хижины Улизмилы"@ru,
+                 "Ulizmila's Hut Exploration"@en ;
+    rdfs:comment "Поиск хвоста крысы в заброшенной хижине ведьмы"@ru,
+                 "Searching for rat's tail in the abandoned witch's hut"@en ;
+    crm:P7_took_place_at paizo:ulizmilas_hut .
+
+paizo:monastery_exploration rdf:type paizo:Encounter ;
+    rdfs:label "Исследование монастыря дварфов"@ru,
+                 "Dwarven Monastery Exploration"@en ;
+    rdfs:comment "Поиск грибов Железного Цветения в руинах древнего монастыря"@ru,
+                 "Searching for ironbloom mushrooms in the ruins of ancient monastery"@en ;
+    crm:P7_took_place_at paizo:dwarven_monastery .
+
+
+# =============================================================================
+# ДОПОЛНИТЕЛЬНЫЕ СВОЙСТВА ДЛЯ РАСШИРЕНИЯ
+# =============================================================================
+
+# Свойства для уровней сложности
+paizo:hasDifficultyLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E5_Event ;
+    rdfs:range xsd:integer ;
+    rdfs:label "имеет уровень сложности"@ru,
+                 "has difficulty level"@en ;
+    rdfs:comment "Уровень сложности события (1-20)"@ru,
+                 "Difficulty level of an event (1-20)"@en .
+
+# Свойства для наград
+paizo:hasReward rdf:type owl:ObjectProperty ;
+    rdfs:domain crm:E5_Event ;
+    rdfs:range crm:E22_Man-Made_Object ;
+    rdfs:label "имеет награду"@ru,
+                 "has reward"@en ;
+    rdfs:comment "Связывает событие с наградой за его выполнение"@ru,
+                 "Links an event to a reward for completing it"@en .
+
+# Свойства для количества участников
+paizo:hasParticipantCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E5_Event ;
+    rdfs:range xsd:integer ;
+    rdfs:label "имеет количество участников"@ru,
+                 "has participant count"@en ;
+    rdfs:comment "Количество персонажей, участвующих в событии"@ru,
+                 "Number of characters participating in an event"@en .
+
+# Свойства для уровней персонажей
+paizo:hasCharacterLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range xsd:integer ;
+    rdfs:label "имеет уровень персонажа"@ru,
+                 "has character level"@en ;
+    rdfs:comment "Уровень персонажа в игре"@ru,
+                 "Character level in the game"@en .
+
+# Свойства для выравнивания
+paizo:hasAlignment rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E21_Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "имеет выравнивание"@ru,
+                 "has alignment"@en ;
+    rdfs:comment "Моральное выравнивание персонажа"@ru,
+                 "Moral alignment of a character"@en .
+
+paizo:hasTimeSpan rdf:type owl:DatatypeProperty ;
+    rdfs:domain crm:E5_Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "имеет временной период"@ru,
+                 "has time span"@en ;
+    rdfs:comment "Временной период, в который происходит событие"@ru,
+                 "Time period during which an event occurs"@en .
