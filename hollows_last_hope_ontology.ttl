@@ -202,6 +202,20 @@ paizo:Equipment rdf:type owl:Class ;
     rdfs:comment "Снаряжение или инструменты, используемые персонажами."@ru,
                  "Gear or tools used by characters."@en .
 
+paizo:MagicalItem rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Магический предмет"@ru,
+                 "Magical item"@en ;
+    rdfs:comment "Предмет, обладающий магическими свойствами, но не являющийся оружием или броней."@ru,
+                 "Item possessing magical properties, but not a weapon or armor."@en .
+
+paizo:Tool rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Инструмент"@ru,
+                 "Tool"@en ;
+    rdfs:comment "Инструмент или приспособление для выполнения задач."@ru,
+                 "Tool or device for performing tasks."@en .
+
 paizo:Weapon rdf:type owl:Class ;
     rdfs:subClassOf paizo:Equipment ;
     rdfs:label "Оружие"@ru,
@@ -539,8 +553,18 @@ paizo:falcons_hollow rdf:type paizo:Settlement ;
     paizo:connectedTo paizo:darkmoon_vale ;
     rdfs:label "Соколиная Лощина"@ru,
                  "Falcon's Hollow"@en ;
-    rdfs:comment "Небольшой торговый городок, полностью принадлежащий Лесному Консорциуму."@ru,
-                 "Small trading town completely owned by the Lumber Consortium."@en .
+    rdfs:comment "Небольшой торговый городок, полностью принадлежащий Лесному Консорциуму. Грубая община на краю Долины Темной Луны, грязная остановка на извилистом торговом пути. Дом менее 1,500 людей и горстки других рас. Большинство жителей заботятся лишь о скудных монетах, уплаченных за изнурительную работу, и о том, какие простые удобства они могут купить. Община процветает на упорной смеси жадности, разврата и упрямой самостоятельности."@ru,
+                 "Small trading town completely owned by the Lumber Consortium. A rough community wholly owned by the local Lumber Consortium, rests on the edge of Darkmoon Vale, a blunt, sawdust-choked stop on a winding trade route. Home to fewer than 1,500 humans and a smattering of other races. Most of the townsfolk care only for the paltry coins paid for their backbreaking work and what simple comforts they can buy. The community thrives on a tenacious mix of greed, debauchery, and stubborn self-reliance."@en ;
+    paizo:hasGameStatsDnd3p5 """Town nonstandard (Lumber Consortium); AL NE
+GP Limit 1,500 gp; Assets 40,550 gp
+DEMOGRAPHICS
+Population 1,400
+Type isolated (human 94%, halfling 3%, half-elf 1%, elf 1%, other 1%)"""@en,
+                             """Городок нестандартный (Лесной Консорциум); Мировоззрение НЗ
+Лимит ЗМ 1,500 зм; Активы 40,550 зм
+ДЕМОГРАФИЯ
+Население 1,400
+Тип изолированный (люди 94%, полурослики 3%, полуэльфы 1%, эльфы 1%, прочие 1%)"""@ru .
 
 paizo:darkmoon_vale rdf:type paizo:Wilderness ;
     rdfs:label "Долина Темной Луны"@ru,
@@ -934,14 +958,7 @@ paizo:rats_tail rdf:type paizo:BiologicalObject ;
                  "Specially pickled root used in magical concoctions."@en ;
     paizo:locatedIn paizo:ulizmilas_hut .
 
-paizo:ironbloom_mushrooms rdf:type paizo:BiologicalObject ;
-    rdfs:label "Грибы Железного Цветения"@ru,
-                 "Ironbloom Mushrooms"@en ;
-    rdfs:comment "Маленькие грибы, растущие в темных местах с металлом, любимое лакомство дварфов."@ru,
-                 "Small mushrooms that grow in dark places with metal, a dwarven delicacy."@en ;
-    paizo:locatedIn paizo:dwarven_monastery .
-
-paizo:glowmold rdf:type paizo:Equipment ;
+paizo:glowmold rdf:type paizo:Tool ;
     rdfs:label "Светящийся мох"@ru,
                  "Glowmold"@en ;
     rdfs:comment "Редкий светящийся мох, собранный с нижней стороны больших камней. Продолжает светить с яркостью факела в течение 3 дней после сбора."@ru,
@@ -951,11 +968,18 @@ paizo:crossbow rdf:type paizo:Weapon ;
     rdfs:label "Арбалет"@ru,
                  "Crossbow"@en .
 
+paizo:light_crossbow rdf:type paizo:Weapon ;
+    rdfs:label "Лёгкий арбалет"@ru,
+                 "Light crossbow"@en ;
+    rdfs:comment "Лёгкий арбалет для стрельбы болтами."@ru,
+                 "Light crossbow for shooting bolts."@en .
+
 paizo:masterwork_light_crossbow rdf:type paizo:Weapon ;
     rdfs:label "Мастерский лёгкий арбалет"@ru,
                  "Masterwork light crossbow"@en ;
     rdfs:comment "Лёгкий арбалет отличного качества."@ru,
-                 "Light crossbow of excellent quality."@en .
+                 "Light crossbow of excellent quality."@en ;
+    paizo:basedOn paizo:light_crossbow .
 
 paizo:short_sword rdf:type paizo:Weapon ;
     rdfs:label "Короткий меч"@ru,
@@ -998,7 +1022,7 @@ paizo:familiar_summoning_salts rdf:type paizo:Consumable ;
     rdfs:comment "Эссенциальные соли, полезные при призыве фамильяра. Если сжечь в ритуале призыва, уменьшают требуемые зм обряда наполовину."@ru,
                  "Essential salts useful in summoning a familiar. If burnt in summoning ritual, decrease the rite's required gp by half."@en .
 
-paizo:soulspeaker rdf:type paizo:Equipment ;
+paizo:soulspeaker rdf:type paizo:MagicalItem ;
     rdfs:label "Говорящая душа"@ru,
                  "Soulspeaker"@en ;
     rdfs:comment "Высушенная голова-амулет. Раз в день может повторить сообщение, как заклинание магический рот."@ru,
@@ -1104,11 +1128,27 @@ paizo:handaxe rdf:type paizo:Weapon ;
     rdfs:comment "Лёгкий одноручный топор."@ru,
                  "Light one-handed axe."@en .
 
-paizo:flaming_bolts rdf:type paizo:Weapon ;
-    rdfs:label "Пылающие болты +1"@ru,
-                 "Flaming bolts +1"@en ;
-    rdfs:comment "Арбалетные болты, зачарованные огненной магией."@ru,
-                 "Crossbow bolts enchanted with fire magic."@en .
+paizo:improved_handaxe rdf:type paizo:Weapon ;
+    rdfs:label "Улучшенный ручной топор"@ru,
+                 "Improved handaxe"@en ;
+    rdfs:comment "Ручной топор с магическим улучшением."@ru,
+                 "Handaxe with magical enhancement."@en ;
+    paizo:basedOn paizo:handaxe ;
+    paizo:hasGameStatsDnd3p5 "+1 handaxe"@en,
+                             "Ручной топор +1"@ru .
+
+paizo:crossbow_bolt rdf:type paizo:Weapon ;
+    rdfs:label "Арбалетный болт"@ru,
+                 "Crossbow bolt"@en ;
+    rdfs:comment "Стандартный болт для арбалета."@ru,
+                 "Standard bolt for crossbow."@en .
+
+paizo:flaming_bolt rdf:type paizo:Weapon ;
+    rdfs:label "Пылающий болт"@ru,
+                 "Flaming bolt"@en ;
+    rdfs:comment "Арбалетный болт, зачарованный огненной магией."@ru,
+                 "Crossbow bolt enchanted with fire magic."@en ;
+    paizo:basedOn paizo:crossbow_bolt .
 
 paizo:magical_ruby_gemstone rdf:type paizo:Valuable ;
     rdfs:label "Магический рубин"@ru,
@@ -1118,7 +1158,7 @@ paizo:magical_ruby_gemstone rdf:type paizo:Valuable ;
     paizo:hasGameStatsDnd3p5 "Ruby gemstone: worth 300 gp; radiates faint conjuration magic"@en,
                              "Рубиновый камень: стоит 300 зм; излучает слабую магию призыва"@ru .
 
-paizo:masterwork_stonemasonry_tools rdf:type paizo:Equipment ;
+paizo:masterwork_stonemasonry_tools rdf:type paizo:Tool ;
     rdfs:label "Мастерские инструменты каменщика"@ru,
                  "Masterwork stonemasonry tools"@en ;
     rdfs:comment "Полный набор мастерских инструментов ремесленника."@ru,
@@ -1126,7 +1166,7 @@ paizo:masterwork_stonemasonry_tools rdf:type paizo:Equipment ;
     paizo:hasGameStatsDnd3p5 "Masterwork stonemasonry tools: grant bonus on Craft (stonemasonry) checks"@en,
                              "Мастерские инструменты каменщика: дают бонус на проверки Ремесло (каменщик)"@ru .
 
-paizo:thieves_tools rdf:type paizo:Equipment ;
+paizo:thieves_tools rdf:type paizo:Tool ;
     rdfs:label "Воровские инструменты"@ru,
                  "Thieves' tools"@en ;
     rdfs:comment "Набор специализированных инструментов в кожаной сумке."@ru,
@@ -1134,7 +1174,7 @@ paizo:thieves_tools rdf:type paizo:Equipment ;
     paizo:hasGameStatsDnd3p5 "Thieves' tools: grant +2 circumstance bonus on Open Lock and Disable Device checks"@en,
                              "Воровские инструменты: дают бонус +2 обстоятельств на проверки Взлом замков и Обезвреживание устройства"@ru .
 
-paizo:silk_rope rdf:type paizo:Equipment ;
+paizo:silk_rope rdf:type paizo:Tool ;
     rdfs:label "Шёлковая верёвка"@ru,
                  "Silk rope"@en .
 
@@ -1154,18 +1194,13 @@ paizo:droskar_prayer_book rdf:type paizo:Book ;
     paizo:hasGameStatsDnd3p5 "Droskar prayer book: worth 50 gp to a scholar interested in dwarven history"@en,
                              "Молитвенник Дроскара: стоит 50 зм учёному, интересующемуся дварфийской историей"@ru .
 
-paizo:ring_of_torag rdf:type paizo:Equipment ;
+paizo:ring_of_torag rdf:type paizo:MagicalItem ;
     rdfs:label "Кольцо Торага"@ru,
                  "Ring of Torag"@en ;
-    rdfs:comment "Древнее магическое кольцо с огненной защитой."@ru,
-                 "Ancient magic ring with fire protection."@en ;
-    paizo:hasGameStatsDnd3p5 
-"""Aura Faint abjuration; CL 3rd
-Slot ring; Price 1,200 gp
-DESCRIPTION
-This simple golden ring has a large red gemstone set into it that sparkles with an inner fire. The wearer of the ring gains fire resistance 10 against the first fire attack that hits him that day. This protection renews itself every morning at dawn. In addition, the wearer receives a +1 resistance bonus on saves made against fire spells and effects. The ring must be worn for 24 hours to have any effect.
-CONSTRUCTION
-Requirements Forge Ring, resist energy; Cost 600 gp, 48 XP"""@en .
+    rdfs:comment "Это простое золотое кольцо с большим красным драгоценным камнем, который сверкает внутренним огнем. Носитель кольца получает сопротивление огню против первой огненной атаки, поразившей его в этот день. Эта защита обновляется каждое утро на рассвете. Кроме того, носитель получает бонус сопротивления к спасброскам против заклинаний и эффектов огня. Кольцо должно быть надето в течение 24 часов, чтобы иметь какой-либо эффект."@ru,
+                 "This simple golden ring has a large red gemstone set into it that sparkles with an inner fire. The wearer of the ring gains fire resistance against the first fire attack that hits him that day. This protection renews itself every morning at dawn. In addition, the wearer receives a resistance bonus on saves made against fire spells and effects. The ring must be worn for 24 hours to have any effect."@en ;
+    paizo:hasGameStatsDnd3p5 "Ring of Torag: Aura Faint abjuration; CL 3rd; Slot ring; Price 1,200 gp; Fire resistance 10 against first fire attack per day; +1 resistance bonus on saves vs fire; Requirements Forge Ring, resist energy; Cost 600 gp, 48 XP"@en,
+                             "Кольцо Торага: Аура Слабая защита; УЗ 3; Слот кольцо; Цена 1,200 зм; Сопротивление огню 10 против первой огненной атаки в день; Бонус сопротивления +1 к спасброскам против огня; Требования Создание Кольца, сопротивление энергии; Стоимость 600 зм, 48 ОО"@ru .
 
 paizo:potion_cure_light_wounds rdf:type paizo:Potion ;
     rdfs:label "Зелье лечения лёгких ран"@ru,
@@ -1185,7 +1220,7 @@ paizo:scroll_spiritual_weapon rdf:type paizo:Scroll ;
     rdfs:label "Свиток духовного оружия"@ru,
                  "Scroll of spiritual weapon"@en .
 
-paizo:wand_of_light rdf:type paizo:Equipment ;
+paizo:wand_of_light rdf:type paizo:MagicalItem ;
     rdfs:label "Палочка света"@ru,
                  "Wand of light"@en ;
     rdfs:comment "Палочка с заклинанием света."@ru,
@@ -1254,6 +1289,12 @@ paizo:claiming_territory rdf:type paizo:Motivation ;
     rdfs:comment "Желание захватить и удерживать территорию."@ru,
                  "Desire to claim and hold territory."@en .
 
+paizo:weakening_enemy rdf:type paizo:Motivation ;
+    rdfs:label "Ослабление врага"@ru,
+                 "Weakening enemy"@en ;
+    rdfs:comment "Желание ослабить противника перед атакой."@ru,
+                 "Desire to weaken opponent before attack."@en .
+
 paizo:undead_compulsion rdf:type paizo:Motivation ;
     rdfs:label "Принуждение нежити"@ru,
                  "Undead compulsion"@en ;
@@ -1313,15 +1354,15 @@ paizo:bat_swarm_disturbed rdf:type paizo:QualifiedMotivation ;
 paizo:skeletons_guarding_prison rdf:type paizo:QualifiedMotivation ;
     rdfs:label "Скелеты охраняют тюрьму"@ru,
                  "Skeletons guarding prison"@en ;
-    rdfs:comment "Три скелета дварфов-воинов поднимаются атаковать персонажей, как только они открывают любую из дверей камер. Двигаются атаковать ближайшее живое существо каждый раунд. Используют когти, так как у них нет скимитаров. Носят кожаные фартуки, дающие им бонус доспеха +2 вместо щита. Сражаются насмерть."@ru,
-                 "Three dwarf warrior skeletons rise up to attack characters as soon as they open any of cell doors. Move to attack nearest living creature each round. Use their claws as they have no scimitars. Wearing leather aprons that grant them +2 armor bonus instead of shield. Fight to death."@en ;
+    rdfs:comment "Три скелета дварфов-воинов поднимаются атаковать персонажей, как только они открывают любую из дверей камер. Двигаются атаковать ближайшее живое существо каждый раунд. Используют когти, так как у них нет скимитаров. Носят кожаные фартуки вместо щита. Сражаются насмерть."@ru,
+                 "Three dwarf warrior skeletons rise up to attack characters as soon as they open any of cell doors. Move to attack nearest living creature each round. Use their claws as they have no scimitars. Wearing leather aprons instead of shield. Fight to death."@en ;
     paizo:agent paizo:skeleton ;
     paizo:motivation paizo:undead_compulsion .
 
 paizo:wolves_defending_den rdf:type paizo:QualifiedMotivation ;
     rdfs:label "Волчицы защищают логово"@ru,
                  "Wolves defending den"@en ;
-    rdfs:comment "Пара волчиц обычно спит за столом днём и активны ночью. Если Серая Шкура был предупреждён о вторжении, эти две волчицы отправлены найти и убить их. Если волчицы замечают героев до боя, воют громко во время атаки, чтобы предупредить Серую Шкуру о вторгшихся. Выделяют одного противника и пытаются установить фланг, обе используя способность сбивания с ног как можно чаще. Каждая волчица убегает к Серой Шкуре, если снижена до менее 5 хитов."@ru,
+    rdfs:comment "Пара волчиц обычно спит за столом днём и активны ночью. Если Серая Шкура был предупреждён о вторжении, эти две волчицы отправлены найти и убить неизвестных. Если волчицы замечают героев до боя, воют громко во время атаки, чтобы предупредить Серую Шкуру о вторгшихся. Выделяют одного противника и пытаются зажать в тиски, обе используя способность сбивания с ног как можно чаще. Каждая волчица убегает к Серой Шкуре, если снижена до менее 5 хитов."@ru,
                  "Pair of female wolves usually sleep behind desk during day and are active at night. If Graypelt has been warned of intruders, these two wolves are sent out to find and kill them. If wolves spot PCs before combat, they howl loudly as they charge, so as to alert Graypelt of intruders. Single out one opponent and attempt to set up flank, both using their trip ability as often as possible. Each wolf flees to Graypelt's side if reduced to fewer than 5 hp."@en ;
     paizo:agent paizo:wolf ;
     paizo:motivation paizo:defending_lair .
@@ -1405,6 +1446,15 @@ paizo:cauldron_guarding_cottage rdf:type paizo:QualifiedMotivation ;
     paizo:motivation paizo:guarding_possessions ;
     paizo:inInterestOf paizo:ulizmila .
 
+paizo:graypelt_deceptive_quest_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Серая Шкура манипулирует вторженцами"@ru,
+                 "Graypelt manipulates intruders"@en ;
+    rdfs:comment "Серая Шкура предлагает героям ложный квест, чтобы одновременно избавиться от других монстров в монастыре и ослабить вторженцев в боях."@ru,
+                 "Graypelt offers PCs deceptive quest to simultaneously get rid of other monsters in monastery and weaken intruders in battles."@en ;
+    paizo:agent paizo:graypelt ;
+    paizo:motivation paizo:claiming_territory ;
+    paizo:motivation paizo:weakening_enemy .
+
 paizo:blackscour_cure_recipe rdf:type paizo:Information ;
     rdfs:label "Рецепт Лекарства от Черной Чумы"@ru,
                  "Blackscour Cure Recipe"@en ;
@@ -1412,7 +1462,7 @@ paizo:blackscour_cure_recipe rdf:type paizo:Information ;
                  "Complex recipe from Laurel's grandmother's book."@en ;
     paizo:refersTo paizo:elderwood_moss,
                             paizo:rats_tail,
-                            paizo:ironbloom_mushrooms ;
+                            paizo:ironbloom_mushroom ;
     paizo:ownedBy paizo:laurel .
 
 paizo:grandmothers_tome rdf:type paizo:Book ;
@@ -1456,6 +1506,42 @@ paizo:milon_rhoddam rdf:type paizo:NonPlayerCharacter ;
     paizo:hasGameStatsDnd3p5 "N male human expert 2/ranger 2"@en,
                              "Н мужчина-человек эксперт 2/следопыт 2"@ru ;
     paizo:locatedIn paizo:lumber_consortium_camp .
+
+paizo:thuldrin_kreed rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Тулдрин Крид"@ru,
+                 "Thuldrin Kreed"@en ;
+    rdfs:comment "Гвоздь Лесного Консорциума, безжалостный лидер, управляющий Соколиной Лощиной железной рукой."@ru,
+                 "Gavel of the Lumber Consortium, ruthless leader who rules Falcon's Hollow with an iron fist."@en ;
+    paizo:hasGameStatsDnd3p5 "LE male human expert 3/rogue 4; Title: Gavel of the Lumber Consortium"@en,
+                             "ЗЗ человек мужчина эксперт 3/плут 4; Титул: Гвоздь Лесного Консорциума"@ru ;
+    paizo:locatedIn paizo:falcons_hollow .
+
+paizo:vamros_harg rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Вамрос Харг"@ru,
+                 "Vamros Harg"@en ;
+    rdfs:comment "Магистрат-избранный Соколиной Лощины, полурослик-чародей."@ru,
+                 "Magistrate-Elect of Falcon's Hollow, halfling sorcerer."@en ;
+    paizo:hasGameStatsDnd3p5 "NE male halfling aristocrat 2/sorcerer 5; Title: Magistrate-Elect"@en,
+                             "НЗ полурослик мужчина аристократ 2/чародей 5; Титул: Магистрат-избранный"@ru ;
+    paizo:locatedIn paizo:falcons_hollow .
+
+paizo:deldrin_baleson rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Делдрин Бэлсон"@ru,
+                 "Deldrin Baleson"@en ;
+    rdfs:comment "Шериф Долины Темной Луны, полуэльф, ответственный за поддержание порядка."@ru,
+                 "Sheriff of Darkmoon Vale, half-elf responsible for maintaining order."@en ;
+    paizo:hasGameStatsDnd3p5 "LN male half-elf expert 3/fighter 3; Title: Sheriff of Darkmoon Vale"@en,
+                             "ЗН полуэльф мужчина эксперт 3/воин 3; Титул: Шериф Долины Темной Луны"@ru ;
+    paizo:locatedIn paizo:falcons_hollow .
+
+paizo:payden_teedum rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Пэйден 'День Выплаты' Тидум"@ru,
+                 "Payden 'Pay Day' Teedum"@en ;
+    rdfs:comment "Старший Надсмотрщик Лесного Консорциума, следящий за рабочими лагерями."@ru,
+                 "Overboss of the Lumber Consortium, overseeing worker camps."@en ;
+    paizo:hasGameStatsDnd3p5 "LE male human monk 2/fighter 3; Title: Overboss of the Lumber Consortium"@en,
+                             "ЗЗ человек мужчина монах 2/воин 3; Титул: Старший Надсмотрщик Лесного Консорциума"@ru ;
+    paizo:locatedIn paizo:falcons_hollow .
 
 paizo:jarlben_trookshavits rdf:type paizo:NonPlayerCharacter ;
     rdfs:label "Ярлбен Трукшавитс"@ru,
@@ -1613,10 +1699,58 @@ paizo:razorcrow rdf:type paizo:CreatureType ;
 paizo:tatzlwyrm rdf:type paizo:CreatureType ;
     rdfs:label "Тацльвирм"@ru,
                  "Tatzlwyrm"@en ;
-    rdfs:comment "Редкий дракониный родственник, похожий на большую змею с головой дракона и парой когтистых передних лап. Бескрылый младший вид драконов. Из открытой пасти исходит болезненно-зелёная дымка."@ru,
-                 "Rare dragonkin resembling a large snake with dragon head and pair of clawed forelegs. Wingless lesser race of dragonkind. Sickly green mist wafts from its open maw."@en ;
-    paizo:hasGameStatsDnd3p5 "Tatzlwyrm, CR 2, hp 22"@en,
-                             "Тацльвирм, УО 2, хп 22"@ru .
+    rdfs:comment "Ползущий как большая змея, с головой дракона и парой когтистых лап для передвижения и хватания добычи. Из открытой пасти исходит болезненно-зелёная дымка. Младший род драконов, тацльвирмы скрываются среди глубочайших диких уголков природного мира. Хотя им не хватает многих качеств истинных драконов - крыльев и мощного дыхательного оружия - их инстинктивная хитрость и врождённая свирепость не уменьшаются их размером. Дикие, но терпеливые охотники, тацльвирмы проводят большую часть времени в засаде, не заботясь о том, примет ли добыча форму оленя, волка или человека. Обладая той же тягой к накоплению, что и их более известные драконьи кузены, тацльвирмы собирают останки своей охоты, старейшие накапливают мрачные сокровищницы костей и обломков. По странному стечению обстоятельств среди этих мрачных кладов часто лежат надгрызенное снаряжение и забытые сокровища, хотя драконьи родичи не имеют применения такому богатству. Врождённо скрытные и неудобно чувствующие себя на открытых пространствах, тацльвирмы редко встречаются, и во многих регионах считаются не более чем местными легендами."@ru,
+                 "Slithering like a large snake, this creature has the head of a dragon and a pair of clawed arms to help it move along and grasp prey. A sickly green mist wafts from its open maw. A whelp race of dragonkind, tatzlwyrms lurk amid the deepest wilds of the natural world. Although they lack many of the qualities of true dragons—most notably wings and powerful breath weapons—their instinctual cunning and innate ferocity is not diminished by their size. Feral yet patient hunters, tatzlwyrms spend most of their time lying in wait for prey, uncaring of whether it takes the form of deer, wolves, or men. Possessing the same hoarding compulsion as their better-known draconic cousins, tatzlywryms collect the remains of their hunts, the eldest accumulating morbid troves of bones and debris. Incidentally, heavily gnawed equipment and forgotten treasures often lie littered among these grim hoards, even although the dragonkin have no use for such wealth. Innately stealthy and uncomfortable in open areas, tatzlwyrms are rarely seen, and in many regions are thought to be little more than local legends."@en ;
+    paizo:hasGameStatsDnd3p5 """CR 2
+N Medium dragon
+Init +2; Senses darkvision 60 ft., low-light vision; Listen +4, Spot +3
+DEFENSE
+AC 15, touch 12, flat-footed 13 (+3 armor, +2 Dex)
+hp 22 (3d12+3)
+Fort +4, Ref +7, Will +1
+Immune paralysis, sleep
+OFFENSE
+Spd 30 ft., climb 30 ft.
+Melee bite +5 (1d6+3)
+Special Attacks improved grab (grp +5), poison gasp, pounce, rake +4 (1d2+1)
+STATISTICS
+Str 14, Dex 15, Con 12, Int 5, Wis 11, Cha 10
+Base Atk +3; Grp +5
+Feats Alertness, Lightning Reflexes
+Skills Climb +10, Hide +7*, Listen +6, Move Silently +5, Spot +8
+*+6 racial bonus on Hide checks in dense vegetation
+SPECIAL ABILITIES
+Improved Grab (Ex): Must hit Medium or smaller foe with bite. Can start grapple as free action without provoking AoO.
+Poison Gasp (Ex): While grappling, can breathe poison into victim's face (contact; DC 12; initial 1 Con; secondary —). Must begin turn grappling to use.
+Pounce (Ex): If charges, can make bite attack plus two rake attacks.
+ECOLOGY
+Environment Any forest; Organization Solitary or nest (2–5); Treasure Standard; Alignment Always neutral
+Advancement 4–6 HD (Medium), 7–13 HD (Large); Level Adjustment +3"""@en,
+                             """УО 2
+Н Средний дракон
+Инициатива +2; Чувства тёмное зрение 60 фт., сумеречное зрение; Слух +4, Внимательность +3
+ЗАЩИТА
+КД 15, касание 12, застигнутый врасплох 13 (+3 доспех, +2 Лов)
+хп 22 (3к12+3)
+Стойкость +4, Рефлекс +7, Воля +1
+Иммунитет паралич, сон
+НАПАДЕНИЕ
+Скорость 30 фт., лазание 30 фт.
+Рукопашная укус +5 (1к6+3)
+Особые атаки улучшенный захват (захв +5), ядовитое дыхание, наскок, когти +4 (1к2+1)
+ХАРАКТЕРИСТИКИ
+Сил 14, Лов 15, Тел 12, Инт 5, Мдр 11, Хар 10
+Базовая атака +3; Захват +5
+Черты Внимательность, Молниеносные рефлексы
+Навыки Лазание +10, Скрытность +7*, Слух +6, Бесшумное движение +5, Внимательность +8
+*+6 расовый бонус Скрытности в густой растительности
+ОСОБЫЕ СПОСОБНОСТИ
+Улучшенный захват (Экс): Должен попасть укусом по Среднему или меньшему противнику. Может начать захват свободным действием без провоцирования АВ.
+Ядовитое дыхание (Экс): Во время захвата может выдохнуть яд в лицо жертвы (контакт; УС 12; начальный урон 1 Тел; вторичный —). Должен начать ход в захвате для использования.
+Наскок (Экс): При атаке с разбега может сделать укус плюс две атаки когтями.
+ЭКОЛОГИЯ
+Среда Любой лес; Организация Одиночка или гнездо (2–5); Сокровища Стандартные; Мировоззрение Всегда нейтральный
+Развитие 4–6 КЗ (Средний), 7–13 КЗ (Большой); Модификатор уровня +3"""@ru .
 
 paizo:animated_cauldron rdf:type paizo:CreatureType ;
     rdfs:label "Оживленный котёл"@ru,
@@ -1682,8 +1816,8 @@ paizo:trapped_firefoot_fennec rdf:type paizo:NonPlayerCharacter ;
 paizo:graypelt rdf:type paizo:NonPlayerCharacter ;
     rdfs:label "Серая Шкура"@ru,
                  "Graypelt"@en ;
-    rdfs:comment "Хитрый старый ворг, считающий себя правителем поверхностных руин монастыря. Лжёт героям, говоря, что готов позволить им взять грибы, если они помогут избавиться от других чудовищ монастыря. Надеется ослабить их битвами, чтобы легко победить, когда они вернутся. Независимо от того, принимают ли герои квест Серой Шкуры, он не намерен позволить им забрать его ценные грибы и атакует, когда их бдительность ослабнет."@ru,
-                 "Cunning old worg who sees himself as the ruler of the surface ruins. Lies to heroes, saying he is willing to let them take mushrooms if they assist him in ridding monastery of other monsters. Hopes to weaken them through battles so he can easily defeat them when they return. Regardless of whether PCs accept Graypelt's quest, he has no intention of allowing them to take his prized mushrooms and attacks the moment their guard is down."@en ;
+    rdfs:comment "Хитрый старый ворг, считающий себя правителем поверхностных руин монастыря."@ru,
+                 "Cunning old worg who sees himself as the ruler of the surface ruins."@en ;
     paizo:hasGameStatsDnd3p5 """CR 3
 CE Medium magical beast
 Male worg warrior 2
@@ -1784,7 +1918,9 @@ paizo:hollows_last_hope_adventure rdf:type paizo:Adventure ;
     paizo:hadCause paizo:blackscour_epidemic ;
     paizo:hadRecommendedLevel 1 ;
     paizo:hadPossibleConsequence paizo:roddams_nephew_death,
-                                 paizo:townsfolk_shunning_consequence .
+                                 paizo:townsfolk_shunning_consequence,
+                                 paizo:towns_recovery,
+                                 paizo:town_recognition .
 
 paizo:blackscour_epidemic rdf:type paizo:BackgroundEvent ;
     rdfs:label "Эпидемия Черной Чумы"@ru,
@@ -1808,7 +1944,8 @@ paizo:finding_cure_quest rdf:type paizo:Quest ;
     rdfs:comment "Квест по поиску ингредиентов для лекарства от Черной Чумы."@ru,
                  "Quest to find ingredients for the Blackscour cure."@en ;
     paizo:containedEvent paizo:meeting_laurel,
-                       paizo:exploring_darkmoon_vale ;
+                       paizo:exploring_darkmoon_vale,
+                       paizo:returning_with_ingredients ;
     paizo:wasMotivatedBy paizo:laurel_saving_falcons_hollow ;
     paizo:locatedIn paizo:darkmoon_vale , paizo:falcons_hollow .
 
@@ -1853,14 +1990,14 @@ paizo:ingredient_location_info rdf:type paizo:Information ;
                  "Information about ingredient locations"@en ;
     rdfs:comment "Примерная информация о том, где можно найти ингредиенты: мох на самом старом дереве, хвост крысы у Улизмилы, грибы в дворфских руинах."@ru,
                  "Approximate information about where ingredients can be found: moss on the oldest tree, rat's tail from Ulizmila, mushrooms in dwarven ruins."@en ;
-    paizo:refersTo paizo:elderwood_moss, paizo:rats_tail, paizo:ironbloom_mushrooms .
+    paizo:refersTo paizo:elderwood_moss, paizo:rats_tail, paizo:ironbloom_mushroom .
 
 paizo:laurel_reward_offer rdf:type paizo:Information ;
     rdfs:label "Предложение вознаграждения от Лорел"@ru,
                  "Laurel's Reward Offer"@en ;
     rdfs:comment "Лорел предлагает тридцать золотых каждому за доставку всех необходимых ингредиентов для лекарства. При успешном торге можно получить до сорока пяти золотых."@ru,
                  "Laurel offers thirty gold each for bringing back everything she needs to brew the medicine. With successful bargaining, up to forty-five gold can be obtained."@en ;
-    paizo:refersTo paizo:laurel, paizo:finding_cure_quest .
+    paizo:refersTo paizo:laurel, paizo:exploring_darkmoon_vale .
 
 paizo:cirthana_inability_to_cure rdf:type paizo:Information ;
     rdfs:label "Неспособность Леди Киртаны лечить болезни"@ru,
@@ -1902,6 +2039,52 @@ paizo:exploring_darkmoon_vale rdf:type paizo:Quest ;
                        paizo:eldest_tree_exploration,
                        paizo:ulizmilas_hut_exploration,
                        paizo:monastery_exploration .
+
+paizo:returning_with_ingredients rdf:type paizo:Encounter ;
+    rdfs:label "Возвращение с ингредиентами"@ru,
+                 "Returning with ingredients"@en ;
+    rdfs:comment "После сбора всех необходимых ингредиентов, герои могут поспешить обратно в Соколиную Лощину без особых задержек."@ru,
+                 "After retrieving all the ingredients needed, the PCs can rush back to Falcon's Hollow without much delay."@en ;
+    paizo:hadCause paizo:exploring_darkmoon_vale ;
+    paizo:locatedIn paizo:falcons_hollow ;
+    paizo:containedEvent paizo:brewing_the_cure,
+                       paizo:heroes_reward .
+
+paizo:brewing_the_cure rdf:type paizo:Encounter ;
+    rdfs:label "Варка лекарства"@ru,
+                 "Brewing the cure"@en ;
+    rdfs:comment "Лорел рада видеть героев и немедленно приступает к варке лекарства."@ru,
+                 "Laurel is glad to see the heroes and immediately sets out to brew the remedy."@en ;
+    paizo:wasMotivatedBy paizo:laurel_saving_falcons_hollow ;
+    paizo:locatedIn paizo:roots_and_remedies .
+
+paizo:heroes_reward rdf:type paizo:Generation ;
+    rdfs:label "Награда героям"@ru,
+                 "Heroes' reward"@en ;
+    rdfs:comment "Лорел платит героям причитающееся и предлагает им скидку на любые будущие услуги."@ru,
+                 "Laurel pays the characters their due and offers them a discount on any future services."@en ;
+    paizo:agent paizo:laurel ;
+    paizo:generated paizo:money ;
+    paizo:hadContext paizo:laurel_reward_offer ;
+    paizo:locatedIn paizo:roots_and_remedies .
+
+paizo:towns_recovery rdf:type paizo:Consequence ;
+    rdfs:label "Выздоровление жителей"@ru,
+                 "Town's recovery"@en ;
+    rdfs:comment "К вечеру того же дня многие местные жители успешно идут на поправку."@ru,
+                 "By that same evening, many of the locals are well on their way to recovery."@en ;
+    paizo:agent paizo:falcons_hollow_townsfolk ;
+    paizo:hadCause paizo:brewing_the_cure ;
+    paizo:locatedIn paizo:falcons_hollow .
+
+paizo:town_recognition rdf:type paizo:Consequence ;
+    rdfs:label "Признание героизма в городе"@ru,
+                 "Town recognition of heroism"@en ;
+    rdfs:comment "Другие в городе замечают героизм персонажей, включая Босса Тидума."@ru,
+                 "Others in the town take notice of the characters' heroics as well, including Boss Teedum."@en ;
+    paizo:agent paizo:falcons_hollow_townsfolk, paizo:payden_teedum ;
+    paizo:hadCause paizo:towns_recovery ;
+    paizo:locatedIn paizo:falcons_hollow .
 
 paizo:random_vale_encounters rdf:type paizo:Encounter ;
     rdfs:label "Случайные события в долине"@ru,
@@ -2076,7 +2259,7 @@ paizo:monastery_exploration rdf:type paizo:Encounter ;
                        paizo:armory_encounter,
                        paizo:secret_prison_encounter,
                        paizo:wolf_den_encounter,
-                       paizo:graypelt_final_battle .
+                       paizo:graypelt_chamber_encounter .
 
 # Комнаты монастыря
 
@@ -2186,7 +2369,7 @@ paizo:monastery_armory rdf:type paizo:Room ;
 paizo:monastery_secret_prison rdf:type paizo:Room ;
     rdfs:label "Секретная тюрьма"@ru,
                  "Secret prison"@en ;
-    rdfs:comment """Секретная дверь открывается, открывая короткий коридор со стеной решёток, тянущейся вдоль одной стороны. Четыре ржавые двери открываются в этой стене в четыре тесные камеры. Эта комната была построена после обращения монастыря к поклонению Дроскару. Она использовалась для содержания всех членов, не обратившихся. Эти несчастные дварфы были оставлены здесь умирать. Замки на дверях камер заржавели, делая их легкими для открытия. Все камеры содержат кости давно умерших дварфов."""@ru,
+    rdfs:comment """Секретная дверь открывается, открывая короткий коридор со стеной решёток, тянущейся вдоль одной стороны. Четыре ржавые двери открываются в этой стене в четыре тесные камеры. Эта комната была построена после обращения монастыря к Дроскару. Она использовалась для содержания всех не обратившихся членов. Эти несчастные дварфы были оставлены здесь умирать. Замки на дверях камер заржавели, делая их легкими для открытия. Все камеры содержат кости давно умерших дварфов."""@ru,
                  """The secret door swings open to reveal a short corridor with a wall of bars running down one side. Four rusted doors open in this wall into four cramped cells. This chamber was built after the monastery's conversion to the worship of Droskar. It was used to house all of the members who did not convert. These unfortunate dwarves were left here to die. The locks on the cell doors have rusted away, making them easy to open. All of the cells contain the bones of long-dead dwarves."""@en ;
     paizo:locatedIn paizo:dwarven_monastery ;
     paizo:connectedTo paizo:monastery_armory .
@@ -2221,16 +2404,16 @@ paizo:monastery_approach_encounter rdf:type paizo:Encounter ;
 paizo:monastery_yard_encounter rdf:type paizo:Encounter ;
     rdfs:label "Обыск двора"@ru,
                  "Searching the yard"@en ;
-    rdfs:comment "Обыск высоких трав открывает несколько интересных улик. Рядом с колодцем лежит тело исследователя, прибывшего сюда всего год назад. У тела находят снаряжение в гниющем рюкзаке. Высокие травы скрывают большинство троп, но можно различить слабые признаки того, что некоторые существа входят в главное здание через двойные двери."@ru,
-                 "Searching the tall grasses reveals a few interesting clues. Lying next to the well is the body of an explorer who came here just one year ago. On body found equipment in rotting backpack. Although the tall grasses obscure most trails, faint signs show that some creatures do enter the main building through the double doors."@en ;
+    rdfs:comment "Обыск высоких трав открывает несколько интересных улик. Рядом с колодцем лежит тело исследователя, прибывшего сюда всего год назад. Рядом с телом можно найти снаряжение. Высокие травы скрывают большинство троп, но можно различить слабые признаки того, что некоторые существа входят в главное здание через двойные двери."@ru,
+                 "Searching the tall grasses reveals a few interesting clues. Lying next to the well is the body of an explorer who came here just one year ago. Near the body can be found equipment. Although the tall grasses obscure most trails, faint signs show that some creatures do enter the main building through the double doors."@en ;
     paizo:locatedIn paizo:monastery_yard ;
     paizo:containedEvent paizo:finding_explorers_backpack .
 
 paizo:watchtower_encounter rdf:type paizo:Encounter ;
     rdfs:label "Паук в башне"@ru,
                  "Spider in tower"@en ;
-    rdfs:comment "Агрессивный паукообразный хищник обитает в этой комнате. В момент открытия двери паук спускается для атаки. В ящике находят мастерский короткий меч, завёрнутый в промасленную ткань."@ru,
-                 "Aggressive arachnid predator dwells in this room. Moment door opens, spider drops down to attack. In crate find masterwork shortsword wrapped in oilcloth."@en ;
+    rdfs:comment "Агрессивный паукообразный хищник обитает в этой комнате. В момент открытия двери паук спускается для атаки. В одном из ящиков можно найти припасы."@ru,
+                 "Aggressive arachnid predator dwells in this room. Moment door opens, spider drops down to attack. In one of the crates can be found supplies."@en ;
     paizo:hadEncounterLevel "1"^^xsd:float ;
     paizo:wasMotivatedBy paizo:spider_defending_tower ;
     paizo:locatedIn paizo:monastery_watchtower ;
@@ -2246,16 +2429,16 @@ paizo:entry_hall_encounter rdf:type paizo:Encounter ;
 paizo:waiting_room_encounter rdf:type paizo:Encounter ;
     rdfs:label "Мумифицированный дварф"@ru,
                  "Mummified dwarf"@en ;
-    rdfs:comment "Дверь заклинена. За ней мумифицированные останки дварфа-кузнеца с осколками флакона яда в одной руке и пергаментом в другой: 'Прости меня, тёмный отец кузни, моих трудов никогда не будет достаточно.' В поясе находят серебряный лёгкий молот с символом Дроскара."@ru,
-                 "Door is stuck. Beyond are mummified remains of dwarf blacksmith with shards of poison vial in one hand and parchment in other: 'Forgive me, dark father of the forge, my toils shall never be enough.' In belt find silver light hammer with Droskar symbol."@en ;
+    rdfs:comment "Дверь заклинена. За ней мумифицированные останки дварфа-кузнеца с осколками флакона яда в одной руке и пергаментом в другой: 'Прости меня, тёмный отец кузни, моих трудов никогда не будет достаточно.' У дварфа можно найти предметы."@ru,
+                 "Door is stuck. Beyond are mummified remains of dwarf blacksmith with shards of poison vial in one hand and parchment in other: 'Forgive me, dark father of the forge, my toils shall never be enough.' On the dwarf can be found items."@en ;
     paizo:locatedIn paizo:monastery_waiting_room ;
     paizo:containedEvent paizo:finding_silver_hammer .
 
 paizo:cloak_room_encounter rdf:type paizo:Encounter ;
     rdfs:label "Находка в гардеробе"@ru,
                  "Cloak room discovery"@en ;
-    rdfs:comment "Небольшая комната для хранения плащей посетителей. В углу спрятан гриб железоцвет."@ru,
-                 "Small chamber for storing visitors' cloaks. In corner hides ironbloom mushroom."@en ;
+    rdfs:comment "Небольшая комната для хранения плащей посетителей. В углу можно найти полезную находку."@ru,
+                 "Small chamber for storing visitors' cloaks. In corner can be found useful discovery."@en ;
     paizo:locatedIn paizo:monastery_cloak_room ;
     paizo:containedEvent paizo:finding_ironbloom_cloak_room .
 
@@ -2270,8 +2453,8 @@ paizo:guest_quarters_encounter rdf:type paizo:Encounter ;
 paizo:gurtlekeps_room_encounter rdf:type paizo:Encounter ;
     rdfs:label "Битва с Гуртлекепом"@ru,
                  "Battle with Gurtlekep"@en ;
-    rdfs:comment "Это дом Гуртлекепа, кобольда-разведчика, отправленного из подземелья снизу для наблюдения на поверхности. Гуртлекеп здесь спит днём и обычно бродит по залам монастыря ночью. Если герои придут сюда днём, Гуртлекеп не готов к ним, если только они не активируют ловушку в гостевых комнатах. Если ночь, Гуртлекепа можно найти в коридоре, наблюдающего за двором. При опасности прячется под кроватью. Сокровища: мастерские инструменты каменщика, 62 зм разными монетами, рубин (300 зм), излучающий слабую магию призыва - один из камней алтаря."@ru,
-                 "This is the home of Gurtlekep, a kobold scout sent up from the dungeon below to keep a lookout on the surface. Gurtlekep is here sleeping during the day and is usually out roaming the halls of the monastery at night. If the PCs come here during the day, Gurtlekep is unprepared for them unless they set off the trap in guest quarters. If it is night, Gurtlekep can be found in hallway, keeping watch on the courtyard. When threatened hides under bed. Treasures: masterwork stonemasonry tools, 62 gp assorted coins, ruby (300 gp) radiating faint conjuration - one of altar stones."@en ;
+    rdfs:comment "Это дом Гуртлекепа, кобольда-разведчика, отправленного из подземелья снизу для наблюдения на поверхности. Гуртлекеп здесь спит днём и обычно бродит по залам монастыря ночью. Если герои придут сюда днём, Гуртлекеп не готов к ним, если только они не активируют ловушку в гостевых комнатах. Если ночь, Гуртлекепа можно найти в коридоре, наблюдающего за двором. При опасности прячется под кроватью. В комнате можно найти сокровища кобольда."@ru,
+                 "This is the home of Gurtlekep, a kobold scout sent up from the dungeon below to keep a lookout on the surface. Gurtlekep is here sleeping during the day and is usually out roaming the halls of the monastery at night. If the PCs come here during the day, Gurtlekep is unprepared for them unless they set off the trap in guest quarters. If it is night, Gurtlekep can be found in hallway, keeping watch on the courtyard. When threatened hides under bed. In the room can be found kobold's treasures."@en ;
     paizo:hadEncounterLevel "2"^^xsd:float ;
     paizo:wasMotivatedBy paizo:gurtlekep_scouting ;
     paizo:locatedIn paizo:gurtlekeps_room ;
@@ -2280,8 +2463,8 @@ paizo:gurtlekeps_room_encounter rdf:type paizo:Encounter ;
 paizo:library_encounter rdf:type paizo:Encounter ;
     rdfs:label "Опасная библиотека"@ru,
                  "Hazardous library"@en ;
-    rdfs:comment "Грибок, выстилающий полки в этой комнате, опасен, если потревожен. Если любая из книг перемещена или уничтожена, грибок выпускает облако ядовитых спор. На одной из полок удалось избежать разрушительного грибка единственному тому - книга гимнов Торагу, содержащая свиток духовного оружия."@ru,
-                 "The fungus that lines the shelves in this room is hazardous if disturbed. If any of the books are moved or destroyed the fungus lets off a puff of poisonous spores. Atop one of the bookshelves has managed to avoid the destructive fungus a single tome - Torag hymnal containing scroll of spiritual weapon."@en ;
+    rdfs:comment "Грибок, выстилающий полки в этой комнате, опасен, если потревожен. Если любая из книг перемещена или уничтожена, грибок выпускает облако ядовитых спор. На одной из полок можно найти уцелевшую книгу."@ru,
+                 "The fungus that lines the shelves in this room is hazardous if disturbed. If any of the books are moved or destroyed the fungus lets off a puff of poisonous spores. Atop one of the bookshelves can be found a surviving book."@en ;
     paizo:hadInvolvedEntity paizo:library_fungus ;
     paizo:locatedIn paizo:monastery_library ;
     paizo:containedEvent paizo:finding_torag_hymnal .
@@ -2289,8 +2472,8 @@ paizo:library_encounter rdf:type paizo:Encounter ;
 paizo:shrine_encounter rdf:type paizo:Encounter ;
     rdfs:label "Даркмантлы в храме"@ru,
                  "Darkmantles in shrine"@en ;
-    rdfs:comment "Пара даркмантлов гнездится на потолке оскверненного святилища. Алтарь-наковальня имеет пять углублений для рубинов, которые когда-то их держали. Хотя большинство этих камней давно исчезло, один всё ещё остаётся и может быть найден среди других реликвий в комнате Гуртлекепа."@ru,
-                 "Pair of darkmantles roosts on ceiling of defaced shrine. Altar-anvil has five depressions for rubies that once held them. While most of these stones are long gone, one still remains and can be found among the other relics in Gurtlekep's room."@en ;
+    rdfs:comment "Пара даркмантлов гнездится на потолке оскверненного святилища. Алтарь-наковальня имеет пять углублений для рубинов. Большинство этих камней давно исчезло."@ru,
+                 "Pair of darkmantles roosts on ceiling of defaced shrine. Altar-anvil has five depressions for rubies. Most of these stones are long gone."@en ;
     paizo:hadEncounterLevel "3"^^xsd:float ;
     paizo:wasMotivatedBy paizo:darkmantles_ambush ;
     paizo:locatedIn paizo:monastery_shrine ;
@@ -2324,8 +2507,8 @@ paizo:armory_encounter rdf:type paizo:Encounter ;
 paizo:secret_prison_encounter rdf:type paizo:Encounter ;
     rdfs:label "Скелеты в тюрьме"@ru,
                  "Skeletons in prison"@en ;
-    rdfs:comment "Хотя все камеры содержат кости давно умерших дварфов, три из них на самом деле скелеты, которые поднимаются атаковать персонажей, как только они открывают любую из дверей камер. Единственный скелет здесь, который не оживает, от дварфа, оставшегося благочестивым Торагу во время своего заключения. Его скелет лежит в мирной позе на его простом соломенном топчане. На одной из его рук находится кольцо Торага, древний магический предмет. Растущая внутри его грудной клетки пара грибов железоцвет."@ru,
-                 "While all of the cells contain the bones of long-dead dwarves, three of them are actually skeletons that rise up to attack the characters as soon as they open any of the cell doors. The only skeleton here that does not animate is from a dwarf that remained pious to Torag during his imprisonment. His skeleton lies in a peaceful posture on his simple straw cot. On one of his hands is the ring of Torag, an ancient magic item. Growing inside his ribcage is a pair of ironbloom mushrooms."@en ;
+    rdfs:comment "Хотя все камеры содержат кости давно умерших дварфов, три из них на самом деле скелеты, которые поднимаются атаковать персонажей, как только они открывают любую из дверей камер. Единственный скелет здесь, который не оживает, от дварфа, оставшегося благочестивым Торагу во время своего заключения. Его скелет лежит в мирной позе на его простом соломенном топчане. При нём можно найти полезные предметы."@ru,
+                 "While all of the cells contain the bones of long-dead dwarves, three of them are actually skeletons that rise up to attack the characters as soon as they open any of the cell doors. The only skeleton here that does not animate is from a dwarf that remained pious to Torag during his imprisonment. His skeleton lies in a peaceful posture on his simple straw cot. On him can be found useful items."@en ;
     paizo:hadEncounterLevel "1"^^xsd:float ;
     paizo:wasMotivatedBy paizo:skeletons_guarding_prison ;
     paizo:locatedIn paizo:monastery_secret_prison ;
@@ -2334,22 +2517,43 @@ paizo:secret_prison_encounter rdf:type paizo:Encounter ;
 paizo:wolf_den_encounter rdf:type paizo:Encounter ;
     rdfs:label "Логово волчиц"@ru,
                  "Wolf den"@en ;
-    rdfs:comment "Сегодня это логово пары волчиц, подруг Серой Шкуры. Волчицы обычно спят за столом днём и активны ночью. Если Серая Шкура был предупреждён о вторжении, эти две волчицы отправлены найти и убить их. В любом случае, пара атакует в момент, когда они замечают вторгшихся. В секретном отделении стола - сокровища."@ru,
-                 "Today, it is the den of a pair of female wolves, the consorts of Graypelt. The wolves usually sleep behind the desk during the day and are active at night. If Graypelt has been warned of intruders, these two wolves are sent out to find and kill them. In either case, the pair attacks the moment they spot intruders. In secret desk compartment - treasures."@en ;
+    rdfs:comment "Сегодня это логово пары волчиц, подруг Серой Шкуры. Волчицы обычно спят за столом днём и активны ночью. Если Серая Шкура был предупреждён о вторжении, эти две волчицы отправлены найти и убить неизвестных. В любом случае, пара атакует в момент, когда они замечают вторгшихся. Стол имеет секретное отделение."@ru,
+                 "Today, it is the den of a pair of female wolves, the consorts of Graypelt. The wolves usually sleep behind the desk during the day and are active at night. If Graypelt has been warned of intruders, these two wolves are sent out to find and kill them. In either case, the pair attacks the moment they spot intruders. The desk has a secret compartment."@en ;
     paizo:hadEncounterLevel "3"^^xsd:float ;
     paizo:wasMotivatedBy paizo:wolves_defending_den ;
     paizo:locatedIn paizo:monastery_wolf_den ;
     paizo:containedEvent paizo:finding_wolf_den_treasures .
 
+paizo:graypelt_chamber_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Встреча с Серой Шкурой"@ru,
+                 "Graypelt chamber encounter"@en ;
+    rdfs:comment "Встреча с Серой Шкурой, хитрым воргом, правителем поверхностных руин. Ворг предлагает героям сделку: убить других монстров монастыря в обмен на грибы. Это ложь - он планирует напасть на ослабленных героев."@ru,
+                 "Encounter with Graypelt, cunning worg, ruler of surface ruins. The worg offers PCs a deal: kill other monastery monsters in exchange for mushrooms. This is a lie - he plans to attack weakened PCs."@en ;
+    paizo:locatedIn paizo:graypelts_chamber ;
+    paizo:containedEvent paizo:graypelt_deception_quest,
+                       paizo:graypelt_final_battle,
+                       paizo:finding_graypelts_hoard .
+
+paizo:graypelt_deception_quest rdf:type paizo:Quest ;
+    rdfs:label "Ложный квест Серой Шкуры"@ru,
+                 "Graypelt's deception quest"@en ;
+    rdfs:comment "Серая Шкура лжёт героям, предлагая позволить им взять грибы (или спуститься вниз), если они помогут ему избавиться от других монстров монастыря. Ворг знает о всех существах в монастыре, кроме скелетов. Он просит убить даркмантлов, затем рой летучих мышей, затем паука в башне. Ворг надеется, что сражения с этими монстрами ослабят героев, чтобы он смог легко победить их при возвращении. Независимо от того, принимают ли герои квест, Серая Шкура не намерен позволить им взять его ценные грибы и атакует, когда их бдительность ослабнет."@ru,
+                 "Graypelt lies to PCs, offering to let them take mushrooms (or go below) if they assist him in ridding monastery of other monsters. The worg knows of all creatures in monastery except skeletons. He asks to slay darkmantles, then bat swarm, then spider in tower. The worg hopes that fighting these monsters will weaken PCs so he can easily defeat them when they return. Regardless of whether PCs accept quest, Graypelt has no intention of allowing them to take his prized mushrooms and attacks when their guard is down."@en ;
+    paizo:agent paizo:graypelt ;
+    paizo:wasMotivatedBy paizo:graypelt_deceptive_quest_motivation ;
+    paizo:locatedIn paizo:dwarven_monastery ;
+    paizo:containedEvent paizo:shrine_encounter,
+                       paizo:infested_ruins_encounter,
+                       paizo:watchtower_encounter .
+
 paizo:graypelt_final_battle rdf:type paizo:Encounter ;
-    rdfs:label "Финальная битва с Серой Шкурой"@ru,
-                 "Final battle with Graypelt"@en ;
-    rdfs:comment "Финальное столкновение с Серой Шкурой - хитрым и опасным воргом, правителем поверхностных руин. Сокровища спрятаны за колонной. В тёмном углу растут грибы железоцветы."@ru,
-                 "Final confrontation with Graypelt - cunning and dangerous worg, ruler of surface ruins. Treasures hidden behind pillar. In dark corner grow ironbloom mushrooms."@en ;
+    rdfs:label "Битва с Серой Шкурой"@ru,
+                 "Battle with Graypelt"@en ;
+    rdfs:comment "Финальное столкновение с Серой Шкурой. Ворг атакует, когда бдительность героев ослабла."@ru,
+                 "Final confrontation with Graypelt. The worg attacks when PCs' guard is down."@en ;
     paizo:hadEncounterLevel "3"^^xsd:float ;
     paizo:wasMotivatedBy paizo:graypelt_ruling_ruins ;
-    paizo:locatedIn paizo:graypelts_chamber ;
-    paizo:containedEvent paizo:finding_graypelts_hoard .
+    paizo:locatedIn paizo:graypelts_chamber .
 
 paizo:bait_encounter rdf:type paizo:Encounter ;
     rdfs:label "Приманка у озера"@ru,
@@ -2513,15 +2717,15 @@ paizo:finding_torag_hymnal rdf:type paizo:Generation ;
 paizo:finding_flaming_bolts rdf:type paizo:Generation ;
     rdfs:label "Находка пылающих болтов"@ru,
                  "Finding flaming bolts"@en ;
-    rdfs:comment "В своей спешке исследователи, разграбившие оружейную, опрокинули один из ящиков для болтов. Они собрали большинство болтов, но 4 пылающих болта +1 оказались под одной из стоек."@ru,
-                 "In their haste, explorers who looted armory knocked over bolt case. They gathered most bolts, but 4 +1 flaming bolts ended up underneath one rack."@en ;
-    paizo:generated paizo:flaming_bolts ;
+    rdfs:comment "В своей спешке исследователи, разграбившие оружейную, опрокинули один из ящиков для болтов. Они собрали большинство болтов, но 4 пылающих болта оказались под одной из стоек."@ru,
+                 "In their haste, explorers who looted armory knocked over bolt case. They gathered most bolts, but 4 flaming bolts ended up underneath one rack."@en ;
+    paizo:generated paizo:flaming_bolt ;
     paizo:locatedIn paizo:monastery_armory .
 
 paizo:finding_prison_treasures rdf:type paizo:Generation ;
     rdfs:label "Находка сокровищ в тюрьме"@ru,
                  "Finding prison treasures"@en ;
-    rdfs:comment "Единственный скелет, который не оживает, от дварфа, оставшегося благочестивым Торагу во время заключения. На одной из его рук - кольцо Торага, древний магический предмет. Растущая внутри грудной клетки - пара грибов железоцвет."@ru,
+    rdfs:comment "Единственный скелет, который не оживает, от дварфа, оставшегося благочестивым Торагу во время заключения. На одной из его рук - кольцо Торага, древний магический предмет. Внутри грудной клетки растет пара грибов железоцветов."@ru,
                  "Only skeleton that does not animate is from dwarf who remained pious to Torag during imprisonment. On one of his hands - ring of Torag, ancient magic item. Growing inside ribcage - pair of ironbloom mushrooms."@en ;
     paizo:generated paizo:ring_of_torag, paizo:ironbloom_mushroom ;
     paizo:locatedIn paizo:monastery_secret_prison .
@@ -2529,9 +2733,9 @@ paizo:finding_prison_treasures rdf:type paizo:Generation ;
 paizo:finding_wolf_den_treasures rdf:type paizo:Generation ;
     rdfs:label "Находка сокровищ в логове волков"@ru,
                  "Finding wolf den treasures"@en ;
-    rdfs:comment "В секретном отделении стола находят: ручной топор +1, небольшой мешочек с 100 пм, молитвенник Дроскара."@ru,
-                 "In secret desk compartment find: +1 handaxe, small pouch with 100 pp, Droskar prayer book."@en ;
-    paizo:generated paizo:handaxe, paizo:money, paizo:droskar_prayer_book ;
+    rdfs:comment "В секретном отделении стола находят: улучшенный ручной топор, небольшой мешочек с 100 пм, молитвенник Дроскара."@ru,
+                 "In secret desk compartment find: improved handaxe, small pouch with 100 pp, Droskar prayer book."@en ;
+    paizo:generated paizo:improved_handaxe, paizo:money, paizo:droskar_prayer_book ;
     paizo:locatedIn paizo:monastery_wolf_den .
 
 paizo:finding_graypelts_hoard rdf:type paizo:Generation ;
