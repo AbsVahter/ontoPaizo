@@ -1,0 +1,682 @@
+@prefix : <http://paizo.com/ontology#> .
+@prefix paizo: <http://paizo.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# БАЗОВАЯ ОНТОЛОГИЯ PAIZO
+# =============================================================================
+
+<http://paizo.com/ontology> rdf:type owl:Ontology ;
+    rdfs:label "Базовая онтология Paizo"@ru,
+               "Paizo Base Ontology"@en ;
+    rdfs:comment "Основная структура онтологии для описания приключений Paizo"@ru,
+                 "Base ontology structure for describing Paizo adventures"@en .
+
+# =============================================================================
+# ОПРЕДЕЛЕНИЕ КЛАССОВ
+# =============================================================================
+
+# Классы для персонажей и актеров
+
+paizo:Agent rdf:type owl:Class ;
+    rdfs:label "Агент"@ru,
+                 "Agent"@en ;
+    rdfs:comment "Действующее лицо или сущность, способная совершать действия или участвовать в событиях."@ru,
+                 "Acting entity capable of performing actions or participating in events."@en .
+
+paizo:Character rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Agent ;
+    rdfs:label "Персонаж"@ru,
+                 "Character"@en ;
+    rdfs:comment "Персонаж (субъект), который является актором или участником событий приключения."@ru,
+                 "Character (subject) that is an actor or participant in adventure events."@en .
+
+paizo:CreatureType rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Agent ;
+    rdfs:label "Тип существа"@ru,
+                 "Creature Type"@en ;
+    rdfs:comment "Абстрактная категория существ, представляющая вид или тип, а не конкретную особь."@ru,
+                 "Abstract category of creatures representing a species or type, not a specific individual."@en .
+
+paizo:PlayerCharacter rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Character ;
+    rdfs:label "Игровой персонаж"@ru,
+                 "Player Character"@en ;
+    rdfs:comment "Персонаж, управляемый игроком."@ru,
+                 "Character controlled by a player."@en .
+
+paizo:NonPlayerCharacter rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Character ;
+    rdfs:label "Неигровой персонаж"@ru,
+                 "Non-Player Character"@en ;
+    rdfs:comment "Персонаж, управляемый мастером игры. Обладает ролью по отношению к персонажам игроков."@ru,
+                 "Character controlled by the game master. Has a role towards player characters."@en .
+
+paizo:Group rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Agent ;
+    rdfs:label "Группа персонажей"@ru,
+                 "Character Group"@en ;
+    rdfs:comment "Коллектив или группа персонажей, действующих как единое целое."@ru,
+                 "Collective or group of characters acting as a single entity."@en .
+
+paizo:AuthorityFigure rdf:type owl:Class ;
+    rdfs:subClassOf paizo:NonPlayerCharacter ;
+    rdfs:label "Представитель власти"@ru,
+                 "Authority Figure"@en ;
+    rdfs:comment "Персонаж, занимающий официальную должность."@ru,
+                 "Character holding an official position."@en .
+
+paizo:Merchant rdf:type owl:Class ;
+    rdfs:subClassOf paizo:NonPlayerCharacter ;
+    rdfs:label "Торговец"@ru,
+                 "Merchant"@en ;
+    rdfs:comment "Персонаж, занимающийся торговлей."@ru,
+                 "Character engaged in trade."@en .
+
+paizo:ReligiousFigure rdf:type owl:Class ;
+    rdfs:subClassOf paizo:NonPlayerCharacter ;
+    rdfs:label "Религиозный деятель"@ru,
+                 "Religious Figure"@en ;
+    rdfs:comment "Персонаж, служащий божеству или религиозной организации."@ru,
+                 "Character serving a deity or religious organization."@en .
+
+
+# Классы для событий
+paizo:Event rdf:type owl:Class ;
+    rdfs:label "Событие"@ru,
+                 "Event"@en ;
+    rdfs:comment "Изменения (предикат) в игровом мире."@ru,
+                 "Changes (predicate) in the game world."@en .
+
+paizo:Adventure rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Приключение"@ru,
+                 "Adventure"@en ;
+    rdfs:comment "Основное событие приключения. Включает в себя квесты, столкновения и другие события."@ru,
+                 "Main adventure event. Includes quests, encounters and other events."@en .
+
+paizo:Encounter rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Столкновение"@ru,
+                 "Encounter"@en ;
+    rdfs:comment "Отдельное событие в приключении, предполагающее взаимодействие персонажей игроков с внешним миром."@ru,
+                 "Individual event within an adventure, involving interaction between player characters and the external world."@en .
+
+paizo:RandomEncounter rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Encounter ;
+    rdfs:label "Случайное событие"@ru,
+                 "Random Encounter"@en ;
+    rdfs:comment "Случайное событие, которое может произойти во время путешествия."@ru,
+                 "Random event that may occur during travel."@en .
+
+paizo:Quest rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Квест"@ru,
+                 "Quest"@en ;
+    rdfs:comment "Задача или миссия в приключении."@ru,
+                 "Task or mission within an adventure."@en .
+
+paizo:BackgroundEvent rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Фоновое событие"@ru,
+                 "Background Event"@en ;
+    rdfs:comment "Событие, которое происходит вне влияния и контроля персонажей игроков."@ru,
+                 "Event that occurs beyond the influence and control of player characters."@en .
+
+paizo:Generation rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Генерация"@ru,
+                 "Generation"@en ;
+    rdfs:comment "Генерация предмета или информации."@ru,
+                 "Generation of an item or information."@en .
+
+paizo:Consequence rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Последствие"@ru,
+                 "Consequence"@en ;
+    rdfs:comment "Событие, являющееся результатом или последствием других событий или действий персонажей."@ru,
+                 "Event that is a result or consequence of other events or character actions."@en .
+
+# Классы для мест
+paizo:Entity rdf:type owl:Class ;
+    rdfs:label "Сущность"@ru,
+                 "Entity"@en ;
+    rdfs:comment "Сущность (объект), являющаяся объектом взаимодействия в игровом мире."@ru,
+                 "Entity (object) that is an object of interaction in the game world."@en .
+
+paizo:Location rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Entity ;
+    rdfs:label "Локация"@ru,
+                 "Location"@en ;
+    rdfs:comment "Место действия в приключении."@ru,
+                 "Place where adventure takes place."@en .
+
+paizo:Settlement rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Населенный пункт"@ru,
+                 "Settlement"@en ;
+    rdfs:comment "Город, деревня или другое социальное место."@ru,
+                 "City, village or other social place."@en .
+
+paizo:Wilderness rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Дикая местность"@ru,
+                 "Wilderness"@en ;
+    rdfs:comment "Неосвоенная территория."@ru,
+                 "Unsettled territory."@en .
+
+paizo:Dungeon rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Подземелье"@ru,
+                 "Dungeon"@en ;
+    rdfs:comment "Связанный набор локаций с опасностями."@ru,
+                 "Linked set of locations with dangers."@en .
+
+paizo:Shop rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Магазин"@ru,
+                 "Shop"@en ;
+    rdfs:comment "Торговое заведение."@ru,
+                 "Commercial establishment."@en .
+
+paizo:Room rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Location ;
+    rdfs:label "Комната"@ru,
+                 "Room"@en ;
+    rdfs:comment "Отдельное помещение внутри здания или подземелья."@ru,
+                 "Separate chamber within a building or dungeon."@en .
+
+# Классы для объектов
+paizo:Item rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Entity ;
+    rdfs:label "Предмет"@ru,
+                 "Item"@en ;
+    rdfs:comment "Физический объект, применяемый для достижения некоторой цели."@ru,
+                 "Physical object used to achieve a certain goal."@en .
+
+paizo:BiologicalObject rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Item ;
+    rdfs:label "Биологический объект"@ru,
+                 "Biological Object"@en ;
+    rdfs:comment "Биологический объект."@ru,
+                 "Biological object."@en .
+
+paizo:Equipment rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Item ;
+    rdfs:label "Экипировка"@ru,
+                 "Equipment"@en ;
+    rdfs:comment "Снаряжение или инструменты, используемые персонажами."@ru,
+                 "Gear or tools used by characters."@en .
+
+paizo:MagicalItem rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Магический предмет"@ru,
+                 "Magical item"@en ;
+    rdfs:comment "Предмет, обладающий магическими свойствами, но не являющийся оружием или броней."@ru,
+                 "Item possessing magical properties, but not a weapon or armor."@en .
+
+paizo:Tool rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Инструмент"@ru,
+                 "Tool"@en ;
+    rdfs:comment "Инструмент или приспособление для выполнения задач."@ru,
+                 "Tool or device for performing tasks."@en .
+
+paizo:Weapon rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Оружие"@ru,
+                 "Weapon"@en ;
+    rdfs:comment "Предметы, используемые для боя."@ru,
+                 "Items used for combat."@en .
+
+paizo:Armor rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Броня"@ru,
+                 "Armor"@en ;
+    rdfs:comment "Защитное снаряжение."@ru,
+                 "Protective gear."@en .
+
+paizo:Valuable rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Ценность"@ru,
+                 "Valuable"@en ;
+    rdfs:comment "Ценные предметы и сокровища."@ru,
+                 "Valuable items and treasures."@en .
+
+paizo:Consumable rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Equipment ;
+    rdfs:label "Используемый предмет"@ru,
+                 "Consumable"@en ;
+    rdfs:comment "Предметы, которые расходуются при использовании."@ru,
+                 "Items that are consumed when used."@en .
+
+paizo:Potion rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Consumable ;
+    rdfs:label "Зелье"@ru,
+                 "Potion"@en ;
+    rdfs:comment "Магические зелья, употребляемые для получения эффекта."@ru,
+                 "Magic potions consumed to gain an effect."@en .
+
+paizo:Scroll rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Consumable ;
+    rdfs:label "Свиток"@ru,
+                 "Scroll"@en ;
+    rdfs:comment "Магические свитки с заклинаниями, расходуемые при использовании."@ru,
+                 "Magic scrolls with spells, consumed when used."@en .
+
+paizo:Trap rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Entity ;
+    rdfs:label "Ловушка"@ru,
+                 "Trap"@en ;
+    rdfs:comment "Механическое или магическое устройство, предназначенное для нанесения вреда или захвата."@ru,
+                 "Mechanical or magical device designed to harm or capture."@en .
+
+paizo:Book rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Item ;
+    rdfs:label "Книга"@ru,
+                 "Book"@en ;
+    rdfs:comment "Письменный источник знаний."@ru,
+                 "Written source of knowledge."@en .
+
+# Классы для болезней и состояний
+paizo:Condition rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Event ;
+    rdfs:label "Состояние"@ru,
+                 "Condition"@en ;
+    rdfs:comment "Состояние, влияющее на персонажа."@ru,
+                 "Condition affecting a character."@en .
+
+paizo:Disease rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Condition ;
+    rdfs:label "Болезнь"@ru,
+                 "Disease"@en ;
+    rdfs:comment "Болезнь, отрицательно влияющая на персонажа."@ru,
+                 "Disease affecting a character."@en .
+
+# Классы для фрагментов правил
+paizo:Meta rdf:type owl:Class ;
+    rdfs:label "Метаправила"@ru,
+                 "Meta Rules"@en ;
+    rdfs:comment "Правила работы игрового мира."@ru,
+                 "Rules for the game world."@en .
+
+paizo:RulesExcerpt rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Meta ;
+    rdfs:label "Фрагмент правил"@ru,
+                 "Rules Excerpt"@en ;
+    rdfs:comment "Текстовое описание игровых правил, связанное с объектами онтологии."@ru,
+                 "Textual description of game rules linked to ontology entities."@en .
+
+paizo:RulesExcerptDnd3p5 rdf:type owl:Class ;
+    rdfs:subClassOf paizo:RulesExcerpt ;
+    rdfs:label "Фрагмент правил D&D 3.5"@ru,
+                 "Rules Excerpt D&D 3.5"@en ;
+    rdfs:comment "Фрагмент правил, относящийся к системе D&D 3.5."@ru,
+                 "Rules excerpt pertaining to the D&D 3.5 system."@en .
+
+paizo:RulesExcerptAgnostic rdf:type owl:Class ;
+    rdfs:subClassOf paizo:RulesExcerpt ;
+    rdfs:label "Фрагмент правил системно-независимый"@ru,
+                 "Rules Excerpt System-Agnostic"@en ;
+    rdfs:comment "Фрагмент правил, не зависящий от системы."@ru,
+                 "Rules excerpt not pertaining to any specific system."@en .
+
+# Классы для мотиваций
+
+paizo:ConceptualEntity rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Entity ;
+    rdfs:label "Концептуальная сущность"@ru,
+                 "Conceptual Entity"@en ;
+    rdfs:comment "Нефизический объект, применяемый для достижения некоторой цели."@ru,
+                 "Non-physical object used to achieve a certain goal."@en .
+
+paizo:Motivation rdf:type owl:Class ;
+    rdfs:subClassOf paizo:ConceptualEntity ;
+    rdfs:label "Мотивация"@ru,
+                 "Motivation"@en ;
+    rdfs:comment "Причина или цель, побуждающая к действию."@ru,
+                 "Reason or goal that motivates action."@en .
+
+paizo:Information rdf:type owl:Class ;
+    rdfs:subClassOf paizo:ConceptualEntity ;
+    rdfs:label "Информация"@ru,
+                 "Information"@en ;
+    rdfs:comment "Знание или сведения о чём-либо, которые могут быть переданы или использованы."@ru,
+                 "Knowledge or data about something that can be shared or used."@en .
+
+paizo:QualifiedMotivation rdf:type owl:Class ;
+    rdfs:subClassOf paizo:ConceptualEntity ;
+    rdfs:label "Уточненная мотивация"@ru,
+                 "Qualified Motivation"@en ;
+    rdfs:comment "Конкретная мотивация конкретного агента для выполнения действия. По умолчанию мотивация игроков неопределенная."@ru,
+                 "Specific motivation of a specific character for performing an action. By default, player motivations are undefined."@en .
+
+# Класс для книг Paizo
+paizo:PaizoBook rdf:type owl:Class ;
+    rdfs:subClassOf paizo:Meta ;
+    rdfs:label "Книга Paizo"@ru,
+                 "Paizo Book"@en ;
+    rdfs:comment "Издание от Paizo Publishing"@ru,
+                 "Publication from Paizo Publishing"@en .
+
+# =============================================================================
+# ОПРЕДЕЛЕНИЕ СВОЙСТВ
+# =============================================================================
+
+paizo:hadEncounterLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "Уровень сложности события"@ru,
+                 "Encounter Level"@en ;
+    rdfs:comment "Уровень сложности события в приключении."@ru,
+                 "Difficulty level of an encounter in an adventure."@en ;
+    rdfs:domain paizo:Encounter ;
+    rdfs:range xsd:float .
+
+paizo:hadRecommendedLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "Рекомендуемый уровень приключения"@ru,
+                 "Recommended Level of Adventure"@en ;
+    rdfs:comment "Рекомендуемый уровень персонажей для приключения."@ru,
+                 "Recommended character level for the adventure."@en ;
+    rdfs:domain paizo:Adventure ;
+    rdfs:range xsd:integer .
+
+paizo:hasGameStatsDnd3p5 rdf:type owl:DatatypeProperty ;
+    rdfs:range rdf:langString ;
+    rdfs:label "имеет игровые характеристики (Д&Д 3.5)"@ru,
+                 "has game statistics (D&D 3.5)"@en ;
+    rdfs:comment "Связывает объект с его игровыми характеристиками в системе D&D 3.5. Включает информацию о классе, уровне, мировоззрении, способностях и другие механические параметры."@ru,
+                 "Links an object to its game statistics in the D&D 3.5 system. Includes information about class, level, alignment, abilities, and other mechanical parameters."@en .
+
+paizo:agent rdf:type owl:ObjectProperty ;
+    rdfs:range paizo:Agent ;
+    rdfs:label "агент, осуществляющий действие или автор концепции"@ru,
+                 "agent performing action or author of a concept"@en ;
+    rdfs:comment "Связывает действие с агентом, который его осуществляет или концепцию с агентом, который её создал. По отношению к событию агент является его причиной или организатором, при этом не обязательно являясь его участником."@ru,
+                 "Links an action to an agent that performs it or a concept to an agent that created it. In the context of an event, the agent is its cause or organizer, but not necessarily its participant."@en .
+
+paizo:motivation rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:QualifiedMotivation ;
+    rdfs:range paizo:Motivation ;
+    rdfs:label "имеет мотивацию"@ru,
+                 "has motivation"@en ;
+    rdfs:comment "Конкретная мотивация персонажа основана на общей мотивации."@ru,
+                 "Character's specific motivation is based on general motivation."@en .
+
+paizo:inInterestOf rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:QualifiedMotivation ;
+    rdfs:range paizo:Agent ;
+    rdfs:label "в интересах"@ru,
+                 "in interest of"@en ;
+    rdfs:comment "Связывает мотивацию с агентом, в чьих интересах действует мотивированный агент."@ru,
+                 "Links a motivation to the agent whose interests the motivated agent is acting in."@en .
+
+paizo:derivedFrom rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:ConceptualEntity ;
+    rdfs:range paizo:ConceptualEntity ;
+    rdfs:label "происходит из"@ru,
+                 "derived from"@en ;
+    rdfs:comment "Связывает концептуальную сущность с другой концептуальной сущностью, из которой она произрастает."@ru,
+                 "Links a conceptual entity to another conceptual entity it derived from."@en .
+
+paizo:wasMotivatedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:QualifiedMotivation ;
+    rdfs:label "была мотивирована"@ru,
+                 "was motivated by"@en ;
+    rdfs:comment "Связывает событие с мотивацией участника события."@ru,
+                 "Links an event to the motivation of its participant."@en .
+
+paizo:hadParticipant rdf:type owl:ObjectProperty ;
+    owl:propertyChainAxiom (paizo:wasMotivatedBy paizo:agent) ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Agent ;
+    rdfs:label "имеет участника"@ru,
+                 "has participant"@en ;
+    rdfs:comment "Связывает событие с участником."@ru,
+                 "Links an event to a participant."@en .
+
+paizo:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:range paizo:Location ;
+    rdfs:label "расположен в"@ru,
+                 "located in"@en ;
+    rdfs:comment "Показывает место расположения объекта - исходное или наиболее вероятное."@ru,
+                 "Shows the location of an object - original or most likely."@en .
+
+paizo:connectedTo rdf:type owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:domain paizo:Location ;
+    rdfs:range paizo:Location ;
+    rdfs:label "связана с"@ru,
+                 "connected to"@en ;
+    rdfs:comment "Показывает связь между двумя локациями. Свойство коммутативное: если A связана с B, то B связана с A."@ru,
+                 "Shows connection between two locations. Property is symmetric: if A is connected to B, then B is connected to A."@en .
+
+paizo:ownedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Entity ;
+    rdfs:range paizo:Agent ;
+    rdfs:label "во владении"@ru,
+                 "owned by"@en ;
+    rdfs:comment "Показывает владельца объекта."@ru,
+                 "Shows the owner of an object."@en .
+
+paizo:hasFamiliar rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Character ;
+    rdfs:range paizo:Character ;
+    rdfs:label "имеет фамилиара"@ru,
+                 "has familiar"@en ;
+    rdfs:comment "Показывает магического спутника или фамилиара персонажа."@ru,
+                 "Shows a character's magical companion or familiar."@en .
+
+paizo:hasType rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Character ;
+    rdfs:range paizo:CreatureType ;
+    rdfs:label "имеет тип"@ru,
+                 "has type"@en ;
+    rdfs:comment "Связывает персонажа с типом существа, к которому он принадлежит."@ru,
+                 "Links a character to the creature type they belong to."@en .
+
+paizo:basedOn rdf:type owl:ObjectProperty ;
+    rdfs:label "основан на"@ru,
+                 "based on"@en ;
+    rdfs:comment "Связывает объект с базовым объектом, на характеристиках которого он основан. Характеристики базового объекта используются для производного объекта."@ru,
+                 "Links an object to the base object whose characteristics it is based on. Base object's characteristics are used for the derived object."@en .
+
+paizo:ruleFor rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:RulesExcerpt ;
+    rdfs:label "правило для"@ru,
+                 "rule for"@en ;
+    rdfs:comment "Показывает правило для объекта."@ru,
+                 "Shows the rule for an object."@en .
+
+paizo:refersTo rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:ConceptualEntity ;
+    rdfs:label "ссылается на"@ru,
+                 "refers to"@en ;
+    rdfs:comment "Показывает ссылку на объект."@ru,
+                 "Shows the link to an object."@en .
+
+paizo:hadContext rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Information ;
+    rdfs:label "имело контекст"@ru,
+                 "had context"@en ;
+    rdfs:comment "Связывает событие с информацией, которая является важным контекстом для понимания события."@ru,
+                 "Links an event to information that provides important context for understanding the event."@en .
+
+paizo:containsConceptualEntity rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Item ;
+    rdfs:range paizo:ConceptualEntity ;
+    rdfs:label "содержит концептуальную сущность"@ru,
+                 "contains conceptual entity"@en ;
+    rdfs:comment "Показывает концептуальную сущность, содержащуюся в объекте."@ru,
+                 "Shows the conceptual entity contained in an object."@en .
+
+paizo:containedEvent rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Event ;
+    rdfs:label "содержит событие"@ru,
+                 "contains event"@en ;
+    rdfs:comment "Дробит событие на более мелкие события."@ru,
+                 "Breaks down an event into smaller events."@en .
+
+paizo:hadCause rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Event ;
+    rdfs:label "имеет причину"@ru,
+                 "had cause"@en ;
+    rdfs:comment "Связывает событие с событием, которое его вызвало."@ru,
+                 "Links an event to an event that caused it."@en .
+
+paizo:hadInvolvedEntity rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Entity ;
+    rdfs:label "имеет задействованную сущность"@ru,
+                 "had involved entity"@en ;
+    rdfs:comment "Связывает событие с объектом, которым каким-либо образом задействован в этом событии."@ru,
+                 "Links an event to an object that is somehow involved in the event."@en .
+
+paizo:generated rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Generation ;
+    rdfs:range paizo:Entity ;
+    rdfs:label "генерирует"@ru,
+                 "generated"@en ;
+    rdfs:comment "Результат созидательного события."@ru,
+                 "Result of a creative event."@en .
+
+paizo:hadPossibleConsequence rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Consequence ;
+    rdfs:label "имело возможное последствие"@ru,
+                 "had possible consequence"@en ;
+    rdfs:comment "Связывает событие с возможным последствием, которое может произойти в зависимости от действий персонажей."@ru,
+                 "Links an event to a possible consequence that may occur depending on character actions."@en .
+
+paizo:hadDefaultStart rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf paizo:containedEvent ;
+    rdfs:domain paizo:Event ;
+    rdfs:range paizo:Encounter ;
+    rdfs:label "имело начало по умолчанию"@ru,
+                 "had default start"@en ;
+    rdfs:comment "Связывает общее событие со стартовым энкаунтером по умолчанию."@ru,
+                 "Links a general event to the default starting encounter."@en .
+
+paizo:hasOntology rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:PaizoBook ;
+    rdfs:range owl:Ontology ;
+    rdfs:label "имеет онтологию"@ru,
+                 "has ontology"@en ;
+    rdfs:comment "Связывает книгу Paizo с онтологией, описывающей её содержание"@ru,
+                 "Links a Paizo book to the ontology describing its content"@en .
+
+paizo:leads rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Agent ;
+    rdfs:range paizo:Group ;
+    rdfs:label "руководит"@ru,
+                 "leads"@en ;
+    rdfs:comment "Связывает лидера с группой, которой он руководит"@ru,
+                 "Links a leader to the group they lead"@en .
+
+paizo:followsBook rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:PaizoBook ;
+    rdfs:range paizo:PaizoBook ;
+    rdfs:label "следует за книгой"@ru,
+                 "follows book"@en ;
+    rdfs:comment "Указывает, что данная книга следует за другой книгой по порядку выхода"@ru,
+                 "Indicates that this book follows another book by publication order"@en .
+
+paizo:isMemberOf rdf:type owl:ObjectProperty ;
+    rdfs:domain paizo:Agent ;
+    rdfs:range paizo:Group ;
+    rdfs:label "является членом"@ru,
+                 "is member of"@en ;
+    rdfs:comment "Связывает агента с группой, членом которой он является"@ru,
+                 "Links an agent to the group they are member of"@en .
+
+paizo:hasRelative rdf:type owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:domain paizo:Agent ;
+    rdfs:range paizo:Agent ;
+    rdfs:label "имеет родственника"@ru,
+                 "has relative"@en ;
+    rdfs:comment "Связывает двух персонажей родственными узами. Свойство симметрично - если A имеет родственника B, то B автоматически имеет родственника A."@ru,
+                 "Links two characters by family ties. Property is symmetric - if A has relative B, then B automatically has relative A."@en .
+
+# =============================================================================
+# ЭКЗЕМПЛЯРЫ КНИГ PAIZO
+# =============================================================================
+
+paizo:hollows_last_hope_book rdf:type paizo:PaizoBook ;
+    rdfs:label "D0. Hollow's Last Hope"@ru,
+               "D0. Hollow's Last Hope"@en ;
+    rdfs:comment "Приключение для персонажей 1-го уровня"@ru,
+                 "Adventure for 1st-level characters"@en ;
+    rdfs:seeAlso <https://paizo.com/products/btpy82r0> ;
+    paizo:hasOntology <http://paizo.com/adventures/hollows_last_hope> .
+
+paizo:crown_of_the_kobold_king_book rdf:type paizo:PaizoBook ;
+    rdfs:label "D1. Crown of the Kobold King"@ru,
+               "D1. Crown of the Kobold King"@en ;
+    rdfs:comment "Приключение для персонажей 2-го уровня"@ru,
+                 "Adventure for 2nd-level characters"@en ;
+    rdfs:seeAlso <https://paizo.com/products/btpy7yqz> ;
+    paizo:hasOntology <http://paizo.com/adventures/crown_of_the_kobold_king> ;
+    paizo:followsBook paizo:hollows_last_hope_book .
+
+# =============================================================================
+# УНИВЕРСАЛЬНЫЕ МОТИВАЦИИ
+# =============================================================================
+
+paizo:patrolling_territory rdf:type paizo:Motivation ;
+    rdfs:label "Патрулирование территории"@ru,
+                 "Patrolling Territory"@en ;
+    rdfs:comment "Желание охранять и патрулировать территорию хозяина."@ru,
+                 "Desire to guard and patrol master's territory."@en .
+
+paizo:saving_relative rdf:type paizo:Motivation ;
+    rdfs:label "Спасение родственника"@ru,
+                 "Saving relative"@en ;
+    rdfs:comment "Желание спасти близкого родственника от болезни или опасности."@ru,
+                 "Desire to save a close relative from disease or danger."@en .
+
+paizo:hunting_prey rdf:type paizo:Motivation ;
+    rdfs:label "Охота на добычу"@ru,
+                 "Hunting prey"@en ;
+    rdfs:comment "Желание выследить и поймать добычу."@ru,
+                 "Desire to track and capture prey."@en .
+
+paizo:serving_master rdf:type paizo:Motivation ;
+    rdfs:label "Служение хозяину"@ru,
+                 "Serving master"@en ;
+    rdfs:comment "Желание служить и помогать хозяину."@ru,
+                 "Desire to serve and assist master."@en .
+
+paizo:defending_lair rdf:type paizo:Motivation ;
+    rdfs:label "Защита логова"@ru,
+                 "Defending lair"@en ;
+    rdfs:comment "Желание защитить своё логово от вторжения."@ru,
+                 "Desire to defend one's lair from intrusion."@en .
+
+paizo:guarding_possessions rdf:type paizo:Motivation ;
+    rdfs:label "Охрана имущества"@ru,
+                 "Guarding possessions"@en ;
+    rdfs:comment "Желание охранять имущество от воров."@ru,
+                 "Desire to guard possessions from thieves."@en .
+
+paizo:claiming_territory rdf:type paizo:Motivation ;
+    rdfs:label "Захват территории"@ru,
+                 "Claiming territory"@en ;
+    rdfs:comment "Желание захватить и удерживать территорию."@ru,
+                 "Desire to claim and hold territory."@en .
+
+paizo:weakening_enemy rdf:type paizo:Motivation ;
+    rdfs:label "Ослабление врага"@ru,
+                 "Weakening enemy"@en ;
+    rdfs:comment "Желание ослабить противника перед атакой."@ru,
+                 "Desire to weaken opponent before attack."@en .
+
+paizo:undead_compulsion rdf:type paizo:Motivation ;
+    rdfs:label "Принуждение нежити"@ru,
+                 "Undead compulsion"@en ;
+    rdfs:comment "Нежить атакует живых из-за своей проклятой природы."@ru,
+                 "Undead attacks the living due to its cursed nature."@en .
+
