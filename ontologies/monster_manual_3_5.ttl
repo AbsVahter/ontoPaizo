@@ -1,0 +1,157 @@
+@prefix mm35: <http://paizo.com/monster_manual_3_5#> .
+@prefix paizo: <http://paizo.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# ОНТОЛОГИЯ КНИГИ МОНСТРОВ D&D 3.5
+# =============================================================================
+
+<http://paizo.com/monster_manual_3_5> rdf:type owl:Ontology ;
+    owl:imports <http://paizo.com/ontology> ;
+    rdfs:label "Онтология Книги Монстров D&D 3.5"@ru,
+               "Monster Manual 3.5 Ontology"@en ;
+    rdfs:comment "Типы существ из Книги Монстров D&D 3.5"@ru,
+                 "Creature types from Monster Manual D&D 3.5"@en .
+
+# =============================================================================
+# ТИПЫ СУЩЕСТВ
+# =============================================================================
+
+mm35:medium_monstrous_spider rdf:type paizo:CreatureType ;
+    rdfs:label "Средний ужасающий паук"@ru,
+                 "Medium monstrous spider"@en ;
+    paizo:hasGameStatsDnd3p5 "CR 1, hp 11, MM 288"@en,
+                             "УО 1, хп 11, Книга Монстров 288"@ru .
+
+mm35:werewolf rdf:type paizo:CreatureType ;
+    rdfs:label "Оборотень (ликантроп)"@ru,
+                 "Werewolf (lycanthrope)"@en .
+
+mm35:spider_swarm rdf:type paizo:CreatureType ;
+    rdfs:label "Рой пауков"@ru,
+                 "Spider Swarm"@en ;
+    paizo:hasGameStatsDnd3p5 "CR 1; hp 9; MM p.239"@en .
+
+mm35:assassin_vine rdf:type paizo:CreatureType ;
+    rdfs:label "Убийственная лиана"@ru,
+                 "Assassin Vine"@en ;
+    paizo:hasGameStatsDnd3p5 "hp 30; MM p.20"@en .
+
+mm35:bugbear rdf:type paizo:CreatureType ;
+    rdfs:label "Багбир"@ru,
+                 "Bugbear"@en ;
+    paizo:hasGameStatsDnd3p5 "hp 16; MM p.29"@en .
+
+mm35:hobgoblin rdf:type paizo:CreatureType ;
+    rdfs:label "Хобгоблин"@ru,
+                 "Hobgoblin"@en ;
+    rdfs:comment "Серокожие гуманоиды, более крупные и дисциплинированные родственники гоблинов."@ru,
+                 "Gray-skinned humanoids, larger and more disciplined relatives of goblins."@en ;
+    paizo:hasGameStatsDnd3p5 "Hobgoblin, MM 153"@en,
+                             "Хобгоблин, Книга Монстров 153"@ru .
+
+mm35:wolf rdf:type paizo:CreatureType ;
+    rdfs:label "Волк"@ru,
+                 "Wolf"@en ;
+    rdfs:comment "Лесной хищник, охотящийся в стае."@ru,
+                 "Forest predator that hunts in packs."@en ;
+    paizo:hasGameStatsDnd3p5 "Wolf, MM 283"@en,
+                             "Волк, Книга Монстров 283"@ru .
+
+mm35:worg rdf:type paizo:CreatureType ;
+    rdfs:label "Ворг"@ru,
+                 "Worg"@en ;
+    rdfs:comment "Злобный магический зверь, похожий на огромного волка, обладающий интеллектом и способностью говорить."@ru,
+                 "Evil magical beast resembling a huge wolf, possessing intelligence and the ability to speak."@en ;
+    paizo:hasGameStatsDnd3p5 "Worg, MM 256"@en,
+                             "Ворг, Книга Монстров 256"@ru .
+
+mm35:darkmantle rdf:type paizo:CreatureType ;
+    rdfs:label "Даркмантл"@ru,
+                 "Darkmantle"@en ;
+    paizo:hasGameStatsDnd3p5 "Darkmantle CR 1, hp 6, MM 38"@en,
+                             "Даркмантл УО 1, хп 6, Книга Монстров 38"@ru .
+
+mm35:bat_swarm rdf:type paizo:CreatureType ;
+    rdfs:label "Рой летучих мышей"@ru,
+                 "Bat swarm"@en ;
+    rdfs:comment "Роящиеся летучие мыши, атакующие массой."@ru,
+                 "Swarming bats that attack en masse."@en ;
+    paizo:hasGameStatsDnd3p5 "Bat Swarm CR 2, hp 13, MM 237"@en,
+                             "Рой летучих мышей УО 2, хп 13, Книга Монстров 237"@ru .
+
+mm35:skeleton rdf:type paizo:CreatureType ;
+    rdfs:label "Скелет"@ru,
+                 "Skeleton"@en ;
+    rdfs:comment "Оживлённые останки, нежить."@ru,
+                 "Animated remains, undead."@en ;
+    paizo:hasGameStatsDnd3p5 "Skeleton, MM 226"@en,
+                             "Скелет, Книга Монстров 226"@ru .
+
+mm35:kobold rdf:type paizo:CreatureType ;
+    rdfs:label "Кобольд"@ru,
+                 "Kobold"@en ;
+    rdfs:comment "Маленькие рептилоидные гуманоиды, часто живущие в подземельях и поклоняющиеся драконам."@ru,
+                 "Small reptilian humanoids, often dwelling underground and worshiping dragons."@en ;
+    paizo:hasGameStatsDnd3p5 "Kobold, MM 161"@en,
+                             "Кобольд, Книга Монстров 161"@ru .
+
+mm35:hawk rdf:type paizo:CreatureType ;
+    rdfs:label "Ястреб"@ru,
+                 "Hawk"@en ;
+    rdfs:comment "Хищная птица."@ru,
+                 "Bird of prey."@en ;
+    paizo:hasGameStatsDnd3p5 "Hawk, MM 273"@en,
+                             "Ястреб, Книга Монстров 273"@ru .
+
+mm35:allip rdf:type paizo:CreatureType ;
+    rdfs:label "Аллип"@ru,
+                 "Allip"@en ;
+    paizo:hasGameStatsDnd3p5 "hp 26, MM 10"@en,
+                             "хп 26, Книга Монстров 10"@ru .
+
+mm35:small_animated_object rdf:type paizo:CreatureType ;
+    rdfs:label "Маленький анимированный объект"@ru,
+                 "Small animated object"@en ;
+    paizo:hasGameStatsDnd3p5 "hp 15, MM 29"@en,
+                             "хп 15, Книга Монстров 29"@ru .
+
+mm35:hill_giant rdf:type paizo:CreatureType ;
+    rdfs:label "Холмовой великан"@ru,
+                 "Hill Giant"@en ;
+    rdfs:comment "Крупные великаны, обитающие в холмистой местности. Обычно агрессивны и склонны к насилию."@ru,
+                 "Large giants dwelling in hilly terrain. Usually aggressive and prone to violence."@en ;
+    paizo:hasGameStatsDnd3p5 "hp 102, MM 123"@en,
+                             "хп 102, Книга Монстров 123"@ru .
+
+mm35:ogre rdf:type paizo:CreatureType ;
+    rdfs:label "Огр"@ru,
+                 "Ogre"@en ;
+    rdfs:comment "Крупные гуманоиды-людоеды, известные своей жестокостью и глупостью."@ru,
+                 "Large humanoid cannibals known for their brutality and stupidity."@en .
+
+mm35:harpy rdf:type paizo:CreatureType ;
+    rdfs:label "Гарпия"@ru,
+                 "Harpy"@en ;
+    rdfs:comment "Крылатые существа с телом женщины и крыльями птицы, использующие магический голос для заманивания жертв."@ru,
+                 "Winged creatures with a woman's body and bird's wings, using magical voice to lure victims."@en ;
+    paizo:hasGameStatsDnd3p5 "hp 31, MM 151"@en,
+                             "хп 31, Книга Монстров 151"@ru .
+
+mm35:manticore rdf:type paizo:CreatureType ;
+    rdfs:label "Мантикора"@ru,
+                 "Manticore"@en ;
+    rdfs:comment "Крылатое существо с телом льва, крыльями дракона и хвостом скорпиона, способное метать острые шипы."@ru,
+                 "Winged creature with a lion's body, dragon's wings, and scorpion's tail, capable of launching sharp spines."@en ;
+    paizo:hasGameStatsDnd3p5 "hp 57, MM 180"@en,
+                             "хп 57, Книга Монстров 180"@ru .
+
+mm35:imp rdf:type paizo:CreatureType ;
+    rdfs:label "Имп"@ru,
+                 "Imp"@en ;
+    paizo:hasGameStatsDnd3p5 "hp 13, MM 56"@en,
+                             "хп 13, Книга Монстров 56"@ru .
+
+

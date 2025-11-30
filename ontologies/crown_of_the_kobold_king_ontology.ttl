@@ -1,0 +1,1907 @@
+@prefix : <http://paizo.com/adventures/crown_of_the_kobold_king#> .
+@prefix paizo: <http://paizo.com/ontology#> .
+@prefix hlh: <http://paizo.com/adventures/hollows_last_hope#> .
+@prefix mm35: <http://paizo.com/monster_manual_3_5#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# ОНТОЛОГИЯ ПРИКЛЮЧЕНИЯ "CROWN OF THE KOBOLD KING" (D1)
+# =============================================================================
+
+<http://paizo.com/adventures/crown_of_the_kobold_king> rdf:type owl:Ontology ;
+    owl:imports <http://paizo.com/ontology>,
+                <http://paizo.com/monster_manual_3_5> ;
+    rdfs:label "Онтология приключения Crown of the Kobold King"@ru,
+               "Crown of the Kobold King Adventure Ontology"@en ;
+    rdfs:comment "Описание приключения D1 из серии Pathfinder Modules"@ru,
+                 "Description of D1 adventure from Pathfinder Modules series"@en .
+
+# =============================================================================
+# ЭКЗЕМПЛЯРЫ ДАННЫХ ДЛЯ "CROWN OF THE KOBOLD KING"
+# =============================================================================
+
+# =============================================================================
+# ГРУППЫ И ОРГАНИЗАЦИИ
+# =============================================================================
+
+:truescale_tribe rdf:type paizo:Group ;
+    rdfs:label "Племя Истинной Чешуи"@ru,
+                 "Truescale Tribe"@en ;
+    rdfs:comment "Племя кобольдов под предводительством короля Мерлокрепа. Изначально обитало в глубоких пещерах, но было вынуждено переселиться на верхние уровни под Горнилом Дроскара из-за атаки темных теней снизу."@ru,
+                 "Kobold tribe led by King Merlokrep. Originally dwelt in deep caverns but was forced to relocate to upper levels beneath Droskar's Crucible due to attack by dark shadows from below."@en ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:truescale_elite_scouts rdf:type paizo:Group ;
+    rdfs:label "Элитные следопыты Истинной Чешуи"@ru,
+                 "Truescale Elite Scouts"@en ;
+    rdfs:comment "Лучшие следопыты и охотники племени Истинной Чешуи. Самые скрытные и опасные воины, выполняющие особые миссии короля Мерлокрепа. Именно они были посланы похитить детей для жертвенного ритуала."@ru,
+                 "Best scouts and hunters of the Truescale Tribe. The sneakiest and most dangerous warriors, performing special missions for King Merlokrep. They were sent to kidnap the children for the sacrificial ritual."@en ;
+    paizo:isMemberOf :truescale_tribe .
+
+:five_children_friends rdf:type paizo:Group ;
+    rdfs:label "Пятеро друзей"@ru,
+                 "Five Friends"@en ;
+    rdfs:comment "Группа из пяти детей-друзей из Соколиной Лощины: Кими Ивуокер, Холлин Хеббрадан, Микра Джаббс, Джурин Крид и Саврам Вейд. Несмотря на разное происхождение и характеры, они дружат и вместе попадают в приключения."@ru,
+                 "Group of five children friends from Falcon's Hollow: Kimi Eavewalker, Hollin Hebbradan, Mikra Jabbs, Jurin Kreed, and Savram Vade. Despite different backgrounds and personalities, they are friends and get into adventures together."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:falcons_hollow_lumberjacks rdf:type paizo:Group ;
+    rdfs:label "Лесорубы Соколиной Лощины"@ru,
+                 "Falcon's Hollow Lumberjacks"@en ;
+    rdfs:comment "Группа из четырех лесорубов из Соколиной Лощины, работающих на Лесной Консорциум."@ru,
+                 "Group of four lumberjacks from Falcon's Hollow working for the Lumber Consortium."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+# =============================================================================
+# ОРГАНИЗАЦИИ (POWERS THAT BE)
+# =============================================================================
+
+:blackblood_covenant rdf:type paizo:Group ;
+    rdfs:label "Завет Черной Крови"@ru,
+                 "Blackblood Covenant"@en ;
+    rdfs:comment "Секретная конгрегация жителей Соколиной Лощины, поклоняющихся Ургатое, Бледной Принцессе. Собираются для поклонения под предводительством кабала зараженных болезнями священников. Многие высокопоставленные члены клира днем прикидываются прокаженными нищими. По ночам они проводят темные ритуалы Бледной Принцессе Мора в отдаленных рощах за городом. Истинные мотивы и планы Завета окутаны тайной, но скорее всего у него нет добрых намерений по отношению к населению Соколиной Лощины."@ru,
+                 "Secretive congregation of Falconers who bow to Urgathoa, the Pallid Princess, gather to worship under a cabal of disease-ridden priests. Many of the most high-ranking clergy members hide in plain sight as leprous beggars by day. By night, they lead dark rites to the Pale Princess of Pestilence in remote groves outside of town. The covenant's ultimate motive and plans remain shrouded in mystery, but it most likely does not have healthy intentions toward the populace of Falcon's Hollow."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:church_of_iomedae_missionaries rdf:type paizo:Group ;
+    rdfs:label "Миссионеры Церкви Иомедаи"@ru,
+                 "Church of Iomedae Missionaries"@en ;
+    rdfs:comment "Миссионеры Иомедаи, Богини Доблести и Справедливости, закрепились в городе. Многие другие религиозные секты, бежавшие сюда, чтобы спастись от преследования Церкви Света, обижены на последователей Иомедаи. Напряжение между конгрегациями высоко, часто приводя к не слишком святым дракам на грязных дорогах Пути Поклонения."@ru,
+                 "Missionaries of Iomedae, Goddess of Valor and Justice, have established a foothold in town. Many other religious sects who fled here to escape the Church of Light's persecution resent Iomedae's followers. Tensions run high between congregations, often resulting in less-than-holy brawls on the muddy thoroughfares of Worship Way."@en ;
+    paizo:locatedIn hlh:church_of_iomedae .
+
+:lumber_consortium rdf:type paizo:Group ;
+    rdfs:label "Лесной Консорциум"@ru,
+                 "Lumber Consortium"@en ;
+    rdfs:comment "Могущественная коллекция недобросовестных магнатов и лесоторговых магнатов, контролирующая большинство лагерей лесорубов (обычно называемых вырубками) в области вокруг долины. Те лесорубы, которые отказываются присоединиться к консорциуму (и согласиться на его ужасно эксплуататорские трудовые практики и оплату), часто выдавливаются из бизнеса или просто исчезают. Консорциум нанимает триста лесорубов и почти половину от этого числа наемников, головорезов и наемников для защиты вырубок от монстров, а также для запугивания конкурентов. Возглавляется Гавелом Тулдрином Кридом."@ru,
+                 "Powerful collection of unscrupulous tycoons and magnates of the lumber trade controls most of the tree-felling camps (commonly called cutyards) in the area around the vale. Those lumberjacks who refuse to affiliate with the consortium (and agree to its horrendously exploitative labor and pay practices) are often muscled out of business or simply disappear. The consortium employs three hundred jacks and nearly half that many sellswords, thugs, and mercenaries to protect the cutyards from monsters as well as to intimidate competitors. Led by Gavel Thuldrin Kreed."@en ;
+    paizo:locatedIn hlh:lumber_consortium_camp ;
+    paizo:leads :falcons_hollow_lumberjacks .
+
+:redrock_guild rdf:type paizo:Group ;
+    rdfs:label "Гильдия Красного Камня"@ru,
+                 "Redrock Guild"@en ;
+    rdfs:comment "Организованный преступный синдикат, маскирующийся под деловой клуб и союз кредиторов, но большинство жителей Соколиной Лощины знают, что его члены представляют собой одних из самых мерзких торговцев плотью, карманников и убийц в городе. Нынешний лидер - грозный полуорк по имени Кадран Кровавый Глаз, чья страсть к сдиранию кожи с врагов заживо в подвале его заведения для увеселений, называемого гостиница 'Красная Леди', хорошо известна."@ru,
+                 "Organized criminal syndicate poses as a business club and moneylenders union, but most Falconers know its members constitute some of the vilest flesh-peddlers, sneakthieves, and murderers in town. The current leader is a fearsome half-orc named Kadran Bloodeye, whose penchant for flaying his enemies alive in the basement of his pleasure establishment, called the Rouge Lady Inn, is well known."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+# =============================================================================
+# ПЕРСОНАЖИ
+# =============================================================================
+
+:merlokrep rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Мерлокреп"@ru,
+                 "Merlokrep"@en ;
+    rdfs:comment "Король племени Истинной Чешуи, первый своего имени, всемогущий Король-Дракон кобольдов Истинной Чешуи. Убил 18 своих братьев и сестер, чтобы взойти на трон. Потерял глаз в день коронации из-за неловкости своей консорт Вреггмы. Его правление было отмечено несчастьями с самого начала."@ru,
+                 "King of the Truescale Tribe, first of his name, all-mighty Dragon King of the Truescale Kobolds. Murdered his eighteen siblings to ascend the throne. Lost an eye on coronation day due to his consort Vreggma's clumsiness. His reign has been marked by misfortune from the start."@en ;
+    paizo:hasType hlh:kobold ;
+    paizo:isMemberOf :truescale_tribe ;
+    paizo:leads :truescale_tribe ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:vreggma rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Вреггма"@ru,
+                 "Vreggma"@en ;
+    rdfs:comment "Главная консорт Мерлокрепа, 'Единственная, кому дозволено пилить Его Величество'. Любит любоваться своим отражением в полированном обсидиане. Требовательная и тщеславная, её желания заставляют племя добывать 'блестящие штучки'."@ru,
+                 "Chief Consort of Merlokrep, 'Only One Allowed to Nag-Nag His Greatness'. Loves to gaze at her own reflection in polished obsidian. Demanding and vain, her desires drive the tribe to mine 'shiny good-good'."@en ;
+    paizo:hasType hlh:kobold ;
+    paizo:isMemberOf :truescale_tribe ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:jekkajak rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Джеккаджак"@ru,
+                 "Jekkajak"@en ;
+    rdfs:comment "Старейший шаман племени Истинной Чешуи, прозванный многими 'Тот, кто забывает больше, чем ты или он знает'. Рассеянный и забывчивый старик, чья память хранит древние пророчества. Во время племенного ужина вспомнил пророчество о Обреченном Короле и способе спасения племени через кровь розовокожих детей."@ru,
+                 "Elderly shaman of the Truescale Tribe, called by many 'He Who Forgets More Than You or He Knows'. Absentminded and forgetful old kobold whose memory holds ancient prophecies. At a tribal dinner, recalled the prophecy of the Doomed King and the way to save the tribe through pink-skin children's blood."@en ;
+    paizo:hasType hlh:kobold ;
+    paizo:isMemberOf :truescale_tribe ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:kimi_eavewalker rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Кими Ивуокер"@ru,
+                 "Kimi Eavewalker"@en ;
+    rdfs:comment "Дочь знаменитого эльфийского следопыта Идриса и прекрасной швеи Китани. Бесстрашная сорванец, мечтающая пойти по стопам отца. Защитница группы друзей, часто дерётся с мальчиками вдвое старше, защищая других. Обычно побеждает, и многие дети боятся её."@ru,
+                 "Daughter of the famed elven ranger Idris and beautiful seamstress Kitani. Fearless tomboy dreaming to follow in her father's adventurous footsteps. Protector of this band of friends, often scrapping with boys twice her age who try to bully the others. She usually wins these bouts, and many of the town's children are afraid of her."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:isMemberOf :five_children_friends ;
+    paizo:hasRelative :idris_eavewalker, :kitani_eavewalker .
+
+:hollin_hebbradan rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Холлин Хеббрадан"@ru,
+                 "Hollin Hebbradan"@en ;
+    rdfs:comment "Веснушчатый десятилетний мальчик без двух передних зубов (потерял при падении с водяного колеса старой мельницы). Мать умерла при родах, отец был растерзан совомедведем два года назад. Теперь о нем заботится старшая сестра Ралла, красивая рыжеволосая девушка. Единственное стремление мальчика - вырасти быстрее и работать на лесопилках."@ru,
+                 "Freckly faced ten-year-old boy missing his two front teeth (from a bad spill off the waterwheel at the old mill). Mother died in childbirth and his father was savaged by an owlbear two years ago. Now his older sister Ralla, a beautiful young red-haired woman, looks after him. The boy's only aspiration is to grow up faster and work the cutyards."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:isMemberOf :five_children_friends ;
+    paizo:hasRelative :ralla_hebbradan .
+
+:mikra_jabbs rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Микра Джаббс"@ru,
+                 "Mikra Jabbs"@en ;
+    rdfs:comment "Тринадцатилетний сын городского мясника Колбрина Джаббса. Трудные роды привели к нескольким умственным недостаткам. Не умеет читать, легко путается и верит почти всему, что ему говорят. Всеми любим. Хоть и не очень умён, мальчик обладает безграничной добротой, и его яркая улыбка покоряет сердца почти всех, кто с ним встречается."@ru,
+                 "The thirteen-year-old son of the town butcher, Colbrin Jabbs. Difficult birth resulted in several mental deficiencies. He cannot read, is easily confused, and believes almost everything he is told. Well liked by everyone. While not incredibly bright, the boy possesses limitless kindness and his bright smile wins the hearts of almost anyone who meets him."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:isMemberOf :five_children_friends ;
+    paizo:hasRelative :colbrin_jabbs .
+
+:jurin_kreed rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Джурин Крид"@ru,
+                 "Jurin Kreed"@en ;
+    rdfs:comment "Сын богатейшего, самого влиятельного и самого злого человека в Соколиной Лощине. Одиннадцатилетний мальчик, разрывающийся между семьёй и друзьями. На публике ведёт себя невыносимо, огрызается на других детей и угрожает избиением телохранителями отца. Но Колбрин Джаббс знает, что в глубине души мальчик добр, и наедине готов на всё ради друзей. Проводит много часов в доме Джаббсов, читая Микре по вечерам."@ru,
+                 "Son of the wealthiest, most powerful, and evilest man in Falcon's Hollow. Eleven-year-old boy torn between his family and friends. In public, behaves insufferably, snarling at other children and threatening to have his dad's bodyguards beat them. But Colbrin Jabbs knows the boy has a good heart deep down, and in private would do anything to help his friends. Spends many hours at the Jabbs's house reading to Mikra in the afternoons."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:isMemberOf :five_children_friends ;
+    paizo:hasRelative hlh:thuldrin_kreed .
+
+:savram_vade rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Саврам Вейд"@ru,
+                 "Savram Vade"@en ;
+    rdfs:comment "Сын таинственного волшебника Шарвароса. Тихий, замкнутый девятилетний мальчик, чьи яркие глаза выдают ум, намного превосходящий его годы. Когда достаточно подрастёт, несомненно последует за отцом в загадочную жизнь волшебника."@ru,
+                 "Son of the mysterious wizard Sharvaros. Quiet, withdrawn nine-year-old boy, whose bright eyes betray intelligence far beyond his years. When he is old enough he will no doubt follow his father into the cryptic life of a wizard."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:isMemberOf :five_children_friends ;
+    paizo:hasRelative :sharvaros_vade .
+
+:brickasnurd_hildrinsocks rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Брикаснурд Хилдринсокс"@ru,
+                 "Brickasnurd Hildrinsocks"@en ;
+    rdfs:comment "Единственный гном-житель Соколиной Лощины, владелец магазина 'Гусь и Селезень'. Продаёт всё - от базовых товаров до редких алхимических веществ и необычных диковинок."@ru,
+                 "The only gnome resident of Falcon's Hollow, owner of Goose'n'Gander store. Sells everything from basic goods to rare alchemical substances and unusual curiosities."@en ;
+    paizo:locatedIn :goose_n_gander .
+
+hlh:vamros_harg rdfs:comment "Миниатюрный полурослик-магистрат. Куплен и оплачен, но сам полурослик хотел бы, чтобы это было не так. Был неудачливым адвокатом в большом городе далеко отсюда, прежде чем прибыл в Соколиную Лощину. Крид поставил его на должность с пониманием, что снесёт маленького законодателя при первом признаке неповиновения. Вамрос не смеет противостоять Криду напрямую, но при каждой возможности направляет дела в сторону от жадного взгляда Крида и пытается дать людям справедливый шанс. Маленький полурослик стыдится своей собственной трусости, но если группа крепких авантюристов поддержит его в противостоянии Тулдрину Криду, Харг может просто принять вызов и начать вершить истинное правосудие. Харг - привлекательный молодой полурослик, любящий роскошь, чьи романтические интересы направлены к собственному полу."@ru,
+                 "Diminutive halfling Magistrate. Bought and paid for, but the halfling wishes he wasn't. Was a failed barrister in a large city far away before coming to Falcon's Hollow. Kreed propped him up with the understanding he'd tear the little lawmaker down at the first sign of disobedience. Vamros doesn't dare oppose Kreed directly, but every chance he gets he nudges cases away from Kreed's greedy eye and tries to give people a fair shake. The little halfling is ashamed of his own cowardice, but if a group of hardy adventurers supported him in opposing Thuldrin Kreed, Harg might just step up to the challenge and start doling out true justice. Harg is an attractive young halfling fond of finery whose romantic interests run toward his own gender."@en .
+
+:jak_crimmy rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Як Кримми"@ru,
+                 "Jak Crimmy"@en ;
+    rdfs:comment "Дородный краснолицый человек с единственным пучком ярко-рыжих волос на иначе лысой голове. Отставной бард с лёгкой улыбкой, владелец гостиницы Як'а'Нейпс. Его оладьи с корицей легендарны в городе, как и его умение жонглировать сковородками и поразительная меткость с тяжелым арбалетом - человек многих талантов."@ru,
+                 "Rotund red-faced human with a single wisp of bright red hair on his otherwise bald head. Retired bard who sports an easy smile, owner of Jak'a'Napes inn. His cinnamon-crusted flapjacks are legendary in town, as is his skill at juggling frying pans and his astonishing marksmanship with a heavy crossbow - a man of many talents."@en ;
+    paizo:locatedIn :jak_a_napes .
+
+:namdrin_quinn rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Намдрин Квинн"@ru,
+                 "Namdrin Quinn"@en ;
+    rdfs:comment "Полуэльф-теневой танцор, бывший лидер группы ветеранов-авантюристов. После особо опасного квеста, унёсшего жизнь его жены Тесс, завершил карьеру авантюриста и основал карнавал чудес на краю города. Ходят слухи, что после закрытия шатров Намдрин и его компания общаются с темными феями, планирующими возмездие за вырубку лесов. Некоторые говорят, что он шпионит для мстительных фей."@ru,
+                 "Half-elf shadowdancer, former leader of a band of veteran adventurers. After a particularly dangerous quest claimed the life of his wife Tess, ended his adventuring career and established a carnival of wonders on the edge of town. Rumor has it that after the tents close Namdrin and his merry band entreat with dark fey planning retribution for the lumbering. Some say the shadowdancer spies for the vengeful fey."@en ;
+    paizo:locatedIn :quinns_carnival .
+
+hlh:deldrin_baleson rdfs:comment "Шериф Долины Темной Луны, полуэльф, ответственный за поддержание порядка. Раньше был бедным лесорубом, работающим на вырубках под гнетом Гавела Тулдрина Крида. Однажды отказался платить 'налог на топор' за топор, который уже купил и оплатил. Босс Тидум попытался забрать топор Делдрина, и полуэльф разбил лицо Тидума его плашмя. Как один из немногих местных, кто противостоял Тидуму и Криду, был избран Шерифом на следующей неделе. Теперь носит тот же топор на плече, чтобы напомнить Криду и Боссу Тидуму, что не боится их. Делдрин высок для полуэльфа, возвышаясь над большинством людей, и его мускулистая, внушительная форма дополнительно подчеркивается острыми золотистыми глазами."@ru,
+                 "Sheriff of Darkmoon Vale, half-elf responsible for maintaining order. Used to be a poor lumberjack toiling in the cutyards under Gavel Thuldrin Kreed's oppressive thumb. One day he refused to pay an 'axe tax' on a lumberaxe he had already bought and paid for. Boss Teedum tried to take Deldrin's axe, and the half-elf smashed Teedum's face with the flat of it. As one of the few locals to stand up to Teedum and Kreed, he was elected Sheriff the following week. Now he carries the same axe around on his shoulder to remind Kreed and Boss Teedum he is not afraid of them. Deldrin is tall for a half-elf, towering over most humans, and his well-muscled, imposing form is further enhanced by his sharp gold-flecked eyes."@en .
+
+hlh::payden_teedum rdfs:comment "Старший Надсмотрщик Лесного Консорциума, следящий за рабочими лагерями. Пэйден, мопсоподобный, с раздавленным носом человек-громила, подлизывающийся к Криду, имеет большие счеты с Делдрином. Единственная причина, по которой он не пытался сломать шею шерифа - Крид боится превратить Делдрина в мученика, вокруг которого могут сплотиться другие жители Лощины. Прозвище 'День Выплаты' получил от того, как раздаёт 'должное' любому, кто недостаточно быстро выполняет приказы 'Мистера Крида'."@ru,
+                 "Overboss of the Lumber Consortium, overseeing worker camps. Payden, the pug-faced, mash-nosed human thug licking at Kreed's boots, has a big bone to pick with Deldrin. The only reason he hasn't tried to break the sheriff's neck is that Kreed fears turning Deldrin into a martyr for other Falconers to rally around. 'Pay Day' gets his name from the way he doles out 'dues' to anyone who fails to follow 'Mista Kreed's' commands fast enough."@en .
+
+:kadran_bloodeye rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Кадран Кровавый Глаз"@ru,
+                 "Kadran Bloodeye"@en ;
+    rdfs:comment "Грозный полуорк с кроваво-красными глазами, лидер Гильдии Красного Камня. Потерял нос в наказание за многочисленные преступные действия в большом городе далеко от лощины. Носит бронзовую накладку на носу над уродливым кратером в центре лица, которая тревожно свистит при дыхании и источает кровь и слизь (которую Кабран вытирает малиновым платком). Известен страстью к сдиранию кожи с врагов заживо в подвале 'Красной Леди'."@ru,
+                 "Fearsome half-orc with blood-red eyes, leader of the Redrock Guild. Lost his nose as punishment for numerous criminal activities in a large city far from the hollow. Wears a bronze nosepiece over the ugly crater left in the center of his face that whistles disturbingly as he breathes and leaks blood and mucus (which Kabran dabs away with a crimson handkerchief). Known for his penchant for flaying his enemies alive in the basement of the Rouge Lady."@en ;
+    paizo:locatedIn :rouge_lady ;
+    paizo:leads :redrock_guild .
+
+:sharvaros_vade rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Шарварос Вейд"@ru,
+                 "Sharvaros Vade"@en ;
+    rdfs:comment "Странный отшельник, живущий в маленькой лачуге сразу за городом, на расстоянии броска камня от местного кладбища. Большинство знают, что Вейд - странный человек, но мало кто осведомлен о его экспертизе в некромантии. Вейд проводит мерзкие эксперименты на трупах, выкопанных с кладбища в глубоком мраке ночи, заставляя своего сына помогать ему. Вейд худой и костлявый, с серыми глазами и растрепанной черной бородой."@ru,
+                 "Odd hermit living in a small shack just outside of the town proper, only a stone's throw from the local cemetery. Most know Vade is a strange man but few are aware of his expertise at necromancy. Vade conducts vile experiments on corpses unearthed from the graveyard in the deep gloom of night, forcing his son to assist him. Vade is bony and thin, with gray eyes and an unkempt black beard."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:hasRelative :savram_vade .
+
+:idris_eavewalker rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Идрис Ивуокер"@ru,
+                 "Idris Eavewalker"@en ;
+    rdfs:comment "Знаменитый эльфийский следопыт, отец Кими. Постоянно в отъезде, путешествуя и выслеживая реликвии для таинственного покровителя. Кими не видела отца два года, но боготворит его и мечтает последовать по его стопам авантюриста."@ru,
+                 "Famed elven ranger, father of Kimi. Constantly away adventuring and tracking down relics for a mysterious patron. Kimi has not seen her father in two years but idolizes him and dreams to follow in his adventurous footsteps."@en ;
+    paizo:hasRelative :kimi_eavewalker .
+
+:kitani_eavewalker rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Китани Ивуокер"@ru,
+                 "Kitani Eavewalker"@en ;
+    rdfs:comment "Прекрасная швея, мать Кими Ивуокер. Воспитывает дочь в отсутствие мужа Идриса, который постоянно в отъезде."@ru,
+                 "Beautiful seamstress, mother of Kimi Eavewalker. Raises her daughter in the absence of her husband Idris, who is constantly away."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:hasRelative :kimi_eavewalker .
+
+:ralla_hebbradan rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Ралла Хеббрадан"@ru,
+                 "Ralla Hebbradan"@en ;
+    rdfs:comment "Красивая молодая рыжеволосая женщина, старшая сестра Холлина. После смерти матери при родах и гибели отца от совомедведя два года назад, заботится о младшем брате. Они с трудом сводят концы с концами, и ходят слухи, что Ралла работает в одном из притонов удовольствий на Грязной улице, чтобы прокормить их. Работает в 'Красной Леди', чтобы заработать достаточно меди для неё и Холлина."@ru,
+                 "Beautiful young red-haired woman, Hollin's older sister. After their mother died in childbirth and their father was savaged by an owlbear two years ago, she looks after her younger brother. The two have struggled to make ends meet, and rumor has it Ralla works in one of the pleasure dens on Mud Street to keep food on the table. Works at the Rouge Lady to earn enough copper for her and Hollin to survive."@en ;
+    paizo:locatedIn :rouge_lady ;
+    paizo:hasRelative :hollin_hebbradan .
+
+:colbrin_jabbs rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Колбрин Джаббс"@ru,
+                 "Colbrin Jabbs"@en ;
+    rdfs:comment "Городской мясник Соколиной Лощины, отец Микры Джаббса. Добрый человек, который знает, что у Джурина Крида доброе сердце глубоко внутри. Микра проводит много времени в доме мясника, где Джурин читает ему по вечерам."@ru,
+                 "Town butcher of Falcon's Hollow, father of Mikra Jabbs. Kind man who knows that Jurin Kreed has a good heart deep down. Mikra spends a lot of time at the butcher's house, where Jurin reads to him in the afternoons."@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:hasRelative :mikra_jabbs .
+
+:kardoblag rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Кардоблаг"@ru,
+                 "Kardoblag"@en ;
+    rdfs:comment "Холмовой великан, который периодически шатается по лесу Долины Темной Луны."@ru,
+                 "Hill giant who staggers through the wood of Darkmoon Vale."@en ;
+    paizo:hasType mm35:hill_giant .
+
+# =============================================================================
+# ЛОКАЦИИ
+# =============================================================================
+
+:droskar_crucible_underground rdf:type paizo:Dungeon ;
+    rdfs:label "Подземелье Горнила Дроскара"@ru,
+                 "Droskar's Crucible Underground"@en ;
+    rdfs:comment "Подземные уровни древнего дварфийского монастыря, посвященного Дроскару. Монастырь был построен в мрачные сумерки рушащегося королевства. Сейчас здесь обитает племя кобольдов Истинной Чешуи, вынужденное переселиться с нижних уровней из-за атаки темных теней."@ru,
+                 "Underground levels of ancient dwarven monastery dedicated to Droskar. Monastery was constructed during the dismal twilight of a stumbling kingdom. Now inhabited by Truescale kobold tribe, forced to relocate from lower levels due to dark shadow attack."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:connectedTo hlh:dwarven_monastery .
+
+:truescale_lower_warrens rdf:type paizo:Dungeon ;
+    rdfs:label "Нижние норы Истинной Чешуи"@ru,
+                 "Truescale Lower Warrens"@en ;
+    rdfs:comment "Комфортабельные норы на нижних уровнях, где племя Истинной Чешуи жило до атаки ползучих теней. Покинуты и теперь заражены темными силами."@ru,
+                 "Comfortable warren on the lower levels where the Truescale Tribe lived before the creeping shadows attack. Abandoned and now infested with dark forces."@en ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:elara_halfway_house rdf:type paizo:Location ;
+    rdfs:label "Приют на Полпути Элары"@ru,
+                 "Elara's Halfway House"@en ;
+    rdfs:comment "Сгоревший приют на холме в 8 милях от Соколиной Лощины. Много лет Элара содержала здесь странствующих детей Соколиной Лощины и многочисленных военных сирот после конфликта с соседними королевствами гоблинов. Несколько месяцев назад приют сгорел дотла в таинственном пожаре. Все дети и директриса погибли в пламени."@ru,
+                 "Burned-out orphanage on a hill 8 miles from Falcon's Hollow. For years, Elara's Halfway House took in itinerant children of Falcon's Hollow and numerous war orphans from recent conflict with nearby goblin kingdoms. Few months ago the orphanage burned to the ground in mysterious fire. Every child and headmistress perished in the tragic blaze."@en ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+# =============================================================================
+# МЕСТА FALCON'S HOLLOW (PLACES OF NOTE)
+# =============================================================================
+
+:goose_n_gander rdf:type paizo:Shop ;
+    rdfs:label "Гусь и Селезень"@ru,
+                 "Goose'n'Gander"@en ;
+    rdfs:comment "Местный универсальный магазин в Соколиной Лощине, управляемый единственным жителем-гномом Брикаснурдом Хилдринсоксом. Продаёт всё - от стандартных товаров вроде зерна, лампового масла, чернил и шахтерских принадлежностей до редких диковинок вроде алхимического огня, противоядия, окаменевшего псевдодракона и чучел никси (в этом сезоне в моде)."@ru,
+                 "The local general store in Falcon's Hollow is run by the only gnome resident, Brickasnurd Hildrinsocks, who sells everything from standard amenities such as grain, lamp oil, ink, and mining supplies, to such rare oddities as alchemist's fire, antitoxin, a petrified pseudodragon, and taxidermy nixies (all the rage this season)."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:hollow_tribunal rdf:type paizo:Location ;
+    rdfs:label "Трибунал Лощины"@ru,
+                 "Hollow Tribunal"@en ;
+    rdfs:comment "Здесь миниатюрный полурослик-магистрат Вамрос Харг выдаёт торговые лицензии, штампует заявки на добычу и лесозаготовки, и выносит приговоры по уголовным и гражданским делам. Большинство жителей Соколиной Лощины наслаждаются иронией названия Трибунала Лощины, поскольку правосудие, вершимое там, редко бывает справедливым. Тот факт, что Харг крепко в кармане у Гавела Тулдрина, хорошо известен, но редко произносится публично теми, кто ценит свою жизнь."@ru,
+                 "This is where the diminutive halfling Magistrate Vamros Harg dispenses merchant licenses, stamps mining and lumber claims, and passes judgment on criminal and civil cases. Most Falconers enjoy the irony of the Hollow Tribunal's name, since the justice meted out there is rarely equitable. The fact that Harg is firmly in Gavel Thuldrin's pocket is well known, but it is rarely uttered in public by those who value their lives."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:jak_a_napes rdf:type paizo:Location ;
+    rdfs:label "Як'а'Нейпс"@ru,
+                 "Jak'a'Napes"@en ;
+    rdfs:comment "Покосившаяся обшарпанная гостиница рядом с городскими конюшнями, предлагающая жильё и еду многим путешественникам, проходящим через Соколиную Лощину. Владелец - дородный краснолицый человек по имени Як Кримми, с единственным пучком ярко-рыжих волос на иначе лысой голове, отставной бард с лёгкой улыбкой. Оладьи Яка с корицей легендарны в городе, как и его умение жонглировать сковородками и поразительная меткость с тяжелым арбалетом (Як - человек многих талантов)."@ru,
+                 "This leaning ramshackle inn located next to the town's stables offers lodgings and food to the many travelers who pass through Falcon's Hollow. The owner, a rotund red-faced human named Jak Crimmy, with a single wisp of bright red hair on his otherwise bald head, is a retired bard who sports an easy smile. Jak's cinnamon-crusted flapjacks are legendary in town, as is his skill at juggling frying pans and his astonishing marksmanship with a heavy crossbow (Jak is a man of many talents)."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:quinns_carnival rdf:type paizo:Location ;
+    rdfs:label "Карнавал Квинна"@ru,
+                 "Quinn's Carnival"@en ;
+    rdfs:comment "Полуэльф-теневой танцор Намдрин Квинн возглавлял группу ветеранов-авантюристов, которые часто отправлялись в долину. После особо опасного квеста, унёсшего жизнь жены Намдрина Тесс, полуэльф завершил карьеру и основал этот карнавал чудес на краю города. Квинн и его спутники восхищают толпы подвигами мастерства и магии по ночам, но ходят слухи, что после закрытия шатров Намдрин и его весёлая компания общаются с темными феями, чей гнев растёт из-за постоянных лесозаготовительных вторжений в долину. Некоторые говорят, что теневой танцор шпионит для мстительных фей, планирующих возмездие и убийство."@ru,
+                 "Half-elf shadowdancer Namdrin Quinn led a band of veteran adventurers who used to venture into the vale with frequency. After a particularly dangerous quest claimed the life of Namdrin's wife, Tess, the half-elf ended his career and established this carnival of wonders on the edge of town. Quinn and his companions wow crowds with feats of skill and magic by night, but rumor has it that after the tents close Namdrin and his merry band entreat with dark fey, whose anger mounts at the constant lumbering incursions into the vale. Some say the shadowdancer spies for the vengeful fey, who plan retribution and murder."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:rouge_lady rdf:type paizo:Location ;
+    rdfs:label "Красная Леди"@ru,
+                 "Rouge Lady"@en ;
+    rdfs:comment "Задние покои этого бурлеска и игорного зала, затянутые шёлковыми вуалями, служат незаконным борделем. Кабран Кровавый Глаз владеет этим нелегальным притоном удовольствий, где несчастная Ралла торгует своими прелестями, чтобы заработать достаточно меди для неё и Холлина."@ru,
+                 "The silk-veiled parlors in the back of this burlesque and gambling hall doubles as an illegal brothel. Kabran Bloodeye owns this illicit pleasure den, where the unfortunate Ralla peddles her charms to earn enough copper for her and Hollin to survive."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:sitting_duck rdf:type paizo:Location ;
+    rdfs:label "Сидящая Утка"@ru,
+                 "Sitting Duck"@en ;
+    rdfs:comment "Расположенная слишком близко к городскому частоколу для комфорта многих, Утка - это местная горячая точка для авантюристов, исследователей и прочих проходимцев, ищущих приключений. Таверна подаёт мощный местный напиток из ферментированных листьев чернодерева, который может свалить огра за несколько кружек. Буйные игры в 'ножички' и 'миг-а-маг-таг' (две опасные местные развлекательные активности с высоким уровнем увечий) часто бушуют до поздней ночи. Многие авантюристы делятся историями о Долине Темной Луны, Скале Дроскара и других окрестных локациях за кружку эля."@ru,
+                 "Located a little too close for many folks' comfort to the town palisade, the Duck is the local hot spot for adventurers, explorers, and other rapscallions looking for excitement. The tavern serves a potent local brew of fermented darkwood leaf that can floor an ogre in a few tankards. Raucous games of 'knivesies' and 'mig-a-mug-tug' (two dangerous local recreational activities both with a high rate of maiming) often rage late into the night. Many adventurers share tales of Darkmoon Vale, Droskar's Crag, and other surrounding locations for the price of a mug of ale."@en ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+# =============================================================================
+# ИНФОРМАЦИЯ И ПРОРОЧЕСТВА
+# =============================================================================
+
+:doomed_king_prophecy rdf:type paizo:Information ;
+    rdfs:label "Пророчество об Обреченном Короле"@ru,
+                 "Doomed King Prophecy"@en ;
+    rdfs:comment "Древнее пророчество, вспомненное Джеккаджаком: 'Когда Обреченный Король сядет на Трон, наше великое племя испустит последний вопль! Чтобы спасти наш народ, смой наши беды с короны кровью розовокожих отродий!'"@ru,
+                 "Ancient prophecy recalled by Jekkajak: 'When the Doomed King sits the Throne, our great tribe merk-merks its last! To save our people, wash our troubles from the crown with the blood of pink-skin-spawn!'"@en .
+
+# =============================================================================
+# ФОНОВЫЕ СОБЫТИЯ
+# =============================================================================
+
+:merlokrep_troubled_reign rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Неудачное правление Мерлокрепа"@ru,
+                 "Merlokrep's Troubled Reign"@en ;
+    rdfs:comment "Правление Мерлокрепа было отмечено несчастьями с самого начала. В день коронации его консорт Вреггма поскользнулась на ступенях помоста и выколола королю глаз одним из острых зубцов его собственной короны. Треть подданных погибла при неудачных горных работах, пытаясь добыть больше 'блестящих штучек' для требовательной консорт."@ru,
+                 "Merlokrep's reign has suffered misfortune from the day of his coronation. On coronation day, his consort Vreggma slipped on dais steps and poked out the king's eye with one of the bristly points of his own crown. A third of his subjects perished in haphazard mining excavation to retrieve more 'shiny good-good' for his demanding consort."@en ;
+    paizo:hadParticipant :truescale_tribe ;
+    paizo:locatedIn :truescale_lower_warrens .
+
+:creeping_shadows_attack rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Атака ползучих теней"@ru,
+                 "Creeping Shadows Attack"@en ;
+    rdfs:comment "Зловещие 'ползучие тени' поднялись из темных пещер снизу и иссушили лучших воинов короля до скелетных остовов. Это событие стало последней каплей, заставившей Мерлокрепа собрать своих самых подхалимских последователей и бежать наверх, спасаясь от распространяющейся тьмы."@ru,
+                 "Foul 'creeping shadows' rose from the dark caves below and withered the king's finest warriors to skeletal husks. This event was the final straw that made Merlokrep gather his most sycophantic followers and flee upward, away from the spreading darkness."@en ;
+    paizo:hadParticipant :truescale_tribe ;
+    paizo:hadCause :merlokrep_troubled_reign ;
+    paizo:locatedIn :truescale_lower_warrens .
+
+:truescale_forced_relocation rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Вынужденное переселение племени Истинной Чешуи"@ru,
+                 "Truescale Tribe Forced Relocation"@en ;
+    rdfs:comment "Изгнанные из своих комфортабельных нор на нижних уровнях, кобольды теперь живут непосредственно под Горнилом Дроскара. Племя Мерлокрепа продолжало сокращаться с каждой неделей из-за несчастных случаев, атак новых чудовищных соседей и собственных убийственных вспышек ярости короля."@ru,
+                 "Exiled from their comfortable warren on the lower levels, the kobolds now live directly beneath Droskar's Crucible. Merlokrep's tribe continued to shrink with each passing week as accidents, attacks by their new monstrous neighbors, and the king's own homicidal outbursts of rage claimed more and more of his beloved people."@en ;
+    paizo:hadParticipant :truescale_tribe ;
+    paizo:hadCause :creeping_shadows_attack ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:jekkajak_prophecy_event rdf:type paizo:Generation ;
+    rdfs:label "Пророчество Джеккаджака"@ru,
+                 "Jekkajak's Prophecy"@en ;
+    rdfs:comment "На племенном ужине из тушеного козопаса Джеккаджак внезапно вскочил на ноги и выпалил ужасное пророчество, долго хранившееся в пыльном уголке его дряхлого разума. Произнеся последнее слово вместе с каплей похлебки, Джеккаджак упал лицом в свою миску. Путь Мерлокрепа стал мгновенно ясен: единственный способ спасти племя от уничтожения - кровь розовокожих хлюпких детей."@ru,
+                 "At a tribal dinner of stewed goatherd, Jekkajak suddenly lurched to his feet and babbled forth a dread prophecy long tucked in some cobwebbed corner of his crusty mind. As the last word left his mouth accompanied by a dribble of stew, Jekkajak slumped face-first into his bowl. Merlokrep's path became instantly clear: the only way to save his tribe from annihilation lay in the blood of the pink skins' squishy children."@ru,
+                 "At a tribal dinner of stewed goatherd, Jekkajak suddenly lurched to his feet and babbled forth a dread prophecy long tucked in some cobwebbed corner of his crusty mind. As the last word left his mouth accompanied by a dribble of stew, Jekkajak slumped face-first into his bowl and Merlokrep's path became instantly clear. The only way to save his tribe from annihilation lay in the blood of the pink skins' squishy children."@en ;
+    paizo:agent :jekkajak ;
+    paizo:hadParticipant :jekkajak , :truescale_tribe ;
+    paizo:generated :doomed_king_prophecy ;
+    paizo:hadCause :truescale_forced_relocation ;
+    paizo:locatedIn :droskar_crucible_underground .
+
+:five_children_dare rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Детское пари"@ru,
+                 "Children's Dare"@en ;
+    rdfs:comment "Жаркий спор о том, был ли приют с привидениями, спровоцировал пятерых детей провести ночь в обугленных останках приюта. В тот самый вечер, когда отряд миньонов Мерлокрепа вышел из руин, группа детей из Соколиной Лощины пробиралась сквозь мрак к приюту."@ru,
+                 "A heated debate over whether the halfway house was haunted provoked the five kids to spend the night in the orphanage's blackened remains. On the very evening Merlokrep's band of minions emerged from the ruins, a group of children from Falcon's Hollow picked their way through the gloom to Elara's Halfway House."@en ;
+    paizo:hadParticipant :five_children_friends ;
+    paizo:locatedIn :elara_halfway_house .
+
+:five_children_kidnapping rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Похищение пятерых детей"@ru,
+                 "Five Children Kidnapping"@en ;
+    rdfs:comment "Когда кобольды заметили этих свежих розовокожих вкусняшек, слепо бредущих в темноте, они быстро усмирили их и с триумфом потащили обратно к своему королю. Теперь, накануне своего спасения, кобольды племени Истинной Чешуи уродливо резвятся под землей, пока Джеккаджак пытается вспомнить правильный протокол жертвенных церемоний."@ru,
+                 "When the kobolds caught sight of these fresh pink morsels blindly bumbling through the dark, they quickly subdued them, dragging the children back to their king in triumph. Now, on the eve of their salvation, the kobolds of the Truescale Tribe cavort freakishly below the earth, while Jekkajak struggles to recall the proper protocol for sacrificial ceremonies."@en ;
+    paizo:hadParticipant :five_children_friends ;
+    paizo:hadCause :five_children_dare, :jekkajak_prophecy_event ;
+    paizo:wasMotivatedBy :scouts_kidnapping_mission ;
+    paizo:locatedIn :elara_halfway_house .
+
+:kardoblag_meeting_ogres rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Встреча Кардоблага с ограми"@ru,
+                 "Kardoblag Meeting Ogres"@en ;
+    rdfs:comment "Кардоблаг встретил огров ранее и принял их предложение выпить крепкий напиток из ферментированных листьев чернодерева. Когда шутливый спор о том, как правильно жарить халфлинга, перерос в драку, Кардоблаг разбил черепа огров и отправился домой. В опьянении он потерял обручальное кольцо, которое снял ранее, когда заметил 'привлекательную' женщину среди огров."@ru,
+                 "Kardoblag met some ogres earlier and accepted their offer to drink a foul spirit of fermented darkwood leaf. When a jocular argument over how to properly roast halfling turned ugly, Kardoblag stove in the ogres' skulls and started home. In his inebriation he misplaced his wedding ring, which he had quickly slipped off earlier when he spotted a 'comely' female among the ogres."@en ;
+    paizo:hadParticipant :kardoblag, mm35:ogre ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+# =============================================================================
+# МОТИВАЦИИ
+# =============================================================================
+
+:saving_tribe_from_doom rdf:type paizo:Motivation ;
+    rdfs:label "Спасение племени от гибели"@ru,
+                 "Saving tribe from doom"@en ;
+    rdfs:comment "Желание спасти племя от полного уничтожения."@ru,
+                 "Desire to save the tribe from annihilation."@en .
+
+:merlokrep_following_prophecy rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Мерлокрепа следовать пророчеству"@ru,
+                 "Merlokrep's motivation to follow prophecy"@en ;
+    rdfs:comment "В темноте ночи Мерлокреп послал своих самых скрытных похитить розовокожих младенцев из их странных пушистых постелей. Судьба вмешалась в их пользу еще до того, как похитители достигли города."@ru,
+                 "In the dark of night, Merlokrep sent forth his sneakiest to steal the pink-skinned babes from their strange fluffy beds. Destiny intervened on their behalf before the kidnappers even reached the town."@en ;
+    paizo:agent :merlokrep ;
+    paizo:motivation :saving_tribe_from_doom ;
+    paizo:inInterestOf :truescale_tribe ;
+    paizo:refersTo :doomed_king_prophecy .
+
+:scouts_kidnapping_mission rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Следопыты выполняют миссию короля"@ru,
+                 "Scouts performing king's mission"@en ;
+    rdfs:comment "Элитные следопыты выполняют приказ короля Мерлокрепа похитить детей для спасения племени."@ru,
+                 "Elite scouts following King Merlokrep's orders to kidnap children to save the tribe."@en ;
+    paizo:agent :truescale_elite_scouts ;
+    paizo:inInterestOf :merlokrep ;
+    paizo:motivation paizo:serving_master ;
+    paizo:derivedFrom :merlokrep_following_prophecy .
+
+# Мотивации для событий приюта
+
+:elara_helping_orphans_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Элары помогать сиротам"@ru,
+                 "Elara's motivation to help orphans"@en ;
+    rdfs:comment "Элара открывает приют из сострадания к сиротам и детям, оставшимся без родителей после войны."@ru,
+                 "Elara opens the orphanage out of compassion for orphans and children left without parents after the war."@en ;
+    paizo:agent :elara ;
+    paizo:motivation paizo:helping_children .
+
+:jeva_lycanthropic_rage_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Джевы убивать из-за ликантропии"@ru,
+                 "Jeva's lycanthropic rage motivation"@en ;
+    rdfs:comment "Под влиянием ликантропии Джева теряет контроль и убивает, не в силах противостоять звериной природе."@ru,
+                 "Under the influence of lycanthropy, Jeva loses control and kills, unable to resist her bestial nature."@en ;
+    paizo:agent :jeva ;
+    paizo:motivation paizo:uncontrollable_rage .
+
+:elara_imprisoning_jeva_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Элары заточить Джеву"@ru,
+                 "Elara's motivation to imprison Jeva"@en ;
+    rdfs:comment "Элара хочет защитить других детей от Джевы."@ru,
+                 "Elara wants to protect other children from Jeva."@en ;
+    paizo:agent :elara ;
+    paizo:motivation paizo:protecting_others .
+
+:jeva_killing_elara_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Джевы убить Элару"@ru,
+                 "Jeva's motivation to kill Elara"@en ;
+    rdfs:comment "Джева убивает Элару, чтобы освободиться от плена и отомстить за пытки в подвале."@ru,
+                 "Jeva kills Elara to free herself from captivity and take revenge for the torture in the cellar."@en ;
+    paizo:agent :jeva ;
+    paizo:motivation paizo:self_defense , paizo:revenge .
+
+:jeva_burning_orphanage_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Джевы сжечь приют"@ru,
+                 "Jeva's motivation to burn the orphanage"@en ;
+    rdfs:comment "Джева поджигает приют, чтобы скрыть следы убийства Элары и уничтожить место своих страданий."@ru,
+                 "Jeva sets the orphanage ablaze to cover up the evidence of Elara's murder and destroy the place of her suffering."@en ;
+    paizo:agent :jeva ;
+    paizo:motivation paizo:covering_tracks , paizo:revenge .
+
+:spiders_defending_cellar_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация пауков защищать подвал"@ru,
+                 "Spiders' motivation to defend cellar"@en ;
+    rdfs:comment "Пауки защищают подвал как свое логово от вторжения."@ru,
+                 "Spiders defend the cellar as their lair from intrusion."@en ;
+    paizo:agent mm35:spider_swarm, mm35:medium_monstrous_spider ;
+    paizo:motivation paizo:defending_lair .
+
+:jeva_hunting_prey_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Джевы охотиться на жертв"@ru,
+                 "Jeva's motivation to hunt prey"@en ;
+    rdfs:comment "После пожара в приюте Джева скитается по долине, охотясь на жертв под влиянием своей оборотничьей природы."@ru,
+                 "After the orphanage fire, Jeva wanders the vale, hunting prey under the influence of her werewolf nature."@en ;
+    paizo:agent :jeva ;
+    paizo:motivation paizo:hunting_prey .
+
+:sithmuk_stealing_magic_item_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Ситмука украсть магический предмет"@ru,
+                 "Sithmuk's motivation to steal magic item"@en ;
+    rdfs:comment "Ситмук притворяется раненым ястребом, чтобы завоевать доверие персонажей, затем выжидает момент и пытается украсть их самый могущественный магический предмет, прежде чем стать невидимым и сбежать."@ru,
+                 "Sithmuk pretends to be an injured hawk to gain the PCs' trust, then bides his time and tries to steal their most powerful magic item before turning invisible and fleeing."@en ;
+    paizo:agent :sithmuk ;
+    paizo:motivation paizo:stealing .
+
+:kardoblag_finding_wedding_ring_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация Кардоблага найти обручальное кольцо"@ru,
+                 "Kardoblag's motivation to find wedding ring"@en ;
+    rdfs:comment "Кардоблаг потерял своё обручальное кольцо в опьянении и теперь ищет его, чтобы вернуться домой к жене. Обычно он с удовольствием размазал бы персонажей, но с пьяной головой он только хочет найти кольцо и вернуться домой."@ru,
+                 "Kardoblag misplaced his wedding ring in his inebriation and now searches for it to return home to his wife. Normally he would delight in reducing the PCs to paste, but with his head pounding from drink he only wishes to find his ring and get home."@en ;
+    paizo:agent :kardoblag ;
+    paizo:motivation paizo:guarding_possessions .
+
+:harpy_hunting_prey_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация гарпии охотиться на добычу"@ru,
+                 "Harpy's motivation to hunt prey"@en ;
+    rdfs:comment "Гарпия использует свой магический голос для заманивания жертв. Она поет, чтобы привлечь жертв к себе, а затем атакует их своими когтями."@ru,
+                 "Harpy uses her magical voice to lure victims. She sings to attract prey to her, then attacks them with her talons."@en ;
+    paizo:agent mm35:harpy ;
+    paizo:motivation paizo:hunting_prey .
+
+:manticore_hunting_prey_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация мантикоры охотиться на добычу"@ru,
+                 "Manticore's motivation to hunt prey"@en ;
+    rdfs:comment "Мантикора охотится на добычу, используя свои шипы для атаки. Она атакует жертв из засады, вырываясь из ветвей и метая острые шипы."@ru,
+                 "Manticore hunts prey using its spines for attack. It ambushes victims, bursting from branches and launching sharp spines."@en ;
+    paizo:agent mm35:manticore ;
+    paizo:motivation paizo:hunting_prey .
+
+:kobolds_gathering_obsidian_for_vreggma_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация кобольдов собирать обсидиан для Вреггмы"@ru,
+                 "Kobolds' motivation to gather obsidian for Vreggma"@en ;
+    rdfs:comment "Кобольды-рабы и кобольды-воины собирают обсидиан из-за его отражающих качеств в интересах Вреггмы, Главной Консорт. Вреггма любит смотреть на свое отражение и наслаждается позированием перед большими кусками полированного обсидиана. Она заставляет рабов строить черное зеркало в ее квартирах."@ru,
+                 "Kobold slaves and kobold warriors gather obsidian for its reflective qualities in the interests of Vreggma, Chief Consort. Vreggma loves to gaze at her own reflection and enjoys posing before large pieces of polished obsidian. She forces slaves to construct a black mirror in her quarters."@en ;
+    paizo:agent :kobold_slave, :kobold_warrior ;
+    paizo:motivation paizo:serving_master ;
+    paizo:inInterestOf :vreggma .
+
+:kobold_warriors_protecting_tribe_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация кобольдов-воинов защищать племя"@ru,
+                 "Kobold warriors' motivation to protect tribe"@en ;
+    rdfs:comment "Кобольды-воины защищают племя и бьются на смерть, чтобы защитить своих соплеменников от опасности."@ru,
+                 "Kobold warriors protect the tribe and fight to the death to defend their tribesmen from danger."@en ;
+    paizo:agent :kobold_warrior ;
+    paizo:motivation paizo:protecting_others ;
+    paizo:inInterestOf :truescale_tribe .
+
+:kobold_slaves_serving_master_motivation rdf:type paizo:QualifiedMotivation ;
+    rdfs:label "Мотивация кобольдов-рабов служить хозяину"@ru,
+                 "Kobold slaves' motivation to serve master"@en ;
+    rdfs:comment "Кобольды-рабы служат своему хозяину и выполняют его приказы. В бою они разбегаются при отсутствии воинов, так как не обучены сражаться."@ru,
+                 "Kobold slaves serve their master and follow his orders. In combat, they flee when warriors are absent, as they are not trained to fight."@en ;
+    paizo:agent :kobold_slave ;
+    paizo:motivation paizo:serving_master .
+
+# =============================================================================
+# ОСНОВНОЕ ПРИКЛЮЧЕНИЕ
+# =============================================================================
+
+:crown_of_the_kobold_king_adventure rdf:type paizo:Adventure ;
+    rdfs:label "Корона Короля Кобольдов"@ru,
+                 "Crown of the Kobold King"@en ;
+    rdfs:comment "Основное приключение по спасению пятерых похищенных детей из Соколиной Лощины из лап племени кобольдов Истинной Чешуи. GameMastery Module D1. Пятеро детей пропали, будучи утащенными в руины под проклятым дварфийским монастырем. Скоро их принесут в жертву короне, во славу извращенного Короля Кобольдов."@ru,
+                 "Main adventure to save five kidnapped children from Falcon's Hollow from the clutches of the Truescale kobold tribe. GameMastery Module D1. Five children from the town of Falcon's Hollow have gone missing, dragged off into ruins underneath a cursed dwarven monastery. Soon they will be sacrificed to the crown, all to the glory of the twisted King of the Kobolds."@en ;
+    paizo:locatedIn hlh:falcons_hollow, hlh:darkmoon_vale ;
+    paizo:hadCause :five_children_kidnapping ;
+    paizo:hadRecommendedLevel 2 ;
+    paizo:containedEvent :lighting_the_way_investigation , :seekers_of_lost_children , :droskar_crag_exploration .
+
+# =============================================================================
+# PART ONE: LIGHTING THE WAY
+# =============================================================================
+
+:lighting_the_way_investigation rdf:type paizo:Quest ;
+    rdfs:label "Расследование: Освещая путь"@ru,
+                 "Investigation: Lighting the Way"@en ;
+    rdfs:comment "Сбор информации о пропавших детях и установление их местонахождения"@ru,
+                 "Gathering information about missing children and establishing their location"@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:containedEvent :gathering_info_about_children, :discovering_tracks_to_orphanage,
+        :gathering_lore_elara, :gathering_lore_crucible, :recalling_ballad_of_glintaxe .
+
+# =============================================================================
+# GENERATION СОБЫТИЯ
+# =============================================================================
+
+:gathering_info_about_children rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о пропавших детях"@ru,
+                 "Gathering Information about Missing Children"@en ;
+    rdfs:comment "Опрос жителей Соколиной Лощины для получения информации о пропавших детях"@ru,
+                 "Questioning residents of Falcon's Hollow to gather information about missing children"@en ;
+    paizo:generated :info_missing_children ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:discovering_tracks_to_orphanage rdf:type paizo:Generation ;
+    rdfs:label "Обнаружение следов к приюту"@ru,
+                 "Discovering Tracks to Orphanage"@en ;
+    rdfs:comment "Поиск и обнаружение следов детей, ведущих к Приюту Элары"@ru,
+                 "Searching for and discovering children's tracks leading to Elara's Halfway House"@en ;
+    paizo:generated :tracking_children_to_orphanage ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+# Промежуточные события-генерации для сведений (лора)
+
+:gathering_lore_elara rdf:type paizo:Encounter ;
+    rdfs:label "Сбор сведений о Приюте Элары"@ru,
+                 "Gathering Lore about Elara's Halfway House"@en ;
+    rdfs:comment "Комплексный сбор информации о Приюте Элары, включающий общие сведения, детали пожара и слухи"@ru,
+                 "Comprehensive gathering of information about Elara's Halfway House, including basic information, fire details, and rumors"@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:hadContext :tracking_children_to_orphanage ;
+    paizo:containedEvent :gathering_lore_elara_basic, :gathering_lore_elara_detail, :gathering_lore_elara_rumors .
+
+:gathering_lore_elara_basic rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Приюте Элары (общие)"@ru,
+                 "Gathering Lore about Elara's Halfway House (basic)"@en ;
+    rdfs:comment "Опросы и знания жителей о приюте Элары (базовые сведения)"@ru,
+                 "Residents' knowledge and inquiries about Elara's Halfway House (basic)"@en ;
+    paizo:generated :lore_elaras_halfway_house_basic ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:gathering_lore_elara_detail rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Приюте Элары (детали пожара)"@ru,
+                 "Gathering Lore about Elara's Halfway House (fire details)"@en ;
+    rdfs:comment "Сбор подробностей о пожаре в приюте и его обстоятельствах"@ru,
+                 "Collecting details about the orphanage fire and its circumstances"@en ;
+    paizo:generated :lore_elaras_halfway_house_detail ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:gathering_lore_elara_rumors rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Приюте Элары (слухи)"@ru,
+                 "Gathering Lore about Elara's Halfway House (rumors)"@en ;
+    rdfs:comment "Слухи о странностях в приюте перед пожаром"@ru,
+                 "Rumors about oddities at the orphanage before the fire"@en ;
+    paizo:generated :lore_elaras_halfway_house_rumors ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:gathering_lore_crucible rdf:type paizo:Encounter ;
+    rdfs:label "Сбор сведений о Горниле Дроскара"@ru,
+                 "Gathering Lore about Droskar's Crucible"@en ;
+    rdfs:comment "Комплексный сбор информации о Горниле Дроскара, включающий общие сведения, информацию о монастыре и глубинах"@ru,
+                 "Comprehensive gathering of information about Droskar's Crucible, including basic information, monastery details, and depths"@en ;
+    paizo:locatedIn hlh:falcons_hollow ;
+    paizo:containedEvent :gathering_lore_crucible_basic, :gathering_lore_crucible_monastery, :gathering_lore_crucible_depths .
+
+:gathering_lore_crucible_basic rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Горниле Дроскара (общие)"@ru,
+                 "Gathering Lore about Droskar's Crucible (basic)"@en ;
+    rdfs:comment "Общие знания и слухи о руинах Горнила Дроскара"@ru,
+                 "General knowledge and rumors about the ruins of Droskar's Crucible"@en ;
+    paizo:generated :lore_crucible_basic ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:gathering_lore_crucible_monastery rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Горниле Дроскара (монастырь)"@ru,
+                 "Gathering Lore about Droskar's Crucible (monastery)"@en ;
+    rdfs:comment "Сведения о монастыре Дроскара и Друингаре Блестящем Топоре"@ru,
+                 "Information about Droskar's monastery and Druingar the Glintaxe"@en ;
+    paizo:generated :lore_crucible_monastery ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:gathering_lore_crucible_depths rdf:type paizo:Generation ;
+    rdfs:label "Сбор сведений о Горниле Дроскара (глубины)"@ru,
+                 "Gathering Lore about Droskar's Crucible (depths)"@en ;
+    rdfs:comment "Слухи о зле, обитающем в глубинах руин"@ru,
+                 "Rumors about evil dwelling in the depths of the ruins"@en ;
+    paizo:generated :lore_crucible_depths ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+:recalling_ballad_of_glintaxe rdf:type paizo:Generation ;
+    rdfs:label "Вспоминание Баллады о Блестящем Топоре"@ru,
+                 "Recalling the Ballad of the Glintaxe"@en ;
+    rdfs:comment "Вспоминание/узнавание баллады о Друингаре Блестящем Топоре"@ru,
+                 "Recalling/learning the ballad of Druingar the Glintaxe"@en ;
+    paizo:generated :ballad_of_glintaxe ;
+    paizo:locatedIn hlh:falcons_hollow .
+
+# =============================================================================
+# ИНФОРМАЦИЯ
+# =============================================================================
+
+:info_missing_children rdf:type paizo:Information ;
+    rdfs:label "Сведения о пропавших детях"@ru,
+                 "Information about Missing Children"@en ;
+    rdfs:comment "Кими — отважная защитница друзей, мечтает идти по стопам Идриса; Холлин — мальчик-резчик, живёт с сестрой Раллой и стремится помочь семье; Микра — добрый сын мясника Колбрина; Джурин — сын Тулдрина Крида, заносчив на людях, но с добрым сердцем; Саврам — смышлёный, замкнутый сын волшебника Шарвароса."@ru,
+                 "Kimi is a brave protector who idolizes Idris; Hollin is a woodcarver living with sister Ralla, striving to help his family; Mikra is the kind son of butcher Colbrin; Jurin is Thuldrin Kreed's son, haughty in public yet good-hearted; Savram is a clever, withdrawn son of wizard Sharvaros."@en ;
+    paizo:refersTo :five_children_friends .
+
+:tracking_children_to_orphanage rdf:type paizo:Information ;
+    rdfs:label "Следы детей к Приюту Элары"@ru,
+                 "Tracks to Elara's Halfway House"@en ;
+    rdfs:comment "Пять наборов детских следов ведут от Соколиной Лощины к сгоревшему Приюту Элары; направление подтверждено соседскими детьми - группа друзей отправилась к Приюту, чтобы переночевать внутри жуткого места."@ru,
+                 "Five sets of child-sized footprints lead from Falcon's Hollow to the burned remains of Elara's Halfway House; heading confirmed by the neighbors' kids - a group of friends went to the Halfway House to spend the night inside a creepy place."@en ;
+    paizo:refersTo :elara_halfway_house , :five_children_friends .
+
+:lore_elaras_halfway_house_basic rdf:type paizo:Information ;
+    rdfs:label "Приют Элары — общие сведения"@ru,
+                 "Elara's Halfway House — Basic"@en ;
+    rdfs:comment "Элара — самоотверженная попечительница, посвятившая себя сиротам и детям путников; приют сгорел в ужасной трагедии, о которой скорбят жители."@ru,
+                 "Elara was a selfless caretaker devoted to orphans and itinerant children; the orphanage burned in a horrible tragedy mourned by the townsfolk."@en ;
+    paizo:refersTo :elara_halfway_house .
+
+:lore_elaras_halfway_house_detail rdf:type paizo:Information ;
+    rdfs:label "Приют Элары — детали пожара"@ru,
+                 "Elara's Halfway House — Fire Details"@en ;
+    rdfs:comment "Пожар начался внезапно и стремительно; к прибытию дружины остались руины, дети погибли, Элара сгорела; многие сомневаются, что пожар был случайным."@ru,
+                 "The fire began suddenly and spread rapidly; by the time the brigade arrived only ruins remained, the children perished, and Elara burned; many doubt it was accidental."@en ;
+    paizo:refersTo :elara_halfway_house .
+
+:lore_elaras_halfway_house_rumors rdf:type paizo:Information ;
+    rdfs:label "Приют Элары — зловещие слухи"@ru,
+                 "Elara's Halfway House — Sinister Rumors"@en ;
+    rdfs:comment "В последние месяцы перед пожаром по ночам слышались шум и крики; злые слухи утверждают, будто Элара мучила детей, потому и держала приют вдали от города."@ru,
+                 "In the months before the fire, noises and screams were heard at night; dark rumors claim Elara tortured the children, hence the orphanage being set outside town."@en ;
+    paizo:refersTo :elara_halfway_house .
+
+:lore_crucible_basic rdf:type paizo:Information ;
+    rdfs:label "Горнило Дроскара — основные сведения"@ru,
+                 "Droskar's Crucible — Basic"@en ;
+    rdfs:comment "Древние дварфийские руины под Скалой Дроскара; залы населены чудовищами, по слухам там бродят призраки дварфов."@ru,
+                 "Ancient dwarven ruins beneath Droskar's Crag; the halls are plagued by monsters and, by rumor, haunted by dwarven ghosts."@en ;
+    paizo:refersTo :droskar_crucible_underground .
+
+:lore_crucible_monastery rdf:type paizo:Information ;
+    rdfs:label "Горнило Дроскара — монастырь Дроскара"@ru,
+                 "Droskar's Crucible — Monastery"@en ;
+    rdfs:comment "Когда-то здесь был монастырь мрачного бога труда Дроскара; Друингар Блестящий Топор отправился туда за реликвиями и не вернулся; по ночам видят его призрак, преследующий нарушителей."@ru,
+                 "Once a monastery devoted to the grim god of toil, Droskar; Druingar the Glintaxe quested there for relics and never returned; at night his ghost is said to haunt trespassers."@en ;
+    paizo:refersTo :droskar_crucible_underground .
+
+:lore_crucible_depths rdf:type paizo:Information ;
+    rdfs:label "Горнило Дроскара — зло в глубинах"@ru,
+                 "Droskar's Crucible — Evil Below"@en ;
+    rdfs:comment "Говорят, глубоко внизу таится древнее зло; в долине появились мерзкие создания, которых подозревают в убийствах козопасов и причастности к исчезновению детей."@ru,
+                 "Whispers tell of an ancient evil in the depths; freakish creatures have surfaced in the vale, suspected in goatherd murders and the children's disappearance."@en ;
+    paizo:refersTo :droskar_crucible_underground .
+
+:ballad_of_glintaxe rdf:type paizo:Information ;
+    rdfs:label "Баллада о Блестящем Топоре"@ru,
+                 "Ballad of the Glintaxe"@en ;
+    rdfs:comment "Песня о Друингаре Блестящем Топоре, который отправился в руины под Скалой Дроскара и так и не вернулся. Его беспокойный дух все еще бродит там по ночам."@ru,
+                 "Song about Druingar the Glintaxe who ventured into the ruins beneath Droskar's Crag and never returned. His restless spirit still stalks there at night."@en .
+
+# =============================================================================
+# ПРАВИЛА D&D 3.5
+# =============================================================================
+
+:gathering_info_about_children_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Сбор сведений о детях"@ru,
+                 "D&D 3.5 Rules: Gathering Children Info"@en ;
+    rdfs:comment "Сбор сведений или Знание (местности) СЛ 10."@ru,
+                 "Gather Information or Knowledge (local) DC 10."@en ;
+    paizo:ruleFor :gathering_info_about_children .
+
+:discovering_tracks_to_orphanage_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение следов к Приюту Элары"@ru,
+                 "D&D 3.5 Rules: Discovering Tracks to Elara's Halfway House"@en ;
+    rdfs:comment "Выживание СЛ 20 с чертой Выслеживание или Сбор сведений СЛ 15 у соседских детей."@ru,
+                 "Survival DC 20 with the Track feat or Gather Information DC 15 with the neighbors' kids."@en ;
+    paizo:ruleFor :discovering_tracks_to_orphanage .
+
+:lore_elaras_halfway_house_basic_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Приюте (базовые)"@ru,
+                 "D&D 3.5 Rules: Halfway House Lore (Basic)"@en ;
+    rdfs:comment "Знание (местности) или Сбор сведений СЛ 10."@ru,
+                 "Knowledge (local) or Gather Information DC 10."@en ;
+    paizo:ruleFor :gathering_lore_elara_basic .
+
+:lore_elaras_halfway_house_detail_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Приюте (детали)"@ru,
+                 "D&D 3.5 Rules: Halfway House Lore (Details)"@en ;
+    rdfs:comment "Сбор сведений СЛ 15."@ru,
+                 "DC 15 (community lore)."@en ;
+    paizo:ruleFor :gathering_lore_elara_detail .
+
+:lore_elaras_halfway_house_rumors_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Приюте (слухи)"@ru,
+                 "D&D 3.5 Rules: Halfway House Lore (Rumors)"@en ;
+    rdfs:comment "Сбор сведений СЛ 20."@ru,
+                 "DC 20 (rumors)."@en ;
+    paizo:ruleFor :gathering_lore_elara_rumors .
+
+:lore_crucible_basic_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Горниле (базовые)"@ru,
+                 "D&D 3.5 Rules: Crucible Lore (Basic)"@en ;
+    rdfs:comment "Знание (истории/религии) СЛ 15."@ru,
+                 "Knowledge (history or religion) DC 15."@en ;
+    paizo:ruleFor :gathering_lore_crucible_basic .
+
+:lore_crucible_monastery_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Горниле (монастырь)"@ru,
+                 "D&D 3.5 Rules: Crucible Lore (Monastery)"@en ;
+    rdfs:comment "Знание (истории/религии) СЛ 20."@ru,
+                 "Knowledge (history or religion) DC 20."@en ;
+    paizo:ruleFor :gathering_lore_crucible_monastery .
+
+:lore_crucible_depths_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знания о Горниле (глубины)"@ru,
+                 "D&D 3.5 Rules: Crucible Lore (Depths)"@en ;
+    rdfs:comment "Знание (местности) СЛ 25."@ru,
+                 "Knowledge (local) DC 25."@en ;
+    paizo:ruleFor :gathering_lore_crucible_depths .
+
+:ballad_of_glintaxe_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Знание Баллады"@ru,
+                 "D&D 3.5 Rules: Ballad Knowledge"@en ;
+    rdfs:comment "Бардовские знания, Сбор сведений или Знание (местности) СЛ 15."@ru,
+                 "Bardic Knowledge, Gather Information, or Knowledge (local) DC 15."@en ;
+    paizo:ruleFor :recalling_ballad_of_glintaxe .
+
+###################################################################################################
+# PART TWO: SEEKERS OF LOST CHILDREN
+###################################################################################################
+
+# =============================================================================
+# ЛОКАЦИИ И СВЯЗИ
+# =============================================================================
+
+:elara_cellar rdf:type paizo:Room ;
+    rdfs:label "Подвал Приюта Элары"@ru,
+                 "Elara's Halfway House Cellar"@en ;
+    rdfs:comment "Зловонный подвал: окровавленный дубовый стол, лезвия и зазубренные инструменты, ржавые кандалы на стене, труп Элары."@ru,
+                 "Rank cellar with a blood-stained oaken table, blades and barbed instruments, rusted shackles on the wall, and Elara's corpse."@en ;
+    paizo:locatedIn :elara_halfway_house .
+
+:children_campsite rdf:type paizo:Location ;
+    rdfs:label "Лагерь детей у Приюта"@ru,
+                 "Children's Campsite near the Halfway House"@en ;
+    rdfs:comment "Разорванная палатка, очаг из плоских камней, следы борьбы, клочки одежды, кровь и несколько рептильных чешуек."@ru,
+                 "A shredded tent, a crude fire ring of flat stones, signs of struggle, scraps of clothing, blood, and several reptilian scales."@en ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+# связь локаций по близости и маршруту расследования
+:elara_halfway_house paizo:connectedTo :children_campsite .
+
+# =============================================================================
+# ТИПЫ СУЩЕСТВ
+# =============================================================================
+
+# =============================================================================
+# ФОНОВЫЕ СОБЫТИЯ (Дом Элары)
+# =============================================================================
+
+:elara_opens_orphanage rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Элара открывает приют"@ru,
+                 "Elara opens the orphanage"@en ;
+    rdfs:comment "Элара открывает Приют на Полпути, принимая сирот и детей путников после Гоблинской войны."@ru,
+                 "Elara opens the Halfway House, taking in orphans and itinerant children after the Goblinblood War."@en ;
+    paizo:locatedIn :elara_halfway_house ;
+    paizo:wasMotivatedBy :elara_helping_orphans_motivation .
+
+:jeva_bitten_and_cursed rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Джева теряет родителей и становится оборотнем"@ru,
+                 "Jeva loses parents and becomes werewolf"@en ;
+    rdfs:comment "На пикнике оборотень убивает родителей Джевы и кусает её; девочка становится оборотнем."@ru,
+                 "During a picnic, a werewolf slays Jeva's parents and bites her; the girl becomes a werewolf."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant :jeva .
+
+:jeva_kills_people_in_orphanage rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Джева убивает людей в приюте"@ru,
+                 "Jeva kills people in orphanage"@en ;
+    rdfs:comment "Джева попадает в приют и под влиянием ликантропии убивает несколько человек."@ru,
+                 "Jeva arrives at the orphanage and under the influence of lycanthropy kills several people."@en ;
+    paizo:locatedIn :elara_halfway_house ;
+    paizo:hadCause :jeva_bitten_and_cursed , :elara_opens_orphanage ;
+    paizo:wasMotivatedBy :jeva_lycanthropic_rage_motivation .
+
+:elara_imprisons_jeva rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Элара заточает Джеву и 'лечит'"@ru,
+                 "Elara imprisons and 'treats' Jeva"@en ;
+    rdfs:comment "Обнаружив истинную природу Джевы, Элара держит её в подвале и пытается 'очистить зверя' серебряными ножами и травами."@ru,
+                 "Upon discovering Jeva's true nature, Elara keeps her shackled in the cellar and attempts to 'purge the beast' with silver daggers and whips."@en ;
+    paizo:locatedIn :elara_cellar ;
+    paizo:hadParticipant :jeva ;
+    paizo:hadCause :jeva_kills_people_in_orphanage ;
+    paizo:wasMotivatedBy :elara_imprisoning_jeva_motivation .
+
+:jeva_kills_elara rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Джева убивает Элару"@ru,
+                 "Jeva kills Elara"@en ;
+    rdfs:comment "Джева вырывается, перегрызает горло Элары и крадёт её гранатовое кольцо."@ru,
+                 "Jeva escapes, tears out Elara's throat, and steals her garnet ring."@en ;
+    paizo:locatedIn :elara_cellar ;
+    paizo:hadParticipant :elara ;
+    paizo:hadCause :elara_imprisons_jeva ;
+    paizo:wasMotivatedBy :jeva_killing_elara_motivation .
+
+:orphanage_burns_down rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Пожар в Приюте Элары"@ru,
+                 "Orphanage burns down"@en ;
+    rdfs:comment "Джева поджигает приют; здание сгорает дотла, оставляя обугленные руины."@ru,
+                 "Jeva sets the Halfway House ablaze; the building burns to the ground, leaving charred ruins."@en ;
+    paizo:locatedIn :elara_halfway_house ;
+    paizo:hadCause :jeva_kills_elara ;
+    paizo:wasMotivatedBy :jeva_burning_orphanage_motivation .
+
+:jeva_wanders_vale_seeking_prey rdf:type paizo:BackgroundEvent ;
+    rdfs:label "Джева скитается по долине в поисках жертв"@ru,
+                 "Jeva wanders the vale seeking prey"@en ;
+    rdfs:comment "После пожара в приюте Джева скитается по Долине Темной Луны в поисках жертв, подчиняясь своей оборотничьей природе."@ru,
+                 "After the orphanage fire, Jeva wanders Darkmoon Vale seeking prey, following her werewolf nature."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadCause :orphanage_burns_down ;
+    paizo:wasMotivatedBy :jeva_hunting_prey_motivation .
+
+# =============================================================================
+# ПЕРСОНАЖИ (краткие карточки)
+# =============================================================================
+
+:jeva rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Джева"@ru,
+                 "Jeva"@en ;
+    rdfs:comment "Девочка-оборотень четырнадцати лет, скрывающаяся в лесу Долины Темной Луны. Худощавая, зеленоглазая, невысокая для своего возраста. Мышино-каштановые волосы спутаны ветками и колючками, лицо испачкано темными пятнами. Спина, руки и ноги покрыты жестокими шрамами от 'лечебных процедур' Элары. После пожара в приюте скитается по долине, охотясь на жертв. Иногда спускается к детям Соколиной Лощины, заманивает одного-двух в лес 'поиграть' и затем пожирает их. При встрече с отрядом притворяется травмированной выжившей из пожара приюта, используя свой значительный навык Блефа, чтобы завоевать доверие и затем предать."@ru,
+                 "A fourteen-year-old werewolf girl lurking in the woods of Darkmoon Vale. Rail-thin, green-eyed, particularly diminutive for her age. Her mouse-brown hair is a tangle of twigs and brambles and her face is smudged with dark stains. Her back, arms, and legs are covered with brutal scars from Elara's 'curative treatments.' Since she burned down the orphanage, she has skulked about Darkmoon, preying on anyone crossing her path. On occasion, she goes down among the children of Falcon's Hollow, lures one or two into the woods to 'play' and subsequently devours them. When PCs approach, she begins to stalk them in human form. If discovered, Jeva relies upon her considerable Bluff to present herself as a traumatized survivor of the orphanage fire, planning to betray and murder them all later for fun."@en ;
+    paizo:hasType mm35:werewolf ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hasGameStatsDnd3p5 "CR 4; Female human werewolf rogue 2; CE Medium humanoid (shapechanger); Init +8; AC 18, touch 14, flat-footed 14; hp 26 (2d8+4 and 2d6+4); Fort +5, Ref +10, Will +4; DR 5/silver; Spd 30 ft.; Melee 2 claws +3 (1d4+1) and bite -1 (1d6); Special Attacks sneak attack +1d6; SQ alternate form, wolf empathy, trapfinding, evasion; Str 12, Dex 19, Con 15, Int 12, Wis 14, Cha 15; Base Atk +2; Grp +3; Feats Improved Initiative, Iron Will, Skill Focus (Bluff), Track, Weapon Focus (bite); Skills Bluff +12, Control Shape +9, Diplomacy +8, Hide +11, Intimidate +8, Listen +6, Move Silently +11, Open Lock +8, Spot +6, Survival +6 (+10 tracking by scent), Tumble +10; Languages Common, Elven; Gear garnet ring (10 gp), tattered clothes. Human form: AC 16, touch 14, flat-footed 12; hp 18; Fort +3, Ref +8; Str 10, Dex 15, Con 11, Int 12, Wis 14, Cha 15."@en .
+
+:sithmuk rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Ситмук"@ru,
+                 "Sithmuk"@en ;
+    rdfs:comment "Имп и бывший фамильяр надоедливого болтуна-волшебника, погибшего ужасной смертью в Долине Темной Луны. Способен принимать форму ястреба и становиться невидимым."@ru,
+                 "Imp and formerly the familiar of a tiresome windbag of a wizard who met a gruesome end in Darkmoon. Capable of taking the form of a hawk and becoming invisible."@en ;
+    paizo:hasType mm35:imp ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+:elara rdf:type paizo:NonPlayerCharacter ;
+    rdfs:label "Элара"@ru,
+                 "Elara"@en ;
+    rdfs:comment "Бывшая директриса Приюта на Полпути; её тело лежит в подвале."@ru,
+                 "Former headmistress of the Halfway House; her corpse lies in the cellar."@en ;
+    paizo:locatedIn :elara_cellar .
+
+# =============================================================================
+# ИНФОРМАЦИЯ
+# =============================================================================
+
+:kobold_tracks_evidence rdf:type paizo:Information ;
+    rdfs:label "Доказательства следов кобольдов"@ru,
+                 "Kobold Tracks Evidence"@en ;
+    rdfs:comment "Следы кобольдов легко прослеживаются; у костра найдены рептильные чешуйки, идентифицируемые как кобольдовы."@ru,
+                 "Kobold tracks are easy to follow; reptilian scales found at the fire ring, identifiable as kobold."@en ;
+    paizo:refersTo :truescale_elite_scouts, :five_children_kidnapping .
+
+# =============================================================================
+# ПРАВИЛА D&D 3.5
+# =============================================================================
+
+:finding_trapdoor_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение люка в руинах"@ru,
+                 "D&D 3.5 Rules: Finding the Trapdoor in the Ruins"@en ;
+    rdfs:comment "Поиск СЛ 20 обнаруживает обугленный люк под слоем пепла в центре руин."@ru,
+                 "Search DC 20 reveals a charred trapdoor beneath an inch of ash at the center of the ruins."@en ;
+    paizo:ruleFor :finding_trapdoor_encounter .
+
+:breaking_trapdoor_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Взлом обугленного люка"@ru,
+                 "D&D 3.5 Rules: Forcing the Charred Trapdoor"@en ;
+    rdfs:comment "Замок расплавлен и не может быть вскрыт, но дверь повреждена и легко выламывается. Прочность 5, хп 8, Взлом СЛ 15."@ru,
+                 "The lock is melted shut and cannot be picked, but the door is damaged and easily smashed. Hardness 5, hp 8, Break DC 15."@en ;
+    paizo:ruleFor :breaking_trapdoor_encounter .
+
+:examining_elara_corpse_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Осмотр трупа Элары"@ru,
+                 "D&D 3.5 Rules: Examining Elara's Corpse"@en ;
+    rdfs:comment "Осмотр показывает разорванное горло; Поиск СЛ 15 замечает обесцвеченную полосу на пальце (гранатовое кольцо похищено)."@ru,
+                 "Examination reveals a torn throat; Search DC 15 notices a discolored band on her finger (garnet ring stolen)."@en ;
+    paizo:ruleFor :examining_elara_corpse_encounter .
+
+:discovering_kobold_scales_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение и идентификация чешуи кобольдов"@ru,
+                 "D&D 3.5 Rules: Discovering and Identifying Kobold Scales"@en ;
+    rdfs:comment "Поиск СЛ 15 обнаруживает несколько рептильных чешуек вокруг очага лагеря. Знание (местность) СЛ 20 идентифицирует чешуйки как кобольдовы."@ru,
+                 "Search DC 15 turns up several reptilian scales around the campfire. Knowledge (local) DC 20 identifies the scales as kobold."@en ;
+    paizo:ruleFor :discovering_campsite .
+
+:tracking_kobolds_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Выслеживание кобольдов"@ru,
+                 "D&D 3.5 Rules: Tracking the Kobolds"@en ;
+    rdfs:comment "Кобольды не скрывали следов; требуется Выживание СЛ 15, чтобы идти по следу."@ru,
+                 "The kobolds made little effort to conceal their tracks; Survival DC 15 to follow."@en ;
+    paizo:ruleFor :tracking_kobolds_to_crucible .
+
+:random_encounter_trigger_rules rdf:type paizo:RulesExcerptAgnostic ;
+    rdfs:label "Правила: Срабатывание случайного энкаунтера"@ru,
+                 "Rules: Random Encounter Trigger"@en ;
+    rdfs:comment "Во время путешествия по Долине Темной Луны каждые 4 часа есть 15% шанс случайного энкаунтера. События с высокой вероятностью имеют вес 3/20, средней вероятностью 2/20, низкой вероятностью 1/20."@ru,
+                 "For every 4 hours the party spends in Darkmoon Vale there is a 15% chance of a random encounter. Events with high probability have a weight of 3/20, medium probability 2/20, low probability 1/20."@en ;
+    paizo:ruleFor :random_vale_encounters .
+
+:searching_wedding_ring_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Поиск обручального кольца"@ru,
+                 "D&D 3.5 Rules: Searching for Wedding Ring"@en ;
+    rdfs:comment "Проверка Поиска СЛ 20 находит обручальное кольцо Кардоблага и заслуживает его благодарность."@ru,
+                 "A DC 20 Search check locates Kardoblag's wedding ring and earns his gratitude."@en ;
+    paizo:ruleFor :searching_for_wedding_ring .
+
+:discovering_manticore_spines_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение шипов мантикоры"@ru,
+                 "D&D 3.5 Rules: Discovering Manticore Spines"@en ;
+    rdfs:comment "Проверка Лечения или Поиска СЛ 15 обнаруживает пять острых шипов размером с болт, вонзившихся в шею и бок трупа дикого волка."@ru,
+                 "A DC 15 Heal or Search check reveals five bolt-sized sharp spines embedded in the dire wolf's neck and side."@en ;
+    paizo:ruleFor :manticore_encounter .
+
+:discovering_magical_arrow_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение магической стрелы"@ru,
+                 "D&D 3.5 Rules: Discovering Magical Arrow"@en ;
+    rdfs:comment "Проверка Поиска СЛ 15 позволяет заметить стрелу, застрявшую в стволе ближайшего дерева."@ru,
+                 "A DC 15 Search check allows noticing a arrow stuck in the trunk of a nearby tree."@en ;
+    paizo:ruleFor :magical_arrow_discovery .
+
+:discovering_underground_entrance_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Обнаружение входа в подземелье"@ru,
+                 "D&D 3.5 Rules: Discovering Underground Entrance"@en ;
+    rdfs:comment "При подходе к руинам монастыря, если персонажи исследуют поляну, они найдут древнюю каменную кладку и упавшую конюшню. Успешная проверка Поиска СЛ 15 обнаруживает маленькое сломанное копьё с зазубренным наконечником, выброшенное кобольдом-охотником, на котором ещё остался остаток яда сороконожки. Дальнейшее исследование руин приводит к обнаружению верхней части сломанной лестницы, частично скрытой вырванными кустами, ведущей в подземелье."@ru,
+                 "When approaching the monastery ruins, if the PCs search the clearing, they find ancient stonework and a fallen stable. A successful DC 15 Search check reveals a small, broken spear with a wicked barbed tip, discarded by a kobold hunter, which still has a residue of centipede poison. Further exploration of the ruins leads to the discovery of the top of a broken staircase, partially hidden by uprooted bushes, leading into the underground."@en ;
+    paizo:ruleFor :droskar_crag_exploration .
+
+:underground_conditions_rules rdf:type paizo:RulesExcerptDnd3p5 ;
+    rdfs:label "Правила D&D 3.5: Условия в подземелье"@ru,
+                 "D&D 3.5 Rules: Underground Conditions"@en ;
+    rdfs:comment "Лестница спускается более чем на 20 футов под поверхность, и звук с поверхности не проникает. Стены монастыря из каменной кладки. Нет источников света нигде, кроме кузниц и горнила приношений. Во всех областях кроме Комнаты прослушивания существа получают штраф -5 к проверкам Слуха."@ru,
+                 "The stairs descend more than 20 feet below the surface and no sound penetrates from above. The monastery's walls are masonry, and there is no source of light anywhere save the forges and crucible of offering. In all other areas besides the Listening Chamber, creatures suffer a –5 penalty on Listen checks."@en ;
+    paizo:ruleFor :droskar_crag_exploration .
+
+# =============================================================================
+# ПРЕДМЕТЫ (связаны с событиями, не с локациями)
+# =============================================================================
+
+:masterwork_silver_dagger rdf:type paizo:Weapon ;
+    rdfs:label "Шедевральный серебряный кинжал"@ru,
+                 "Masterwork Silver Dagger"@en ;
+    rdfs:comment "Серебряный кинжал отличной работы; использовался Эларой при попытках 'лечения' Джевы."@ru,
+                 "A finely crafted silver dagger; used by Elara in her attempts to 'cure' Jeva."@en .
+
+:wolfsbane rdf:type paizo:BiologicalObject ;
+    rdfs:label "Волчий корень"@ru,
+                 "Wolfsbane"@en ;
+    rdfs:comment "Сырой гнилой пучок трав; опознаётся как волчий корень проверкой Ремесло(алхимия) или Знание(природа) СЛ 20."@ru,
+                 "A damp rotten bundle of herbs; identified as wolfsbane with Craft (alchemy) or Knowledge (nature) DC 20."@en .
+
+:garnet_ring_of_elara rdf:type paizo:Valuable ;
+    rdfs:label "Гранатовое кольцо Элары"@ru,
+                 "Garnet Ring of Elara"@en ;
+    rdfs:comment "Кольцо с гранатом, украденное Джевой у Элары."@ru,
+                 "A garnet ring stolen by Jeva from Elara."@en ;
+    paizo:ownedBy :jeva .
+
+# =============================================================================
+# КВЕСТ И ЭНКАУНТЕРЫ (причинные связи)
+# =============================================================================
+
+:seekers_of_lost_children rdf:type paizo:Quest ;
+    rdfs:label "Искатели потерянных детей"@ru,
+                 "Seekers of Lost Children"@en ;
+    rdfs:comment "Часть 2: расследование у Приюта Элары и выслеживание кобольдов по следам детей."@ru,
+                 "Part Two: investigations at Elara's Halfway House and tracking kobolds by the children's trail."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadCause :five_children_kidnapping , :lighting_the_way_investigation ;
+    paizo:containedEvent :arriving_at_halfway_house , :random_vale_encounters .
+
+:arriving_at_halfway_house rdf:type paizo:Encounter ;
+    rdfs:label "Прибытие к Приюту Элары"@ru,
+                 "Arriving at Elara's Halfway House"@en ;
+    rdfs:comment "Исследование обугленных руин приюта; обнаружение скрытого люка в центре руин. Обнаружение лагеря детей недалеко от приюта."@ru,
+                 "Searching the charred orphanage ruins; finding the hidden trapdoor at the center. Discovering the children's campsite not far from the orphanage."@en ;
+    paizo:containedEvent :elara_cellar_encounter , :discovering_campsite , :tracking_kobolds_to_crucible , :wolf_in_girls_clothing_encounter ;
+    paizo:locatedIn :elara_halfway_house .
+
+:finding_trapdoor_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Поиск потайного входа в подвал"@ru,
+                 "Finding the Trapdoor to the Cellar"@en ;
+    rdfs:comment "Поиск скрытого люка в обугленных руинах приюта, ведущего в подвал."@ru,
+                 "Searching for the hidden trapdoor in the charred ruins of the orphanage, leading to the cellar."@en ;
+    paizo:locatedIn :elara_halfway_house .
+
+:breaking_trapdoor_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Вскрытие двери в подвал"@ru,
+                 "Breaking the Trapdoor to the Cellar"@en ;
+    rdfs:comment "Взлом обугленного люка, ведущего в подвал приюта."@ru,
+                 "Forcing the charred trapdoor leading to the orphanage cellar."@en ;
+    paizo:hadCause :finding_trapdoor_encounter ;
+    paizo:locatedIn :elara_halfway_house .
+
+:examining_elara_corpse_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Осмотр тела Элары"@ru,
+                 "Examining Elara's Corpse"@en ;
+    rdfs:comment "Осмотр трупа Элары в подвале, обнаружение признаков насильственной смерти и отсутствующего гранатового кольца. Рой пауков и средний чудовищный паук выходят из укрытий, если потревожить тело."@ru,
+                 "Examining Elara's corpse in the cellar, discovering signs of violent death and the missing garnet ring. A spider swarm and a medium monstrous spider emerge from hiding if the corpse is disturbed."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "рой пауков (1), средний чудовищный паук (1)"@ru,
+                                  "spider swarm (1), medium monstrous spider (1)"@en ;
+    paizo:locatedIn :elara_cellar ;
+    paizo:hadCause :breaking_trapdoor_encounter ;
+    paizo:wasMotivatedBy :spiders_defending_cellar_motivation ;
+    paizo:hadInvolvedEntity :garnet_ring_of_elara .
+
+:elara_cellar_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Столкновение в подвале Элары"@ru,
+                 "Elara's Cellar Encounter"@en ;
+    rdfs:comment "Спуск в подвал и исследование подвала Элары."@ru,
+                 "Descending into the cellar and exploring Elara's cellar."@en ;
+    paizo:locatedIn :elara_cellar ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:containedEvent :finding_trapdoor_encounter, :breaking_trapdoor_encounter, :examining_elara_corpse_encounter .
+
+:wolf_in_girls_clothing_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Волк в овечьей шкуре (Джева)"@ru,
+                 "Wolf in Girl's Clothing (Jeva)"@en ;
+    rdfs:comment "Джева подходит в человеческом облике, умоляет о помощи, скрывая истинную природу."@ru,
+                 "Jeva approaches in human form, begging for aid while concealing her true nature."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "Джева (1)"@ru,
+                                  "Jeva (1)"@en ;
+    paizo:hadCause :jeva_wanders_vale_seeking_prey ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:wasMotivatedBy :jeva_hunting_prey_motivation .
+
+:discovering_campsite rdf:type paizo:Generation ;
+    rdfs:label "Обнаружение лагеря детей"@ru,
+                 "Discovering the Children's Campsite"@en ;
+    rdfs:comment "Нахождение лагеря детей с признаками борьбы, крови и кобольдовой чешуи."@ru,
+                 "Finding the children's campsite with signs of struggle, blood, and kobold scales."@en ;
+    paizo:locatedIn :children_campsite ;
+    paizo:generated :kobold_tracks_evidence .
+
+:random_vale_encounters rdf:type paizo:Encounter ;
+    rdfs:label "Случайные события в долине"@ru,
+                 "Random Vale Encounters"@en ;
+    rdfs:comment "Случайные энкаунтеры, которые могут произойти во время путешествия по Долине Темной Луны."@ru,
+                 "Random encounters that may occur while traveling through Darkmoon Vale."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:containedEvent :ominous_crows_encounter , :assassin_vine_encounter , :bugbear_brothers_encounter ,
+        :dwarven_allips_encounter , :animated_goblet_encounter , :sithmuk_imp_encounter ,
+        :drunken_giant_kardoblag_encounter , :harpy_encounter , :manticore_encounter ,
+        :magical_arrow_discovery .
+
+:ominous_crows_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Зловещие вороны"@ru,
+                 "Ominous Crows"@en ;
+    rdfs:comment "Случайное событие с высокой вероятностью. Необычно большие вороны сидят на ветвях, зловеще каркают, когда отряд проходит мимо, но не нападают."@ru,
+                 "Random encounter with high probability. Unsettlingly large crows loom in the branches, cawing ominously as the PCs pass but otherwise not harassing them in any way."@en ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+:assassin_vine_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Убийственная лиана"@ru,
+                 "Assassin Vine"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Когда один из персонажей проходит мимо плакучей ивы, растущая на её стволе убийственная лиана оживает и атакует."@ru,
+                 "Random encounter with medium probability. As one PC passes a weeping willow tree, an assassin vine growing on its trunk animates and attacks."@en ;
+    paizo:hadEncounterComposition "убийственная лиана (1)"@ru,
+                                  "assassin vine (1)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant mm35:assassin_vine .
+
+:bugbear_brothers_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Братья-багбиры"@ru,
+                 "Bugbear Brothers"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Слышна пара багбиров-братьев, спорющих из-за трупа лесоруба, которого они убили на поляне впереди. Если отряд подождет, багбиры сойдутся в драке через пару раундов. Их кузен (третий багбир) находится дальше и присоединится к любой драке."@ru,
+                 "Random encounter with medium probability. A pair of bugbear brothers are heard arguing over the corpse of a lumberjack they waylaid in a clearing ahead. If the PCs wait, the bugbears come to blows in a couple of rounds. Their cousin (a third bugbear) relieves himself against a tree further off but rushes to join any fight that breaks out."@en ;
+    paizo:hadEncounterComposition "багбир (3)"@ru,
+                                  "bugbear (3)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant mm35:bugbear .
+
+:dwarven_allips_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Дварфийские аллипы"@ru,
+                 "Dwarven Allips"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Два бормочущих аллипа в смутной форме дварфов проходят мимо отряда. Они выполняют злое поручение для того, что скрывается под руинами монастыря, и не атакуют, если их не провоцировать, хотя их бормотание влияет на персонажей, если они не отступят."@ru,
+                 "Random encounter with medium probability. Two muttering allips in the vague shape of dwarves pass the party. They are on a fell errand for whatever evil lurks below the monastery ruins and do not attack unless provoked, though their babbling affects the PCs unless they retreat out of range."@en ;
+    paizo:hadEncounterComposition "аллип (2)"@ru,
+                                  "allip (2)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant mm35:allip .
+
+:animated_goblet_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Анимированный кубок"@ru,
+                 "Animated Goblet"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Тело полуэльфа-авантюриста в мастерски сделанной кожаной броне с мастерски сделанным длинным мечом лежит между парой больших дубов, его череп разбит. Рядом сидит окровавленный мешок, туго завязанный. В мешке три массивных дварфийских железных кубка с огненными опалами. Один из них оживленный и убивший несчастного полуэльфа. Если он обнаружит персонажей, он начнет двигаться, пытаясь убить их тоже."@ru,
+                 "Random encounter with medium probability. The body of a half-elf adventurer clad in masterwork leather armor with a masterwork longsword strapped to his hip is slumped between a pair of large oak trees, his skull bashed in. A bulky sack stained with gore and bits of brain, tightly tied shut, sits nearby. The sack contains a haul of three hefty dwarven iron goblets set with fire opals. One of them is animated and brained the unlucky half-elf. If it detects the PCs it lurches about, trying to slay them too."@en ;
+    paizo:hadEncounterComposition "малый анимированный объект (1)"@ru,
+                                  "small animated object (1)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant mm35:small_animated_object ;
+    paizo:hadInvolvedEntity :dwarven_iron_goblet_with_fire_opal .
+
+:sithmuk_imp_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Имп Ситмук"@ru,
+                 "Sithmuk the Imp"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Ситмук, имп и бывший фамильяр надоедливого болтуна-волшебника, погибшего ужасной смертью в Долине Темной Луны, появляется на пути персонажей в виде ястреба со сломанным крылом."@ru,
+                 "Random encounter with medium probability. Sithmuk, an imp and formerly the familiar of a tiresome windbag of a wizard who met a gruesome end in Darkmoon, appears in the PCs' path in the form of a hawk with a broken wing."@en ;
+    paizo:hadEncounterComposition "Ситмук (1)"@ru,
+                                  "Sithmuk (1)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:wasMotivatedBy :sithmuk_stealing_magic_item_motivation .
+
+:drunken_giant_kardoblag_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Пьяный великан Кардоблаг"@ru,
+                 "Drunken Giant Kardoblag"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Пьяный холмовой великан по имени Кардоблаг шатается по лесу, вырывая деревья, пытаясь сохранить равновесие. Он встретил огров ранее и принял их предложение выпить крепкий напиток из ферментированных листьев чернодерева. В опьянении он потерял обручальное кольцо и теперь ищет его. Обычно он с удовольствием размазал бы персонажей, но с пьяной головой он только хочет найти кольцо и вернуться домой. Герои в случае нахождения кольца заслуживают его благодарность."@ru,
+                 "Random encounter with medium probability. A drunken hill giant named Kardoblag staggers through the wood uprooting trees as he tries to maintain his balance. Kardoblag met some ogres earlier and accepted their offer to drink a foul spirit of fermented darkwood leaf. In his inebriation he misplaced his wedding ring and now staggers about searching for it. Normally he would delight in reducing the PCs to paste, but with his head pounding from drink he only wishes to find his ring and get home. If the PCs find his ring, they earn his gratitude."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadCause :kardoblag_meeting_ogres ;
+    paizo:wasMotivatedBy :kardoblag_finding_wedding_ring_motivation ;
+    paizo:containedEvent :searching_for_wedding_ring .
+
+:searching_for_wedding_ring rdf:type paizo:Encounter ;
+    rdfs:label "Поиск обручального кольца"@ru,
+                 "Searching for Wedding Ring"@en ;
+    rdfs:comment "Персонажи могут помочь Кардоблагу найти его потерянное обручальное кольцо."@ru,
+                 "The PCs can help Kardoblag find his misplaced wedding ring."@en ;
+    paizo:locatedIn hlh:darkmoon_vale .
+
+:harpy_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Гарпия"@ru,
+                 "Harpy"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Персонажи слышат красивый мелодичный женский голос на ветру. На ветке большого дуба впереди сидит гарпия и поет четверым лесорубам из Соколиной Лощины, все они маршируют к её ожидающим когтям. Если их спасти, лесорубы благодарят персонажей и предлагают им свою недельную зарплату в благодарность (всего 20 серебряных)."@ru,
+                 "Random encounter with medium probability. The PCs hear a beautiful lilting female voice on the wind. Perched on the branch of large oak ahead, a harpy sings to a band of four lumberjacks from Falcon's Hollow, all of whom march toward her waiting talons. If saved, the lumberjacks thank the PCs profusely and offer them their week's wages in thanks (a grand total of 20 sp)."@en ;
+    paizo:hadEncounterComposition "гарпия (1)"@ru,
+                                  "harpy (1)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadParticipant :falcons_hollow_lumberjacks ;
+    paizo:wasMotivatedBy :harpy_hunting_prey_motivation .
+
+:manticore_encounter rdf:type paizo:RandomEncounter ;
+    rdfs:label "Мантикора"@ru,
+                 "Manticore"@en ;
+    rdfs:comment "Случайное событие со средней вероятностью. Персонажи натыкаются на свежий труп большого дикого волка. Мантикора, убившая волка, внезапно вырывается из ветвей над головой и атакует вскоре после этого."@ru,
+                 "Random encounter with medium probability. The PCs happen upon the fresh corpse of large dire wolf. The manticore who slew the wolf suddenly bursts from the branches above and attacks shortly after."@en ;
+    paizo:hadEncounterComposition "мантикора (1)"@ru,
+                                  "manticore (1)"@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:wasMotivatedBy :manticore_hunting_prey_motivation .
+
+:magical_arrow_discovery rdf:type paizo:RandomEncounter ;
+    rdfs:label "Обнаружение магической стрелы"@ru,
+                 "Magical Arrow Discovery"@en ;
+    rdfs:comment "Случайное событие с низкой вероятностью. Персонажи могут обнаружить +2 шокирующую адамантиновую стрелу, застрявшую в стволе ближайшего дерева, забытую после отчаянной битвы, произошедшей здесь давно."@ru,
+                 "Random encounter with low probability. The PCs may discover a +2 shocking adamantine arrow stuck in the trunk of a nearby tree, forgotten after a frantic battle fought here long ago."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadInvolvedEntity paizo:shocking_adamantine_arrow_plus_2 .
+
+:tracking_kobolds_to_crucible rdf:type paizo:Quest ;
+    rdfs:label "Выслеживание кобольдов к Горнилу Дроскара"@ru,
+                 "Tracking the Kobolds to Droskar's Crucible"@en ;
+    rdfs:comment "Следуя очевидным следам кобольдов, отряд углубляется к руинам Горнила Дроскара."@ru,
+                 "Following the obvious kobold tracks, the party moves toward the ruins of Droskar's Crucible."@en ;
+    paizo:locatedIn hlh:darkmoon_vale ;
+    paizo:hadCause :discovering_campsite .
+
+:dwarven_iron_goblet_with_fire_opal rdf:type paizo:Valuable ;
+    rdfs:label "Дварфийский железный кубок с огненным опалом"@ru,
+                 "Dwarven iron goblet with fire opal"@en ;
+    rdfs:comment "Массивный дварфийский железный кубок с огненным опалом."@ru,
+                 "Hefty dwarven iron goblet set with fire opal."@en ;
+    paizo:basedOn paizo:gemstone ;
+    paizo:hasGameStatsDnd3p5 "Dwarven iron goblet with fire opal: worth 120 gp"@en,
+                             "Дварфийский железный кубок с огненным опалом: стоит 120 зм"@ru .
+
+# =============================================================================
+# PART THREE: INTO THE DARKNESS - DROSKAR'S CRAG EXPLORATION
+# =============================================================================
+
+:droskar_crag_exploration rdf:type paizo:Encounter ;
+    rdfs:label "Исследование Droskar's Crag"@ru,
+                 "Droskar's Crag Exploration"@en ;
+    rdfs:comment """Исследование подземных уровней древнего дварфийского монастыря Горнило Дроскара. Первый уровень подземелья состоит из подуровня древнего дварфийского монастыря. Горнило Дроскара было построено в мрачные сумерки рушащегося королевства, чей декаданс привел к ужасной реакции тирании под сокрушающим кулаком мрачного бога по имени Дроскар. Дроскар требовал абсолютного послушания от своих подданных, которые показывали свою преданность через постоянный труд. Лень, коррупция и декаданс исчезли на первое десятилетие теократического порядка Дроскара, когда дварфы объединились, чтобы создать внушающие благоговение свидетельства могущества их темного бога. Создание произведений каменной кладки и металлургии были единственным средством умиротворения неумолимого гнева Темного Кузнеца, но по мере того, как Дроскар рос в могуществе и влиянии, он требовал все больше и больше труда для удовлетворения своего огромного эго. По мере роста его гордости верность Дроскару больше не вдохновляла великие произведения, только произведения, и качество дварфийского мастерства резко упало, когда они пытались бесконечно производить памятники, храмы и оружейные в его честь. Горнило является символом этого упадка воображения и духа. Его спартанский интерьер является свидетельством безрадостных последних дней дварфов. Гладкие залы тянутся между холодными каменными камерами. Грубо вырубленные туннели соединяют подземный монастырь напрямую с мрачными шахтами и громыхающими кузницами, которые когда-то выковывали сталь днем и ночью. Единственная область мастерства, в которой Дроскар требовал постоянной изобретательности, была создание ловушек, и горнило демонстрирует несколько опасных примеров этого ремесла."""@ru,
+                 """Exploring the underground levels of ancient dwarven monastery Droskar's Crucible. The first level of this dungeon is comprised of the sub-level of an ancient dwarven monastery. Droskar's Crucible was constructed during the dismal twilight of a stumbling kingdom, whose decadence resulted in a horrible backlash of tyranny under the crushing fist of a grim god named Droskar. Droskar demanded utter obedience from his charges, who showed their devotion through constant toil. Sloth, corruption, and decadence vanished for the first decade of Droskar's theocratic order, as the dwarves united to create awe-inspiring testaments to their dark god's power. Crafting works of masonry and metallurgy were the only means of abating the Dark Smith's unceasing anger, but as Droskar grew in might and influence he demanded more and more labor to satisfy his tremendous ego. As his pride grew, fidelity to Droskar no longer inspired great works, only works, and the quality of dwarven craftsmanship plummeted as they attempted to ceaselessly churn out monuments, temples, and armories in his honor. The crucible is a hallmark of this decline in imagination and spirit. Its spartan interior is a testament to the joyless final days of the dwarves. Smooth halls stretch between cold-stoned chambers. Crudely hewn tunnels connect the underground monastery directly to dreary mines and the thundering forges that long ago hammered out steel day and night. The only area of craftsmanship in which Droskar demanded continued ingenuity was trapmaking, and the crucible showcases a few dangerous examples of the craft."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:hadCause hlh:monastery_exploration ;
+    paizo:hadDefaultStart :monument_chamber_encounter ;
+    paizo:containedEvent :monument_chamber_encounter,
+                       :crucible_of_offering_encounter,
+                       :fountain_chamber_encounter,
+                       :glintaxe_attacks_encounter,
+                       :monks_quarters_encounter,
+                       :hall_of_headless_corpse_encounter,
+                       :lodestone_trap_encounter,
+                       :monument_of_forge_war_encounter,
+                       :chronicle_of_faithful_encounter,
+                       :abbots_quarters_encounter,
+                       :listening_chamber_encounter,
+                       :mess_hall_encounter,
+                       :kitchen_encounter,
+                       :ossuary_encounter,
+                       :abattoir_encounter,
+                       :chamber_of_penance_encounter,
+                       :elevator_encounter,
+                       :smoking_tunnels_encounter,
+                       :foundry_of_souls_encounter,
+                       :refuse_pit_encounter,
+                       :storage_encounter,
+                       :mines_encounter,
+                       :stalagmite_cave_encounter,
+                       :chokepoint_ambush_encounter,
+                       :intersection_ambush_encounter,
+                       :hatchery_encounter,
+                       :slurk_kennel_encounter,
+                       :forsaken_tunnel_encounter,
+                       :shrieker_tunnel_encounter,
+                       :kobold_den_encounter,
+                       :throne_of_kobold_king_encounter,
+                       :kings_quarters_encounter,
+                       :sacrifice_chamber_encounter .
+
+# Комнаты Droskar's Crag
+
+:room_1_monument_chamber rdf:type paizo:Room ;
+    rdfs:label "Комната памятника"@ru,
+                 "Monument Chamber"@en ;
+    rdfs:comment """Лестница открывается в большую прямоугольную камеру. Каменные стены этой области покрыты замысловатыми резными изображениями дварфов, трудящихся в шахтах или кузницах. В центре камеры стоит нижняя половина разбитого обелиска из обсидиана. Грубые кирки, молоты и другие инструменты разбросаны по камере. Монолит из полированного обсидиана, посвященный Дроскару, когда-то стоял в этом атриуме к подземному уровню монастыря. Вырезанный с преданностью Темному Кузнецу и несущий мрачную фреску дварфийских просителей, склоняющихся перед Темной Печью, монолит был разбит, когда империя пала."""@ru,
+                 """The stairway opens into a large rectangular chamber. The stone walls of this area are covered with intricate carvings of dwarves toiling in mines or smithies. In the center of the chamber stands the bottom half of a broken obsidian obelisk. Crude picks, hammers, and other tools lie scattered around the chamber. A monolith of polished obsidian dedicated to Droskar once stood in this atrium to the monastery's underground level. Carved with devotions to the Dark Smith and bearing a dismal mural of dwarven supplicants bowing at the Dark Furnace, the monolith was shattered when the empire fell."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_2_crucible_of_offering, :room_5_monks_quarters, :room_3_fountain_chamber, :room_4_glintaxe_area, :room_6_hall_of_headless_corpse .
+
+:room_2_crucible_of_offering rdf:type paizo:Room ;
+    rdfs:label "Горнило приношений"@ru,
+                 "Crucible of Offering"@en ;
+    rdfs:comment """В центре этой большой каменной камеры находится глубокая яма, заполненная расплавленным шлаком и шипящей кровью, которая отбрасывает адское красное сияние на стены. Три узких желоба открываются в потолке прямо над ямой. Воздух здесь угнетающе горячий и густой от пепла. Эта большая каменная камера - место, где монахи и посещающие преданные Дроскара приносили свою кровь и сталь темному богу. Кузнец-отступник (см. Приложение 2), который сейчас прячется в области 19, поддерживал яму активной на протяжении веков. Старые вентиляционные шахты выше когда-то прорывались на поверхность на 20 футов вверх, но теперь забиты веками сажи."""@ru,
+                 """At the center of this large stone chamber is a deep pit filled with molten slag and sizzling blood that casts a hellish red gleam on the walls. Three narrow chutes open in the ceiling directly above the pit. The air here is oppressively hot and thick with ash. This large stone chamber is where the monks and visiting devotees of Droskar offered their blood and steel to the dark god. The forge spurned (see Appendix 2) that is currently lurking in area 19 has kept the pit active for centuries. Old vent shafts above once breached the surface 20 feet up but are now choked with centuries of soot."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_1_monument_chamber, :room_6_hall_of_headless_corpse .
+
+:room_3_fountain_chamber rdf:type paizo:Room ;
+    rdfs:label "Комната фонтана"@ru,
+                 "Fountain Chamber"@en ;
+    rdfs:comment """Большой фонтан доминирует в этой небольшой камере. Пар катится с перегретой воды, льющейся из каменного обелиска в центре фонтана, заполняя всю камеру своей дымкой. Фонтан питается горячим источником, который находится здесь на пересечении монастыря. Вода густая с минералами и имеет вкус камня. Пар обеспечивает всем в этой камере укрытие."""@ru,
+                 """A large fountain dominates this small chamber. Steam rolls off the superheated water pouring from a stone obelisk at the fountain's center, filling the entire chamber with its haze. The fountain is fed by a hot spring that sits here at the nexus of the monastery proper. The water is thick with minerals and tastes of stone. The steam affords everyone in this chamber concealment."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_1_monument_chamber, :room_8_monument_of_forge_war .
+
+:room_4_glintaxe_area rdf:type paizo:Room ;
+    rdfs:label "Область Глинтэкса"@ru,
+                 "Glintaxe Area"@en ;
+    rdfs:comment """Злое шипение поднимается из тьмы впереди. Парящая дварфийская форма, закутанная в полный латный доспех, обходит угол. Воздух вокруг этого дварфийского призрака странно мерцает, а стены и пол шипят и дымятся там, где он проходит. Сапоги существа презирают землю, скользя на целый фут над каменным полом. Оно тащит за собой в воздухе жестокий боевой топор-кровопускатель."""@ru,
+                 """An evil hiss rises from the darkness ahead. A floating dwarven form shrouded in full plate rounds the corner. The air about this dwarven specter shimmers eerily, and the walls and floor sizzle and smoke where it passes. The thing's boots scorn the earth, gliding a full foot above the masonry floor. It drags a cruel bloodletter axe in the air behind it."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_1_monument_chamber, :room_5_monks_quarters, :room_6_hall_of_headless_corpse, :room_12_mess_hall .
+
+:room_5_monks_quarters rdf:type paizo:Room ;
+    rdfs:label "Квартиры монахов"@ru,
+                 "Monks Quarters"@en ;
+    rdfs:comment """Эта длинная казарма полностью лишена украшений, кроме рядов неудобных каменных кроватей."""@ru,
+                 """This long barracks is completely unadorned save for rows of uncomfortable stone beds."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_1_monument_chamber, :room_4_glintaxe_area, :room_6_hall_of_headless_corpse .
+
+:room_6_hall_of_headless_corpse rdf:type paizo:Room ;
+    rdfs:label "Зал обезглавленного трупа"@ru,
+                 "Hall of the Headless Corpse"@en ;
+    rdfs:comment """Обезглавленный труп в заплатанной кожаной броне лежит растянутым посреди этого участка коридора."""@ru,
+                 """A headless corpse in patchwork leather armor lies strewn in the middle of this section of corridor."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_1_monument_chamber, :room_2_crucible_of_offering, :room_4_glintaxe_area, :room_5_monks_quarters, :room_7_lodestone_trap .
+
+:room_7_lodestone_trap rdf:type paizo:Room ;
+    rdfs:label "Ловушка магнетита"@ru,
+                 "Lodestone Trap"@en ;
+    rdfs:comment """Эта большая круглая каменная камера имеет четыре массивные железные двери в северной, южной, восточной и западной стенах. Южная и восточная двери стоят открытыми, в то время как северная и западная двери остаются закрытыми. В центре комнаты странный каменный обелиск поднимается от пола до потолка, его поверхность покрыта металлическими полосами и покрыта отложениями странного зеленоватого минерала. Пол этой камеры усеян обезглавленными скелетами и разбросанными костями (среди них нет черепов). Побитый стальной щит и куски металлической брони лежат у подножия обелиска."""@ru,
+                 """This large circular stone chamber has four massive iron doors in the north, south, east, and west walls. The south and east doors stand open, while the north and west doors remain closed. At the center of the room a strange stone obelisk rises from floor to ceiling, its surface covered with metal bands and encrusted with deposits of a strange greenish mineral. The floor of this chamber is strewn with headless skeletons and scattered bones (no skulls among them). A dented steel shield and bits of metal armor lie at the foot of the obelisk."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_6_hall_of_headless_corpse, :room_10_abbots_quarters, :room_16_chamber_of_penance .
+
+:room_8_monument_of_forge_war rdf:type paizo:Room ;
+    rdfs:label "Памятник войны кузни"@ru,
+                 "Monument of the Forge War"@en ;
+    rdfs:comment """Эта арочная камера содержит два ряда статуй, один на восточной стене и один на западной. Статуи на востоке изображают грозных дварфийских воинов, одетых в простые латные доспехи и поднимающих свои боевые молоты высоко. Напротив них стоят статуи дварфов, изображенных в гротескных карикатурах как чрезмерно тучные, свиноносые бруты с огромными ухмыляющимися ртами и маленькими глазами. Западные статуи стоят в двух линиях, передние на коленях, и обе держат острые, торчащие копья, направленные на кузнецов напротив них. Труп кобольда пронзен на западной стене. Его вялое тело провисает на древке каменного копья, глаз в глаз со своим статуйным убийцей."""@ru,
+                 """This arched chamber contains two rows of statues, one on the east wall and one on the west. The statues to the east depict fearsome dwarven warriors clad in simple plate armor and hefting their warhammers high. Opposite these are statues of dwarves depicted in grotesque caricatures as overly obese, pig-nosed brutes with huge grinning mouths and beady eyes. The western statues stand in two lines, the front kneeling, and both holding sharp, jutting spears leveled at the smiths opposite them. The corpse of a kobold is impaled on the west wall. His limp body sags on the haft of a stone spear, eye to eye with his statuesque killer."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_3_fountain_chamber, :room_5_monks_quarters, :room_9_chronicle_of_faithful .
+
+:room_9_chronicle_of_faithful rdf:type paizo:Room ;
+    rdfs:label "Хроника верных"@ru,
+                 "Chronicle of the Faithful"@en ;
+    rdfs:comment """Эта простая комната имеет отполированные стены из обсидиана, на которых высечены длинные списки дварфийских имен. Надписи здесь дают имена дварфийских героев, павших в войне против верных королю войск."""@ru,
+                 """This simple room has polished walls of obsidian that bear long lists of Dwarven names. The inscriptions here give the names of the dwarven heroes who fell in the war against the king's loyalist troops."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_8_monument_of_forge_war, :room_11_listening_chamber .
+
+:room_10_abbots_quarters rdf:type paizo:Room ;
+    rdfs:label "Квартиры аббата"@ru,
+                 "Abbot's Quarters"@en ;
+    rdfs:comment """Эта большая камера явно когда-то была личными жилыми помещениями важного дварфа. Простая каменная кровать стоит в одном углу рядом с большим каменным столом. Большая наковальня также покоится здесь, выглядя несколько неуместно. Массивный молот был прикреплен к наковальне грубым механическим рычагом, и скелет дварфа, его череп раздроблен, покоится на наковальне."""@ru,
+                 """This large chamber was clearly once the personal living quarters of an important dwarf. A simple stone bed stands in one corner near a large stone table. A large anvil also rests here, looking somewhat out of place. A massive maul has been attached to the anvil by a crude mechanical arm, and a dwarf skeleton, his skull crushed, rests atop the anvil."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_7_lodestone_trap, :room_11_listening_chamber .
+
+:room_11_listening_chamber rdf:type paizo:Room ;
+    rdfs:label "Комната прослушивания"@ru,
+                 "Listening Chamber"@en ;
+    rdfs:comment """Простые каменные скамьи выстроены вдоль стен этой восьмиугольной комнаты. Эти скамьи расположены рядом с небольшими отверстиями вдоль западной, северо-западной и северо-восточной стен. Необычное устройство, напоминающее каменную трубу, прикреплено к северо-восточной стене рядом с отверстием. Слабый шепчущий звук пронизывает эту камеру. Эта секретная комната - место, где Гристогар Эшбрейт шпионил за своими учениками, чтобы обеспечить их верную преданность Дроскару. Весь монастырь был построен так, чтобы направлять звук в эту комнату из нескольких мест."""@ru,
+                 """Simple stone benches line the walls of this octagonal room. These benches are positioned near small openings along the west, northwest, and northeast walls. An unusual device that resembles a stone trumpet is attached to the northeast wall near the opening. A faint whispering sound permeates this chamber. This secret room is where Gristogar Ashbreath spied upon his disciples to ensure their faithful devotion to Droskar. The entire monastery was constructed to channel sound into this room from several places."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_9_chronicle_of_faithful, :room_10_abbots_quarters .
+
+:room_12_mess_hall rdf:type paizo:Room ;
+    rdfs:label "Столовая"@ru,
+                 "Mess Hall"@en ;
+    rdfs:comment """Три больших каменных стола стоят посреди этой комнаты, в то время как длинные скамьи, которые когда-то стояли рядом с ними, были опрокинуты и перевернуты. Это место, где монахи Горнила принимали свои мрачные трапезы безвкусной каши в тишине."""@ru,
+                 """Three large stone tables stand in the middle of this room, while the long benches that once stood next to them have been knocked askew and overturned. This is where the monks of the Crucible took their grim meals of tasteless gruel in silence."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_4_glintaxe_area, :room_13_kitchen, :room_14_ossuary, :room_15_abattoir, :room_16_chamber_of_penance .
+
+:room_13_kitchen rdf:type paizo:Room ;
+    rdfs:label "Кухня"@ru,
+                 "Kitchen"@en ;
+    rdfs:comment """Эта когда-то хорошо оборудованная кухня пострадала от длительного пренебрежения. Полки, покрытые битым камнем и другим мусором, выстроены вдоль стен, а через комнату старый ржавый котел покоится в золе древнего огня."""@ru,
+                 """This once well-appointed kitchen has suffered from long neglect. Shelves covered in broken stone and other refuse line the walls, while across the room an old rusty cauldron rests in the ashes of an ancient fire."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_12_mess_hall .
+
+:room_14_ossuary rdf:type paizo:Room ;
+    rdfs:label "Оссуарий"@ru,
+                 "Ossuary"@en ;
+    rdfs:comment """Этот темный оссуарий холоден и полон звука капающей воды. Темный коридор проходит на север по центру комнаты, в то время как по обе стороны два больших залива открываются в небольшие ниши, которые содержат древние дварфийские скелеты. В дальнем конце коридора покоится большая железная наковальня. Эта мрачная мини-катакомба ниш содержит кости нескольких дварфийских монахов горнила."""@ru,
+                 """This dark ossuary is cold and full of the sound of dripping water. A dark corridor runs north down the center of the room, while to either side two large bays open into small niches that contain ancient dwarven skeletons. At the far end of the corridor rests a large iron anvil. This grim mini-catacomb of alcoves contains the bones of several dwarven monks of the crucible."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_12_mess_hall .
+
+:room_15_abattoir rdf:type paizo:Room ;
+    rdfs:label "Бойня"@ru,
+                 "Abattoir"@en ;
+    rdfs:comment """Два больших каменных блока покоятся в центре этой комнаты, в то время как по обе стороны висят большие ржавые крюки над небольшими каналами в каменном полу, которые ведут к старым стокам, давно забитым мусором. Кобольд лежит на одном из блоков. Грудь маленького существа разорвана, и его внутренности безобразно свисают с боков блока. Эта зияющая каменная камера служила скотобойней столетия назад, где скот забивали и их мясо отделяли от костей."""@ru,
+                 """Two large stone blocks rest in the center of this room, while to either side hang large rusty hooks over small channels in the stone floor that lead to old drains long since choked with refuse. A kobold lies on one of the blocks. The little creature's chest has been ripped open and its entrails hang obscenely off the sides of the block. This yawning stone chamber served as a slaughterhouse centuries ago, where livestock were bled and their meat stripped from bone."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_12_mess_hall, :room_17_elevator .
+
+:room_16_chamber_of_penance rdf:type paizo:Room ;
+    rdfs:label "Комната покаяния"@ru,
+                 "Chamber of Penance"@en ;
+    rdfs:comment """Шесть каменных молитвенных платформ с хорошо изношенными коленными упорами, вырезанными в них, разбросаны по этой большой камере. Давным-давно ученики горнила приходили сюда молиться своему темному богу и умолять его о снисхождении за то, что были слишком снисходительны в своем труде или совершили преступления против его вероучения."""@ru,
+                 """Six stone prayer platforms with well-worn knee rests carved in to them are spread through this large chamber. Long ago, disciples of the crucible came here to pray to their dark god and beg his leniency for being too lax in their toil or committing crimes against his creed."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_7_lodestone_trap, :room_12_mess_hall, :room_17_elevator .
+
+:room_17_elevator rdf:type paizo:Room ;
+    rdfs:label "Лифт"@ru,
+                 "Elevator"@en ;
+    rdfs:comment """Десятифутовая яма занимает центр этой камеры. Прямо над ямой длинная цепь проходит через сложную систему шкивов, прежде чем исчезнуть в глубине. Эта область когда-то служила ямой для мусора для дварфов монастыря. Когда кобольды были вытеснены в норы ниже этой области и вынуждены были постоянно совершать поездки на поверхность для сбора пищи и пресной воды, они устали постоянно карабкаться по стенам ямы. Кобольды использовали большой котел, несколько длин цепей и шкивы, хранящиеся в области 20, чтобы построить примитивный лифт с шкивным приводом для удобства путешествий между двумя уровнями."""@ru,
+                 """A ten-foot-diameter pit occupies the center of this chamber. Directly over the pit a long chain feeds through complex pulley system before disappearing into the depths. This area once served as a refuse pit for the dwarves of the monastery. When the kobolds were pushed into the warrens below this area, and forced to make constant trips to the surface to gather food and fresh water, they grew tired of constantly scampering up the walls of the pit. The kobolds used a large cauldron, several lengths of chain, and pulleys stored in area 20 to construct a rudimentary pulley-operated elevator for ease of travel between the two levels."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_15_abattoir, :room_16_chamber_of_penance, :room_20_refuse_pit, :room_18_smoking_tunnels .
+
+:room_18_smoking_tunnels rdf:type paizo:Room ;
+    rdfs:label "Дымные туннели"@ru,
+                 "Smoking Tunnels"@en ;
+    rdfs:comment """В отличие от остальной части этого уровня, эта область имеет грубый камень и необработанную породу, напоминающую шахтный ствол. Туннели разделяются и снова соединяются несколько раз, что затрудняет поддержание чувства направления. Усугубляя это замешательство, густой едкий дым заполняет эти туннели, затрудняя видимость чего-либо за пределами нескольких футов. Эти грубо вырубленные туннели ведут к большому залу, заполненному кузницами, где монахи когда-то трудились день и ночь, выковывая сталь."""@ru,
+                 """Unlike the rest of this level, this area features rough stone and undressed rock reminiscent of a mine shaft. The tunnels divide and rejoin several times, making it difficult to maintain a sense of direction. Compounding this confusion, thick acrid smoke fills these tunnels, making it difficult to see anything beyond a few feet. These rough-hewn tunnels lead to a great forge-filled hall where the monks used to toil day and night crafting steel."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_17_elevator, :room_19_foundry_of_souls .
+
+:room_19_foundry_of_souls rdf:type paizo:Room ;
+    rdfs:label "Кузница душ"@ru,
+                 "Foundry of Souls"@en ;
+    rdfs:comment """Громкий треск заполняет комнату. Дым, который льется из нее, обжигающе горячий и освещен странным оранжевым светом. Массивная кузница, ответственная за адскую атмосферу, занимает всю дальнюю стену пещеры. Между кузницей и входом стоит массивная наковальня, а поблизости покоятся молоты, щипцы и другие инструменты кузнеца. Слабый плачущий звук почти теряется в реве, который доносится от кузницы. Нежить-чудовище, оставленное здесь гневом Дроскара, поддерживало огонь в его кузнице горящим на протяжении веков."""@ru,
+                 """A loud crackling sound fills the room. The smoke that pours from it is blistering hot and lit with a strange orange light. A massive forge responsible for the hellish atmosphere takes up the entire far wall of the cavern. Between the forge and the entrance stands a massive anvil, and nearby rest hammers, prongs, and other blacksmithing tools. A faint whimpering sound is almost lost in the roar that comes from the forge. An undead monstrosity left here by Droskar's wrath has kept the fire in his foundry burning for centuries."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_18_smoking_tunnels, :room_23_stalagmite_cave .
+
+:room_20_refuse_pit rdf:type paizo:Room ;
+    rdfs:label "Яма для мусора"@ru,
+                 "Refuse Pit"@en ;
+    rdfs:comment """Шахта опускается в большую, в основном квадратную камеру. Дверной проем открывается в одной стене, в то время как две другие стены были пробиты снаружи. Тесные, узкие туннели манят из-за пробитых стен."""@ru,
+                 """The shaft drops down into a large, mostly square chamber. A doorway opens in one wall, while two other walls have been broken through from the outside. Cramped, narrow tunnels beckon from beyond the breached walls."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_17_elevator, :room_22_mines, :room_21_storage, :room_24_chokepoint_ambush .
+
+:room_21_storage rdf:type paizo:Room ;
+    rdfs:label "Склад"@ru,
+                 "Storage"@en ;
+    rdfs:comment """Эта мрачная каменная камера заполнена пустыми ящиками и разбитыми бочками. Каменные балки пересекают потолок выше."""@ru,
+                 """This dour stone chamber is filled with empty crates and splintered barrels. Stone rafters criss-cross the ceiling above."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_20_refuse_pit .
+
+:room_22_mines rdf:type paizo:Room ;
+    rdfs:label "Шахты"@ru,
+                 "Mines"@en ;
+    rdfs:comment """Тесные проходы открываются в большую пещеру, заполненную каменными навесами и торчащими валунами. Большие валуны предлагают много укрытия для любого, кто хочет воспользоваться этим."""@ru,
+                 """The cramped passageways open to a large cavern filled with rocky overhangs and jutting boulders. The large boulders offer a lot of cover for anyone who wants to take advantage of them."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_20_refuse_pit, :room_23_stalagmite_cave, :room_27_slurk_kennel .
+
+:room_23_stalagmite_cave rdf:type paizo:Room ;
+    rdfs:label "Пещера сталагмитов"@ru,
+                 "Stalagmite Cave"@en ;
+    rdfs:comment """Пол этой зияющей пещеры заполнен гигантскими сталагмитами, некоторые стоят шесть футов в высоту. Трещина в этой комнате открывается в пол кузницы душ (область 19). Навигация по трещине требует проверки лазания DC 15 для маленького или меньшего существа. Среднее существо должно сжаться, чтобы пролезть через трещину, увеличивая DC лазания до 20."""@ru,
+                 """The floor of this yawning cavern is filled with gigantic stalagmites, some standing six feet in height. A crevasse in this room opens into floor of the foundry of souls (area 19). Navigating the crevasse requires a DC 15 Climb check for a Small or smaller creature. A Medium creature must squeeze to fit through the crevasse, increasing the Climb DC to 20."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_19_foundry_of_souls, :room_22_mines, :room_20_refuse_pit .
+
+:room_24_chokepoint_ambush rdf:type paizo:Room ;
+    rdfs:label "Засада в узком месте"@ru,
+                 "Chokepoint Ambush"@en ;
+    rdfs:comment """Этот тесный, высокопотолочный коридор обрамлен с обеих сторон высокими гребнями, восемь футов над каменистой землей коридора."""@ru,
+                 """This tight, high-ceilinged corridor is flanked on both sides by tall ridges, eight feet above the corridor's rocky ground."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_20_refuse_pit, :room_25_intersection_ambush, :room_27_slurk_kennel .
+
+:room_25_intersection_ambush rdf:type paizo:Room ;
+    rdfs:label "Засада на перекрестке"@ru,
+                 "Intersection Ambush"@en ;
+    rdfs:comment """Узкий туннель открывается в длинную пещеру с отверстиями в северной, южной и восточной стенах. Эта разветвляющаяся развилка скрывает три небольшие, но глубокие ниши, встроенные в ее стены, что делает ее идеальным местом для организации смертельной засады против больших неуклюжих розовокожих людей и остроконечных эльфийских типов."""@ru,
+                 """The narrow tunnel opens out in to a long cave, with openings in the north, south, and east walls. This branching intersection conceals three small but deep alcoves set into its walls (as noted on the map), making it the perfect place to stage a lethal ambush against large bumbling pink-skinned humans and pointy-eared elf types."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_24_chokepoint_ambush, :room_26_hatchery, :room_29_shrieker_tunnel .
+
+:room_26_hatchery rdf:type paizo:Room ;
+    rdfs:label "Инкубаторий"@ru,
+                 "Hatchery"@en ;
+    rdfs:comment """Жалобные мяукающие крики исходят из этой теплой, влажной камеры. Низкая каменная стена разделяет эту пещеру на две части. Одна половина пещеры содержит несколько рядов больших яиц, наполовину закопанных в песок. Другая половина содержит дюжину детенышей кобольдов, дерущихся и играющих друг с другом в темноте."""@ru,
+                 """Plaintive mewling cries emanate from this warm, damp chamber. A low wall of stone divides this cave into two partitions. One half of the cave contains several rows of large eggs half buried in sand. The other half contains a dozen infant kobolds, scrapping and playing with each other in the darkness."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_25_intersection_ambush, :room_29_shrieker_tunnel .
+
+:room_27_slurk_kennel rdf:type paizo:Room ;
+    rdfs:label "Псарня слюрков"@ru,
+                 "Slurk Kennel"@en ;
+    rdfs:comment """Стены и пол этой камеры покрыты полупрозрачной скользкой серой слизью, напоминающей слизь. Два узких туннеля ведут на юг из этой пещеры, в то время как лестница ведет вверх на север. Стены этой пещеры покрыты зловонной коркой слизи, выделяемой слюрками, а пол здесь скользкий от их противной жирности живота."""@ru,
+                 """The walls and floor of this chamber are covered with a semi-transparent slippery gray slime that resembles mucous. Two narrow tunnels lead south out of this cave, while a flight of steps leads up to the north. The walls of this cavern are covered in the foul-smelling crusty slime secreted by slurks, and the floor here is slick with their nasty belly grease."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_22_mines, :room_24_chokepoint_ambush, :room_25_intersection_ambush, :room_29_shrieker_tunnel, :room_28_forsaken_tunnel, :room_30_kobold_den .
+
+:room_28_forsaken_tunnel rdf:type paizo:Room ;
+    rdfs:label "Заброшенный туннель"@ru,
+                 "Forsaken Tunnel"@en ;
+    rdfs:comment """Туннель впереди заблокирован массивным обвалом. Возле каменных обломков трупы двух кобольдов лежат растянутыми на полу, кажущиеся невредимыми и все же каменно-холодными мертвыми. Угловатые буквы на стене над головами мертвых кобольдов выписывают надпись. Этот одинокий участок коридора ведет к теперь запечатанной пещере, спускающейся к уровню 3 этих подземелий."""@ru,
+                 """The tunnel ahead is blocked by a massive cave-in. Near the stone rubble the corpses of two kobolds lie stretched out on the floor, seemingly uninjured and yet stone-cold dead. Angular letters on the wall above the heads of the dead kobolds spell out an inscription. This lonely stretch of corridor leads to the now-sealed cave descending to level 3 of these dungeons."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_27_slurk_kennel .
+
+:room_29_shrieker_tunnel rdf:type paizo:Room ;
+    rdfs:label "Туннель крикунов"@ru,
+                 "Shrieker Tunnel"@en ;
+    rdfs:comment """Этот скалистый зигзагообразный проход, кажется, является главной магистралью кобольдов, но на самом деле они избегают его, предпочитая использовать соединительный коридор между областью 30 и 27 вместо этого."""@ru,
+                 """This craggy zigzagging passageway seems to be the main thoroughfare of the kobolds, but actually they avoid it, preferring to use the connecting corridor between area 30 and 27 instead."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_25_intersection_ambush, :room_26_hatchery, :room_27_slurk_kennel, :room_30_kobold_den .
+
+:room_30_kobold_den rdf:type paizo:Room ;
+    rdfs:label "Логово кобольдов"@ru,
+                 "Kobold Den"@en ;
+    rdfs:comment """Эта просторная пещера заполнена грязными соломенными гнездами, обломками оружия, брони, другого мусора и выброшенными остатками трапез племени кобольдов. Большинство кобольдов живут здесь, спят среди каменных валунов и сражаются за удобные ниши у стен."""@ru,
+                 """This roomy cavern is filled with dirty straw nests, scraps of weapons, armor, other junk, and the discarded remains of the kobold tribe's meals. Most of the kobolds live here, sleeping among the rocky boulders and fighting over the comfortable niches against the walls."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_27_slurk_kennel, :room_29_shrieker_tunnel, :room_31_throne_of_kobold_king .
+
+:room_31_throne_of_kobold_king rdf:type paizo:Room ;
+    rdfs:label "Трон Короля Кобольдов"@ru,
+                 "Throne of the Kobold King"@en ;
+    rdfs:comment """Здесь стоит Ползучий Трон Мерлокрепа. Трон Короля Кобольдов изготовлен из трупа чудовищной сороконожки. Массивное насекомое опирается на стену здесь на пьедестале из каменных блоков, его ноги изгибаются вокруг любого, кто сидит на нем, как подлокотники."""@ru,
+                 """Here stands the Crawling Throne of Merlokrep. The Kobold King's throne is crafted from the corpse of a monstrous centipede. The massive vermin is propped up against the wall here on a dais of stone blocks, its legs curling in around any who sit upon it like leveled arm rests."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_30_kobold_den, :room_32_kings_quarters, :room_33_sacrifice_chamber .
+
+:room_32_kings_quarters rdf:type paizo:Room ;
+    rdfs:label "Квартиры короля"@ru,
+                 "King's Quarters"@en ;
+    rdfs:comment """Эта уютная камера обогревается кирпичами старой заплесневелой ладана. В одном углу комнаты лежит взъерошенная волчья кровать, в другом - каменный стол, заваленный плохо изготовленными ожерельями, кольцами и браслетами из золота. Несколько кусков полированного обсидиана также беспорядочно сложены на одной стене здесь, образуя причудливое полузеркало."""@ru,
+                 """This cozy chamber is heated by bricks of old mold-ridden incense. A tousled wolf-skin bed lies in one corner of the room, a stone table piled high with poorly crafted necklaces, rings and bracelets of gold in another. Several chunks of polished obsidian are stacked haphazardly on one wall here as well, forming a bizarre half-mirror."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_31_throne_of_kobold_king, :room_33_sacrifice_chamber .
+
+# =============================================================================
+# ТИПЫ СУЩЕСТВ
+# =============================================================================
+
+:kobold_slave rdf:type paizo:CreatureType ;
+    rdfs:label "Кобольд-раб"@ru,
+                 "Kobold Slave"@en ;
+    rdfs:comment "Кобольд, находящийся в рабстве и выполняющий принудительные работы."@ru,
+                 "Kobold in slavery performing forced labor."@en ;
+    paizo:basedOn mm35:kobold ;
+    paizo:hasGameStatsDnd3p5 "hp 2; AC 13 (no leather armor); weapon: sling only"@en,
+                             "хп 2; КБ 13 (без кожаной брони); оружие: только праща"@ru .
+
+:kobold_warrior rdf:type paizo:CreatureType ;
+    rdfs:label "Кобольд-воин"@ru,
+                 "Kobold Warrior"@en ;
+    rdfs:comment "Кобольд-воин, обученный сражаться и охранять."@ru,
+                 "Kobold warrior trained to fight and guard."@en ;
+    paizo:basedOn mm35:kobold ;
+    paizo:hasGameStatsDnd3p5 "hp 4"@en,
+                             "хп 4"@ru .
+
+# Энкаунтеры Droskar's Crag
+
+:monument_chamber_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Комната памятника"@ru,
+                 "Monument Chamber"@en ;
+    rdfs:comment "В настоящее время два кобольда-раба трудятся возле западного дверного проема, пытаясь тащить за собой 60-фунтовый кусок упавшего памятника. Четыре кобольда-воина сопровождают их."@ru,
+                 "Currently, two kobold slaves toil near the west doorway, trying to drag a 60-pound chunk of the fallen monument behind them. Four kobold warriors accompany them."@en ;
+    paizo:hadEncounterLevel "2"^^xsd:float ;
+    paizo:hadEncounterComposition "кобольд-раб (2), кобольд-воин (4)"@ru,
+                                  "kobold slave (2), kobold warrior (4)"@en ;
+    paizo:wasMotivatedBy :kobolds_gathering_obsidian_for_vreggma_motivation,
+                         :kobold_warriors_protecting_tribe_motivation,
+                         :kobold_slaves_serving_master_motivation ;
+    paizo:locatedIn :room_1_monument_chamber .
+
+:crucible_of_offering_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Горнило приношений"@ru,
+                 "Crucible of Offering"@en ;
+    rdfs:comment "Тепло Горнила привлекло грика, который гнездится в старых вентиляционных шахтах. Грик рыщет по руинам в поисках добычи, но в восторге, когда группа вкусных гуманоидов доставляет себя прямо к его дому. Он атакует из своего укрытия в вентиляционных шахтах выше."@ru,
+                 "The warmth of the Crucible attracted a grick, who roosts in the old vents. The grick prowls the ruins for prey but is delighted when a party of delicious humanoids delivers themselves right to its home. It attacks from its hiding place in the vents above."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "грик (1)"@ru,
+                                  "grick (1)"@en ;
+    paizo:locatedIn :room_2_crucible_of_offering .
+
+:fountain_chamber_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Комната фонтана"@ru,
+                 "Fountain Chamber"@en ;
+    rdfs:comment "Пара шоковых ящериц обитает в мелком фонтане здесь."@ru,
+                 "A mated pair of shocker lizards resides in the shallow fountain here."@en ;
+    paizo:hadEncounterLevel "4"^^xsd:float ;
+    paizo:hadEncounterComposition "шоковая ящерица (2)"@ru,
+                                  "shocker lizard (2)"@en ;
+    paizo:locatedIn :room_3_fountain_chamber .
+
+:glintaxe_attacks_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Атака Глинтэкса"@ru,
+                 "Glintaxe Attacks"@en ;
+    rdfs:comment "Друингар Глинтэкс приближается к персонажам - или, скорее, его доспехи и топор. Глинтэкс прибыл в монастырь, планируя исследовать его секреты и забрать Хватку Дроскара, топор, созданный одним из его предков тысячу лет назад. К сожалению, его дикие кутежи накануне вечером оставили обычно стойкого воина немного не в себе. Одурманенный выпивкой и истощенный долгим походом к Горнилу, он решил вздремнуть в области 5, прежде чем продолжить глубже в разрушенный монастырь. Пока он спал, желатиновый куб поглотил его и быстро переварил дварфийского героя. Его мифриловые доспехи и магический топор (запертый на его перчатке) оказались неперевариваемыми и остаются подвешенными внутри куба."@ru,
+                 "Druingar the Glintaxe approaches the PCs—or rather, his armor and axe do. Glintaxe arrived at the monastery planning to probe its secrets and retrieve the Grasp of Droskar, an axe created by one of his ancestors a thousand years ago. Sadly, his wild carousing the night before his arrival left the usually steady warrior a little under the weather. Addled by drink and exhausted from the long hike to the Crucible, he decided to catch a short nap in area 5 before continuing deeper into the ruined monastery. As he slumbered, a gelatinous cube engulfed him and quickly digested the dwarven hero. His mithral armor and magical axe (locked to his gauntlet) proved indigestible and remain suspended inside the cube."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "желатиновый куб (1)"@ru,
+                                  "gelatinous cube (1)"@en ;
+    paizo:locatedIn :room_4_glintaxe_area .
+
+:monks_quarters_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Квартиры монахов"@ru,
+                 "Monks Quarters"@en ;
+    rdfs:comment "Пять стиргов гнездятся здесь, теперь питаясь всеми, кто входит в эту камеру."@ru,
+                 "Five stirges nest here, now feeding on anyone who enters this chamber."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "стирг (5)"@ru,
+                                  "stirge (5)"@en ;
+    paizo:locatedIn :room_5_monks_quarters .
+
+:hall_of_headless_corpse_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Зал обезглавленного трупа"@ru,
+                 "Hall of the Headless Corpse"@en ;
+    rdfs:comment "Этот бедняга был недавней жертвой варгуйла в области 7. Трио диких крыс шумно питается гниющим трупом, атакуя любого, кто их прерывает."@ru,
+                 "This poor sod was a recent victim of the vargouille in area 7. A trio of dire rats feed noisily on the rotting carcass, attacking anyone who interrupts them."@en ;
+    paizo:hadEncounterLevel "1"^^xsd:float ;
+    paizo:hadEncounterComposition "дикая крыса (3)"@ru,
+                                  "dire rat (3)"@en ;
+    paizo:locatedIn :room_6_hall_of_headless_corpse .
+
+:lodestone_trap_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Ловушка магнетита"@ru,
+                 "Lodestone Trap"@en ;
+    rdfs:comment "Эта большая круглая каменная камера содержит сложную ловушку. Обелиск - это гигантский магнетит, чьи магнитные свойства активируются, когда более 30 фунтов прикладывается к любой из десятков напольных пластин давления на полу камеры. Две варгуйлы освобождаются из своих тюремных ниш активацией обелиска магнетита."@ru,
+                 "This large circular stone chamber contains a complex trap. The obelisk is a giant lodestone whose magnetic properties are activated when more than 30 pounds is applied to any one of dozens of pressure plates on the chamber floor. Two vargouilles are released from their alcove prisons by the lodestone obelisk's activation."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "варгуйла (2)"@ru,
+                                  "vargouille (2)"@en ;
+    paizo:locatedIn :room_7_lodestone_trap .
+
+:monument_of_forge_war_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Памятник войны кузни"@ru,
+                 "Monument of the Forge War"@en ;
+    rdfs:comment "Кобольд пал жертвой смертельной ловушки, предназначенной для предотвращения доступа к области 9 за ней. Эта комната построена с падающими шестернями, размещенными в стенах, и напольными пластинами давления по полу возле середины комнаты. Когда срабатывает, комната внезапно наклоняется на бок, вращаясь на 90 градусов."@ru,
+                 "The kobold fell prey to a deadly trap meant to prevent anyone from reaching area 9 beyond. This room is constructed with tumbling gears housed in the walls and pressure plates across the floor near the middle of the room. When triggered the room lurches suddenly on its side, rotating 90 degrees."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:locatedIn :room_8_monument_of_forge_war .
+
+:chronicle_of_faithful_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Хроника верных"@ru,
+                 "Chronicle of the Faithful"@en ;
+    rdfs:comment "Триггер в нижнем углу восточной стены (под именем 'Гриндболт Стоунслайдер') открывает секретную раздвижную дверь к области 11."@ru,
+                 "A trigger at the bottom corner of the east wall (under the name 'Grindbolt Stoneslider') opens a secret sliding door to area 11."@en ;
+    paizo:locatedIn :room_9_chronicle_of_faithful .
+
+:abbots_quarters_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Квартиры аббата"@ru,
+                 "Abbot's Quarters"@en ;
+    rdfs:comment "Гристогар создал гомункула, чтобы служить ему много веков назад. Дух жалкого маленького существа сломался с самоубийством его хозяина, и оно томится здесь."@ru,
+                 "Gristogar crafted a homunculus to serve him ages ago. The pathetic little creature's spirit broke with his master's suicide and it languishes here."@en ;
+    paizo:hadEncounterLevel "1"^^xsd:float ;
+    paizo:hadEncounterComposition "гомункул (1)"@ru,
+                                  "homunculus (1)"@en ;
+    paizo:locatedIn :room_10_abbots_quarters .
+
+:listening_chamber_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Комната прослушивания"@ru,
+                 "Listening Chamber"@en ;
+    rdfs:comment "Аллип, агент темного демона, который прячется глубоко под монастырем, находится здесь, собирая разведданные для своего ужасного хозяина."@ru,
+                 "An allip agent of the dark fiend that lurks deep below the monastery is here gathering intelligence for its hideous master."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "аллип (1)"@ru,
+                                  "allip (1)"@en ;
+    paizo:locatedIn :room_11_listening_chamber .
+
+:mess_hall_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Столовая"@ru,
+                 "Mess Hall"@en ;
+    rdfs:comment "Эта камера теперь является местом ожесточенной битвы между кобольдами-воинами Мерлокрепа и несколькими из их пленников, которые сбежали из загона на уровне 2 и добрались сюда, прежде чем были настигнуты. Эдгрин Гейлсонг, пухлый полурослик и бард-виртуоз, является членом Серых Орлов, авантюрной труппы, базирующейся в Соколиной Лощине, которая отправилась в долину неделю назад в поисках сокровищ."@ru,
+                 "This chamber is now the site of a heated battle between kobold warriors of Merlokrep and a few of their captives, who escaped their holding pen on level 2 and made it to here before being overtaken. Edgrin Galesong, a chubby halfling and bard extraordinaire, is a member of the Gray Eagles, an adventuring troupe based in Falcon's Hollow who ventured into the vale a week ago seeking treasure."@en ;
+    paizo:hadEncounterComposition "кобольд-воин (несколько), пленники (несколько)"@ru,
+                                  "kobold warrior (several), captives (several)"@en ;
+    paizo:locatedIn :room_12_mess_hall .
+
+:kitchen_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Кухня"@ru,
+                 "Kitchen"@en ;
+    rdfs:comment "Мусор на восточной полке скрывает два зелья мудрости совы, спрятанные здесь кобольдом-вором после успешного рейда и затем забытые, когда вор был захвачен кузнецом-отступником в области 19."@ru,
+                 "The refuse on the eastern shelf conceals two potions of owl's wisdom, stashed here by a kobold thief after a successful raid and then forgotten when the thief was captured by the forge spurned in area 19."@en ;
+    paizo:locatedIn :room_13_kitchen .
+
+:ossuary_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Оссуарий"@ru,
+                 "Ossuary"@en ;
+    rdfs:comment "Каждая из двенадцати открытых ниш (шесть с каждой стороны) содержит скелет дварфа. Эти скелеты не оживают, если на них не нападают или кто-то не пытается пробиться через запечатанные решетки, которые выстилают коридор. Саврам Вейд прячется за наковальней на противоположном конце коридора."@ru,
+                 "Each of the twelve open alcoves (six on each side) contains a dwarf skeleton. These skeletons do not animate unless they are attacked or someone tries to break through the sealed grates that line the corridor. Savram Vade cowers behind the anvil on the opposite end of the corridor."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "скелет (12)"@ru,
+                                  "skeleton (12)"@en ;
+    paizo:locatedIn :room_14_ossuary .
+
+:abattoir_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Бойня"@ru,
+                 "Abattoir"@en ;
+    rdfs:comment "Четыре дварфийских гуля, грустные и гниющие остатки их рухнувшего королевства, теперь прячутся в этом кровавом зале. Когда персонажи входят, гули атакуют, как только обнаруживают отряд."@ru,
+                 "Four dwarven ghouls, sad and rotting holdovers from their collapsed kingdom, now skulk in this bloody hall. When the PCs enter the ghouls are at the butcher's block, one gnawing on the kobold's leg, another slurping up strips of entrails like sausages. They attack as soon as they detect the party."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "гуль (4)"@ru,
+                                  "ghoul (4)"@en ;
+    paizo:locatedIn :room_15_abattoir .
+
+:chamber_of_penance_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Комната покаяния"@ru,
+                 "Chamber of Penance"@en ;
+    rdfs:comment "Мистик-недовольный племени Истинной Чешуи по имени Кердремак держит здесь суд над пятью кобольдами-воинами. Они поручены разведке верхних залов и сообщению очевидных угроз Мерлокрепу и его элитным кровяным чешуйкам внизу."@ru,
+                 "A malcontent mystic of the Truescale Tribe named Kerrdremak holds court here over five kobold warriors. They are charged with scouting the upper halls and reporting obvious threats to Merlokrep and his elite bloodscales below."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "кобольд-воин (5), мистик (1)"@ru,
+                                  "kobold warrior (5), mystic (1)"@en ;
+    paizo:locatedIn :room_16_chamber_of_penance .
+
+:elevator_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Лифт"@ru,
+                 "Elevator"@en ;
+    rdfs:comment "Четыре кобольда-часовых под командованием элитного охотника темного когтя размещены здесь для охраны лифта. Кобольды намеренно настроили этот лифт на неисправность, если внутри помещается слишком большой вес."@ru,
+                 "Four kobold sentries commanded by an elite dark talon hunter are posted here to guard the elevator. The kobolds purposefully rigged this elevator to malfunction if too much weight is placed inside."@en ;
+    paizo:hadEncounterComposition "кобольд-часовой (4), элитный охотник темного когтя (1)"@ru,
+                                  "kobold sentry (4), elite dark talon hunter (1)"@en ;
+    paizo:locatedIn :room_17_elevator .
+
+:smoking_tunnels_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Дымные туннели"@ru,
+                 "Smoking Tunnels"@en ;
+    rdfs:comment "Кузнец-отступник в области 19 держит здесь адского пса, чтобы терзать нарушителей."@ru,
+                 "The forge spurned in area 19 keeps a hellhound here to maul trespassers."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:hadEncounterComposition "адский пес (1)"@ru,
+                                  "hellhound (1)"@en ;
+    paizo:locatedIn :room_18_smoking_tunnels .
+
+:foundry_of_souls_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Кузница душ"@ru,
+                 "Foundry of Souls"@en ;
+    rdfs:comment "Джурин Крид, молодой отпрыск самой могущественной семьи Соколиной Лощины, находится здесь под опекой злого неживого дварфа, называемого кузнецом-отступником. Кузнец-отступник усердно работает у наковальни, выковывая новое звено для своей душевно-кованой цепи. Когда звено будет завершено, существо планирует высосать душу Джурина в него, добавив мальчика в свою ужасную коллекцию."@ru,
+                 "Jurin Kreed, the young scion of Falcon Hollow's most powerful family, is sequestered here by an evil undead dwarf called a forge spurned. The forge spurned is hard at work at the anvil beating a new link for its soul-forged chain. When the link is complete the creature plans to suck Jurin's soul into it, adding the boy to his gruesome menagerie."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "кузнец-отступник (1)"@ru,
+                                  "forge spurned (1)"@en ;
+    paizo:locatedIn :room_19_foundry_of_souls .
+
+:refuse_pit_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Яма для мусора"@ru,
+                 "Refuse Pit"@en ;
+    rdfs:comment "Два кровяных чешуйки ждут отряд здесь, верхом на спинах отвратительных жабоподобных чудовищ, называемых слюрками. Как только кто-то спускается по шахте, они атакуют."@ru,
+                 "Two bloodscales await the party here, mounted on the backs of disgusting toadlike monstrosities called slurks. As soon as anyone descends the shaft they attack."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "кровяная чешуйка (2), слюрк (2)"@ru,
+                                  "bloodscale (2), slurk (2)"@en ;
+    paizo:locatedIn :room_20_refuse_pit .
+
+:storage_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Склад"@ru,
+                 "Storage"@en ;
+    rdfs:comment "Эта область когда-то была домом для семьи чокеров, прячущихся среди старых ящиков и коробок, хранящихся в этой сырой камере. Когда кобольды поднялись из нор внизу, разразилась война между этими двумя группами монстров. После недели, полной потерь с обеих сторон, кобольды победили, убив всех чокеров, кроме одного, который бежал в тенистые балки выше. Чокер по имени Скиирррш, ослабленный от потери крови и отравленный ядом, соскользнул с балок час назад."@ru,
+                 "This area was once the home to a family of chokers lurking among the old crates and boxes stowed in this dank chamber. When the kobolds rose up from the warrens below, war broke out between these two groups of monsters. After a week fraught with casualties on both sides, the kobolds won out, slaying all of the chokers but one, who fled to the shadowy rafters above. The choker, named Skiiirrrssh, weakened from blood loss and tainted with poison, slipped from the rafters an hour ago."@en ;
+    paizo:hadEncounterLevel "2"^^xsd:float ;
+    paizo:hadEncounterComposition "чокер (1)"@ru,
+                                  "choker (1)"@en ;
+    paizo:locatedIn :room_21_storage .
+
+:mines_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Шахты"@ru,
+                 "Mines"@en ;
+    rdfs:comment "Жестокий горный мастер Мерлокрепа, Лекмек, работает здесь, загоняя кучу рабов до смерти в поисках 'блестящего добра-добра' для Вреггмы."@ru,
+                 "Merlokrep's cruel mining foreman, Lekmek, works a gaggle of slaves to death here in search of 'shiny good good' for Vreggma."@en ;
+    paizo:hadEncounterLevel "4"^^xsd:float ;
+    paizo:hadEncounterComposition "Лекмек (1), кобольд-раб (несколько)"@ru,
+                                  "Lekmek (1), kobold slave (several)"@en ;
+    paizo:locatedIn :room_22_mines .
+
+:stalagmite_cave_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Пещера сталагмитов"@ru,
+                 "Stalagmite Cave"@en ;
+    rdfs:comment "Гаргулья по имени Реглос делает свой дом здесь среди сталагмитов. Злой гаргулья получает большое удовольствие от жестокого обращения с членами отряда. Кроме того, дикая летучая мышь живет в тенях выше и пикирует вниз, чтобы атаковать персонажей."@ru,
+                 "A gargoyle named Reglos makes his home here among the stalagmites. The evil gargoyle takes great pleasure savaging the party members. In addition, a dire bat lives in the shadows above and swoops down to attack the PCs."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "гаргулья (1), дикая летучая мышь (1)"@ru,
+                                  "gargoyle (1), dire bat (1)"@en ;
+    paizo:locatedIn :room_23_stalagmite_cave .
+
+:chokepoint_ambush_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Засада в узком месте"@ru,
+                 "Chokepoint Ambush"@en ;
+    rdfs:comment "Два элитных охотника темного когтя размещены на гребнях выше здесь. Один из этих злых маленьких кобольдов прячется на каждой стороне коридора. Когда отряд проходит через тесный проход, темные когти размахивают своими летающими когтями вниз на персонажей."@ru,
+                 "Two elite dark talon hunters are perched on the ridges above here. One of these evil little kobolds lurks on each side of the corridor. As the party navigates the tight passage, the dark talons swing their flying talons down at the PCs."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "элитный охотник темного когтя (2)"@ru,
+                                  "elite dark talon hunter (2)"@en ;
+    paizo:locatedIn :room_24_chokepoint_ambush .
+
+:intersection_ambush_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Засада на перекрестке"@ru,
+                 "Intersection Ambush"@en ;
+    rdfs:comment "Капитан Его Высочества Королевских Убийственных Кровяных Чешуек Мерлокрепа, высокий кобольд по имени Гругакруг, ведет группу охотников темного когтя в смелую атаку против отряда здесь. Один охотник темного когтя прячется в каждой из трех ниш, в то время как Гругакруг, верхом на своем верном слюрке, прячется в западном коридоре."@ru,
+                 "Merlokrep's Captain of His Highness's Royal Kill-stabbing Bloodscales, a tall kobold named Grugakrug, leads a band of dark talon hunters in a daring assault against the party here. One dark talon hunter hides in each of the three alcoves, while Grugakrug, mounted on his trusty slurk, hides in the western corridor."@en ;
+    paizo:hadEncounterLevel "7"^^xsd:float ;
+    paizo:hadEncounterComposition "охотник темного когтя (3), Гругакруг (1), слюрк (1)"@ru,
+                                  "dark talon hunter (3), Grugakrug (1), slurk (1)"@en ;
+    paizo:locatedIn :room_25_intersection_ambush .
+
+:hatchery_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Инкубаторий"@ru,
+                 "Hatchery"@en ;
+    rdfs:comment "Мекапа, акушерка племени, тучная маленькая самка, которая наблюдает за инкубацией и вылуплением молодежи племени, стоит между персонажами и яйцами. Она безоружна, но стойка, ставя себя между молодыми и опасностью без колебаний."@ru,
+                 "Mekapa, the tribe's midwife, a rotund little female who oversees the incubation and hatching of the tribal youth, stands between the PCs and the eggs. She is unarmed but steadfast, putting herself between the young and danger without hesitation."@en ;
+    paizo:hadEncounterLevel "0.5"^^xsd:float ;
+    paizo:hadEncounterComposition "Мекапа (1)"@ru,
+                                  "Mekapa (1)"@en ;
+    paizo:locatedIn :room_26_hatchery .
+
+:slurk_kennel_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Псарня слюрков"@ru,
+                 "Slurk Kennel"@en ;
+    rdfs:comment "Капмек, Почетный Слюрк-Погонщик племени Истинной Чешуи, проводит большую часть своего времени здесь со своими скользкими подопечными. Капмек, зеленокожий кобольд с чрезмерно длинной мордой и обернутый в черную кожаную броню, верхом на слюрке. Другой слюрк также бродит по скользкой пещере здесь."@ru,
+                 "Kapmek, the Honored Slurk-Wrangler of the Truescale tribe, spends most of his time here with his goo-slick charges. Kapmek, a green-scaled kobold with an overly long snout and swathed in black leather armor, is mounted on slurk-back. Another slurk also roves about the slimy cave here."@en ;
+    paizo:hadEncounterLevel "6"^^xsd:float ;
+    paizo:hadEncounterComposition "Капмек (1), слюрк (2)"@ru,
+                                  "Kapmek (1), slurk (2)"@en ;
+    paizo:locatedIn :room_27_slurk_kennel .
+
+:forsaken_tunnel_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Заброшенный туннель"@ru,
+                 "Forsaken Tunnel"@en ;
+    rdfs:comment "Три тени парят здесь в темноте, наблюдая за входом на нижние уровни для своего злого хозяина. Одна из теней ответственна за два трупа кобольдов (чьи души теперь скручены в две другие тени, парящие здесь)."@ru,
+                 "Three shadows float here in the dark, observing the entrance to lower levels for their evil master. One of the shadows is responsible for the two kobold corpses (whose souls have now been twisted into the other two shadows floating here)."@en ;
+    paizo:hadEncounterLevel "6"^^xsd:float ;
+    paizo:hadEncounterComposition "тень (3)"@ru,
+                                  "shadow (3)"@en ;
+    paizo:locatedIn :room_28_forsaken_tunnel .
+
+:shrieker_tunnel_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Туннель крикунов"@ru,
+                 "Shrieker Tunnel"@en ;
+    rdfs:comment "Этот узкий коридор является домом для пары грибов-крикунов, чей пронзительный вой предупреждает кобольдов в области 30 и Мерлокрепа и его миньонов в тронном зале (область 31)."@ru,
+                 "This narrow corridor is home to a pair of shrieker fungi whose keening wail warns kobolds in area 30 and Merlokrep and his myrmidons in the throne room (area 31)."@en ;
+    paizo:hadEncounterLevel "3"^^xsd:float ;
+    paizo:locatedIn :room_29_shrieker_tunnel .
+
+:kobold_den_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Логово кобольдов"@ru,
+                 "Kobold Den"@en ;
+    rdfs:comment "Двенадцать кобольдов ждут персонажей здесь, вместе с двумя командирами кровяных чешуек. Орда рептильных монстров бросается на персонажей, когда они входят."@ru,
+                 "Twelve kobolds await the PCs here, along with two bloodscale commanders. The horde of reptilian monsters charges the PCs when they enter."@en ;
+    paizo:hadEncounterLevel "5"^^xsd:float ;
+    paizo:hadEncounterComposition "кобольд (12), командир кровяных чешуек (2)"@ru,
+                                  "kobold (12), bloodscale commander (2)"@en ;
+    paizo:locatedIn :room_30_kobold_den .
+
+:throne_of_kobold_king_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Трон Короля Кобольдов"@ru,
+                 "Throne of the Kobold King"@en ;
+    rdfs:comment "Мерлокреп, первый своего имени, Король-Дракон племени Истинной Чешуи, сидит здесь, затачивая край своего кровавого топора ('Срубатель Людей'). Он окружен двумя своими самыми грозными воинами, Мирмидонами Истинной Чешуи, которые сами одеты в позолоченные доспехи, сжимая свои короткие копья наготове."@ru,
+                 "Merlokrep, first of his name, Dragon King of the Truescale Tribe sits here honing the edge of his bloody axe ('Man-feller'). He is flanked by his two most fearsome warriors, Myrmidons of the Truescale that are themselves clad in gilded armor, clutching their shortspears at attention."@en ;
+    paizo:hadEncounterLevel "7"^^xsd:float ;
+    paizo:hadEncounterComposition "Мерлокреп (1), мирмидон Истинной Чешуи (2)"@ru,
+                                  "Merlokrep (1), Truescale Myrmidon (2)"@en ;
+    paizo:locatedIn :room_31_throne_of_kobold_king .
+
+:kings_quarters_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Квартиры короля"@ru,
+                 "King's Quarters"@en ;
+    rdfs:comment "Вреггма - консорт Мерлокрепа и особенно эффектная самка-кобольд с блестящей синей чешуей. Ее горе по поводу смерти ее короля недолговечно, и она немедленно пытается кокетливую соблазнение члена отряда, надеясь быть пощаженной."@ru,
+                 "Vreggma is the consort of Merlokrep and a particularly stunning female kobold with shiny blue scales. Her grief over her king's demise is short-lived, and she immediately attempts the coquettish seduction of a party member, hoping to be spared."@en ;
+    paizo:hadEncounterLevel "4"^^xsd:float ;
+    paizo:hadEncounterComposition "Вреггма (1)"@ru,
+                                  "Vreggma (1)"@en ;
+    paizo:locatedIn :room_32_kings_quarters .
+
+:sacrifice_chamber_encounter rdf:type paizo:Encounter ;
+    rdfs:label "Комната жертвоприношения"@ru,
+                 "Sacrifice Chamber"@en ;
+    rdfs:comment "Джеккаджак, шаман Истинных Чешуек, ковыляет здесь, пытаясь вспомнить правильный протокол для своих жертвенных обрядов. Когда он слышит битву, разразившуюся в тронном зале, он решает поспешно попробовать пробный прогон на Тиране Мунсливере и приказывает своим двум миньонам кровяных чешуек привязать полуэльфа к алтарю. Холлин прячется в северо-западном углу здесь."@ru,
+                 "Jekkajak, shaman of the Truescales, dodders here attempting to recall the proper protocol for his sacrificial rites. When he hears the battle break out in the throne room, he decides to hurriedly try a practice run on Tyran Moonsliver and orders his two bloodscale minions to tie the half-elf to the altar. Hollin cowers in the northwest corner here."@en ;
+    paizo:hadEncounterLevel "7"^^xsd:float ;
+    paizo:hadEncounterComposition "Джеккаджак (1), кровяная чешуйка (2)"@ru,
+                                  "Jekkajak (1), bloodscale (2)"@en ;
+    paizo:locatedIn :room_33_sacrifice_chamber .
+
+:room_33_sacrifice_chamber rdf:type paizo:Room ;
+    rdfs:label "Комната жертвоприношения"@ru,
+                 "Sacrifice Chamber"@en ;
+    rdfs:comment """Кровавый алтарь сидит в центре этой в остальном неукрашенной камеры."""@ru,
+                 """A gruesome bloodstained altar sits at the center of this otherwise unadorned chamber."""@en ;
+    paizo:locatedIn :droskar_crucible_underground ;
+    paizo:connectedTo :room_31_throne_of_kobold_king, :room_32_kings_quarters .
